@@ -1,4 +1,4 @@
-@import url(https://bg.allfont.net/allfont.css?fonts=a_avantelt-light);
+/* @import url(https://bg.allfont.net/allfont.css?fonts=a_avantelt-light); */
 :root {
 	--logged-teacher-controls-clr: #4b4f5c;
 	--logged-teacher-line-clr: #744263;
@@ -31,25 +31,4 @@ body {
 .modal {
 	background-color: var(--modal-background-clr);
 	box-shadow: rgba(18, 18, 18, 0.85) 0 0 23% 30px;
-}
-
-.btn {
-	background-color: #4e2841;
-	position: relative;
-	border: 0;
-	cursor: pointer;
-	color: #fff;
-	padding: 8px 16px;
-	font-size: 18px;
-}
-
-.btn::after {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	background-color: #878486;
-	opacity: 0.7;
-	left: 0;
-	top: 0;
 }

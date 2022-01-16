@@ -1,7 +1,8 @@
+import Button from './components/Button';
 import './App.css';
 
 function App() {
-	return <button className='btn'>Запази</button>;
+	return <Button>Залази</Button>;
 }
 
 export default App;
