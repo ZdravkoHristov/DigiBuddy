@@ -6,7 +6,7 @@ const NavbarEl = styled.nav`
 		justify-content: space-between;
 		align-items: center;
 		padding: 1.5rem 2rem;
-		width: 80%;
+		width: 84%;
 		margin: auto;
 		max-width: 1200px;
 	}
