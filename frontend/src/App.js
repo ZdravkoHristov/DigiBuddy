@@ -1,7 +1,7 @@
 import './App.css';
 
 function App() {
-	return <button className='btn'>Запази</button>;
+	return <button className='btn'>Залази</button>;
 }
 
 export default App;
