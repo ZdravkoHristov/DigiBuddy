@@ -7,7 +7,7 @@ export default function Navbar({ active, setActive }) {
 	};
 
 	return (
-		<NavbarEl className='main-nav'>
+		<NavbarEl className='main-nav '>
 			<div className='logo-holder'>
 				<img src={logo} alt='logo' />
 			</div>
