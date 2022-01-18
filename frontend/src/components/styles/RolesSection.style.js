@@ -11,8 +11,7 @@ const RolesSec = styled.section`
     h1{letter-spacing: 2px;}
     h3 {font-weight: 300;}
     .holder {
-        width: 47%;
-        height: 63%;
+        width: 60%;
         margin: auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -20,7 +19,7 @@ const RolesSec = styled.section`
     }
     .holder .img-holder {
         display: grid;
-        grid-template-rows: 3.25fr 1fr 0.75fr;
+        grid-template-rows: 3.25fr 1.75fr 1fr;;
         grid-gap: 3%;
     }
     .holder .img-holder img {margin: auto;}
