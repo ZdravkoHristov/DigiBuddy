@@ -2,7 +2,7 @@ import './App.css';
 import gradient from './assets/svgs/home-back2.svg';
 import Header from './components/Header';
 import AnimatedLine from './components/AnimatedLine';
-import Register from './components/Register';
+import RolesSection from './components/RolesSection';
 
 function App() {
 	return (
@@ -10,7 +10,7 @@ function App() {
 			<img className='gradient-img' src={gradient} alt='gradient' />
 			<Header></Header>
 			<AnimatedLine />
-			<Register />
+			<RolesSection />
 		</div>
 	);
 }

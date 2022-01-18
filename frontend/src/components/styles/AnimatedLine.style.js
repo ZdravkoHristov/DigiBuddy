@@ -6,7 +6,7 @@ const AnimatedLineEl = styled.div`
 		height: 120px;
 		background: rgba(245, 245, 245, 0.4);
 		position: absolute;
-		left: 50%;
+		margin: auto;
 		transform: translateY(100px);
 		position: relative;
 		overflow: hidden;

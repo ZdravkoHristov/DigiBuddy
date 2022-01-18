@@ -18,6 +18,8 @@
 	scroll-behavior: smooth;
 }
 
+a {text-decoration: none;}
+
 body {
 	overflow-x: hidden;
 	background-color: #f5f5f5;
@@ -43,6 +45,7 @@ body {
 
 .gradient-holder .gradient-img {
 	position: absolute;
+
 }
 
 .container {
