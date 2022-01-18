@@ -18,7 +18,9 @@
 	scroll-behavior: smooth;
 }
 
-a {text-decoration: none;}
+a {
+	text-decoration: none;
+}
 
 body {
 	overflow-x: hidden;
@@ -53,27 +55,6 @@ body {
 	width: 90%;
 	margin: auto;
 	max-width: 1200px;
-}
-
-.btn {
-	background-color: #4e2841;
-	position: relative;
-	border: 0;
-	cursor: pointer;
-	color: #fff;
-	padding: 8px 16px;
-	font-size: 18px;
-}
-
-.btn::after {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	background-color: #878486;
-	opacity: 0.7;
-	left: 0;
-	top: 0;
 }
 
 .heading-xl {
