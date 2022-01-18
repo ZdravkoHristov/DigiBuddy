@@ -37,7 +37,7 @@ const RolesSec = styled.section`
         justify-content:center;
         letter-spacing: 1px;
         position: relative;
-        transition: 1s ease-in-out;
+        transition: 0.5s ease-in-out;
     }
     .button::before{
         content: '';
@@ -48,7 +48,7 @@ const RolesSec = styled.section`
         z-index: -1;
         transform: scale(1.06) rotate(5deg);
         border-radius: 8px;
-        transition: 1s ease-in-out;
+        transition: 0.5s ease-in-out;
     }
     //hover
     .button:hover{background-color: #bd4255;}

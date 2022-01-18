@@ -3,6 +3,7 @@ import gradient from './assets/svgs/home-back2.svg';
 import Header from './components/Header';
 import AnimatedLine from './components/AnimatedLine';
 import RolesSection from './components/RolesSection';
+import RegTeacher from './components/RegTeacherEl';
 import Faq from './components/Faq';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 				<Header></Header>
 				<AnimatedLine />
 				<RolesSection />
+				<RegTeacher />
 			</div>
 			<Faq />
 		</>
