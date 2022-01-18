@@ -4,17 +4,19 @@ const RolesSec = styled.section`
 	& {
         position: relative;
         z-index: 2;
-        height: 100vh;
-        padding: 4rem;
-        color: #5f5d66;
+        padding: 7rem 4rem 0;
+        color: #f5f5f5;
 	}
+    h1,h3{text-align: center; width: 100%; margin: 1rem 0;}
+    h1{letter-spacing: 2px;}
+    h3 {font-weight: 300;}
     .holder {
-        width: 65%;
-        height: 100%;
+        width: 47%;
+        height: 63%;
         margin: auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 15%;
+        grid-gap: 18%;
     }
     .holder .img-holder {
         display: grid;
