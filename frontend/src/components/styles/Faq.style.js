@@ -50,6 +50,7 @@ const FaqEl = styled.section`
 
 	.number-wrapper {
 		position: relative;
+		user-select: none;
 	}
 
 	.number-wrapper img {
