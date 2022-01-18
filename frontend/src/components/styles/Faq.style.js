@@ -16,7 +16,6 @@ const FaqEl = styled.section`
 
 	.question {
 		padding-left: 20px;
-		margin-bottom: 10px;
 	}
 
 	.answer {
@@ -24,10 +23,29 @@ const FaqEl = styled.section`
 	}
 
 	.item {
-		display: grid;
-		grid-template-columns: 60px 1fr;
-		grid-gap: 10px;
 		margin-bottom: 25px;
+	}
+
+	.top-row,
+	.bottom-row {
+		display: grid;
+		grid-template-columns: 50px 1fr;
+		grid-gap: 10px;
+	}
+
+	.question {
+		align-self: center;
+	}
+
+	.arrow-holder {
+		display: flex;
+
+		justify-content: flex-end;
+	}
+
+	.arrow-img {
+		width: 20px;
+		height: 20px;
 	}
 
 	.number-wrapper {
@@ -42,7 +60,7 @@ const FaqEl = styled.section`
 	.number-wrapper .number {
 		color: #fff;
 		position: absolute;
-		font-size: 18px;
+		font-size: 16px;
 		left: 37%;
 		top: 25%;
 	}
