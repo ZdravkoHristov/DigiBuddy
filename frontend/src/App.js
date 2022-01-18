@@ -4,6 +4,9 @@ import Header from './components/Header';
 import AnimatedLine from './components/AnimatedLine';
 import RolesSection from './components/RolesSection';
 import RegTeacher from './components/RegTeacherEl';
+import RegStudent from './components/RegStudentEl';
+import LogTeacher from './components/LogTeacherEl';
+import LogStudent from './components/LogStudentEl';
 import Faq from './components/Faq';
 
 function App() {
@@ -14,7 +17,10 @@ function App() {
 				<Header></Header>
 				<AnimatedLine />
 				<RolesSection />
-				<RegTeacher />
+				{/* <RegTeacher /> */}
+				{/* <RegStudent /> */}
+				{/* <LogTeacher /> */}
+				<LogStudent />
 			</div>
 			<Faq />
 		</>

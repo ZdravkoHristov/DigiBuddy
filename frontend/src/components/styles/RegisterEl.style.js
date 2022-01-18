@@ -7,6 +7,7 @@ const RegisterEl = styled.section`
         padding: 2rem;
         color: #f5f5f5;
 	}
+    .flex-c{display:flex; flex-direction: column; align-items: center; justify-content: center;}
     h1,h3{text-align: left; left:40%; /* naglasi go posle :DD*/ margin: 1rem 0;}
     h1{letter-spacing: 2px;}
     h3 {font-weight: 300;}
@@ -44,7 +45,7 @@ const RegisterEl = styled.section`
         height: 80%;
         margin: auto;
     }
-    .holder .input-holder {padding:1.5rem;}
+    .holder .input-holder {padding:1.5rem; width:100%; height: 100%;}
     .holder .img-holder img {margin: auto;}
     .holder .img-holder .button {background-color: #bd4255;}
     .holder .img-holder .button::before {background-color: #bd4255c2;}
