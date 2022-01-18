@@ -45,7 +45,7 @@ body {
 
 .gradient-holder .gradient-img {
 	position: absolute;
-
+	z-index: -1;
 }
 
 .container {
