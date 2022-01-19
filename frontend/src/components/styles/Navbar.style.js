@@ -24,7 +24,7 @@ const NavbarEl = styled.nav`
 
 	a {
 		text-decoration: none;
-		color: #fff;
+		color: #f5f5f5;
 	}
 
 	.menu-item {
@@ -39,7 +39,7 @@ const NavbarEl = styled.nav`
 		font-size: 1.3rem;
 
 		&:hover {
-			background: #fff;
+			background: #f5f5f5;
 			transition: background 0.5s ease-in-out;
 			a {
 				color: #724263;
@@ -57,19 +57,19 @@ const NavbarEl = styled.nav`
 		outline: 2px solid #744263;
 
 		a {
-			color: #fff;
+			color: #f5f5f5;
 		}
 
 		&:hover {
 			background: linear-gradient(90deg, #7a4464, #9b4b67);
 			a {
-				color: #fff;
+				color: #f5f5f5;
 			}
 		}
 	}
 
 	.active-in {
-		background: #fff;
+		background: #f5f5f5;
 		a {
 			color: #724263;
 		}
