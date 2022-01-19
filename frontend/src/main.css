@@ -18,7 +18,9 @@
 	scroll-behavior: smooth;
 }
 
-a {text-decoration: none;}
+a {
+	text-decoration: none;
+}
 
 body {
 	overflow-x: hidden;
@@ -42,11 +44,22 @@ body {
 
 .gradient-holder {
 	position: relative;
+	background: linear-gradient(
+		-135deg,
+		#f05454 0%,
+		#6d4163 27%,
+		#30475e 58%,
+		#213140 100%
+	);
+	padding-bottom: 300px;
+	overflow: hidden;
 }
 
-.gradient-holder .gradient-img {
+.gradient-holder .wave-wrapper {
+	height: 200px;
+	width: 100%;
 	position: absolute;
-	z-index: -1;
+	bottom: 0;
 }
 
 .container {
