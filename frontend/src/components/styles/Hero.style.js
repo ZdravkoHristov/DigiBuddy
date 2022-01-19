@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 const HeroEl = styled.section`
 	& {
-		display: flex;
-		align-items: center;
+		display: grid;
+		grid-template-columns:1fr 1fr;
+		padding: 0 0 13vw;
 	}
+	& p {align-self:center;}
 
 	p {
 		font-size: 2.2rem;

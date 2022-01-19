@@ -6,7 +6,7 @@ const FaqEl = styled.section`
 		position: relative;
 		background-image: url(${wave});
 		background-size: cover;
-		background-position: top 0;
+		background-position-y: top;
 		background-repeat: no-repeat;
 		margin-top: 2rem;
 		padding: 3rem 0;

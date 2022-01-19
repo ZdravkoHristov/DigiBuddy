@@ -6,7 +6,8 @@ const HeaderEl = styled.header`
 		z-index: 2;
 		color: #5f5d66;
 		background-image: url(${whitePlace});
-		background-position: bottom 0;
+		background-position-y: bottom;
+		background-size: cover;
 		background-repeat: no-repeat;
 	}
 `;
