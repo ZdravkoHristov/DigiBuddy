@@ -51,15 +51,8 @@ body {
 		#30475e 58%,
 		#213140 100%
 	);
-	padding-bottom: 300px;
+	padding-bottom: 400px;
 	overflow: hidden;
-}
-
-.gradient-holder .wave-wrapper {
-	height: 200px;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
 }
 
 .container {

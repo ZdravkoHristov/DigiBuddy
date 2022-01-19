@@ -1,14 +1,28 @@
 import styled from 'styled-components';
+import wave from '../../assets/svgs/wave.svg';
 
 const FaqEl = styled.section`
 	& {
 		position: relative;
-		top: -100px;
+		top: -300px;
+		background-image: url(${wave});
+		background-size: cover;
+		background-repeat: no-repeat;
+		padding-top: 100px;
 	}
 	h2 {
 		color: #714264;
 		margin: 2rem 0;
 	}
+	/* .wave-wrapper {
+		height: 200px;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		background-image: url('./assets/svgs/wave.svg');
+		background-repeat: no-repeat;
+		background-size: cover;
+	} */
 
 	.questions {
 		width: 90%;

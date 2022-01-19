@@ -21,9 +21,6 @@ function App() {
 				{/* <RegStudent /> */}
 				{/* <LogTeacher /> */}
 				<LogStudent />
-				<div className='wave-wrapper'>
-					<img src={wave} alt='wave' />
-				</div>
 			</div>
 			<Faq />
 		</>
