@@ -21,8 +21,8 @@ function App() {
 				{/* <RegStudent /> */}
 				{/* <LogTeacher /> */}
 				<LogStudent />
+				<Faq />
 			</div>
-			<Faq />
 		</>
 	);
 }

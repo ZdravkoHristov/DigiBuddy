@@ -4,11 +4,12 @@ import wave from '../../assets/svgs/wave.svg';
 const FaqEl = styled.section`
 	& {
 		position: relative;
-		top: -300px;
 		background-image: url(${wave});
 		background-size: cover;
+		background-position: top 0;
 		background-repeat: no-repeat;
-		padding-top: 100px;
+		margin-top: 2rem;
+		padding: 3rem 0;
 	}
 	h2 {
 		color: #714264;
