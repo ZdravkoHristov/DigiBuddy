@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const FaqEl = styled.section`
 	& {
-		background: #fff;
+		position: relative;
+		top: -100px;
 	}
 	h2 {
 		color: #714264;
