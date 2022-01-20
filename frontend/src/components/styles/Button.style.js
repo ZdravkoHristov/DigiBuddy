@@ -2,31 +2,40 @@ import styled from 'styled-components';
 
 const ButtonEl = styled.button`
 	& {
-		background-color: #4e2841;
-		position: relative;
-		border: 0;
+		background-color: ${props => props.theme.background};
+		color: #f5f5f5;
+		border: 1px solid #f5f5f5;
+		border-radius: 8px;
 		cursor: pointer;
-		color: #fff;
-		padding: 8px 16px;
-		font-size: 18px;
-		z-index: 2;
-		border-radius: 8px;
-
-		z-index: 2;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		letter-spacing: 1px;
+		position: relative;
+		transition: 1s ease-in-out;
 	}
-
-	&::after {
+	&::before {
 		content: '';
-		position: absolute;
-		height: 100%;
 		width: 100%;
-		background-color: #878486;
-		opacity: 0.7;
-		left: 0;
-		top: 0;
+		height: 100%;
+		position: absolute;
+
+		background-color: ${props => props.theme.background};
+		opacity: 0.76;
+		z-index: -1;
+		transform: scale(1.06) rotate(5deg);
 		border-radius: 8px;
-		transform: rotate(6deg);
-		z-index: 1;
+		transition: 1s ease-in-out;
+	}
+	//hover
+	&:hover {
+		background-color: ${props => props.theme.hover};
+	}
+	&:hover::before {
+		background-color: ${props => props.theme.hover};
+		opacity: 0.76;
+		transform: rotate(-5deg);
 	}
 `;
 

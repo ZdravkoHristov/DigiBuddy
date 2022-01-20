@@ -3,10 +3,10 @@ import wave from './assets/svgs/wave.svg';
 import Header from './components/Header';
 import AnimatedLine from './components/AnimatedLine';
 import RolesSection from './components/RolesSection';
-import RegTeacher from './components/RegTeacherEl';
-import RegStudent from './components/RegStudentEl';
-import LogTeacher from './components/LogTeacherEl';
-import LogStudent from './components/LogStudentEl';
+import RegTeacher from './components/RegTeacher';
+import RegStudent from './components/RegStudent';
+import LogTeacher from './components/LogTeacher';
+import LogStudent from './components/LogStudent';
 import Faq from './components/Faq';
 
 function App() {
