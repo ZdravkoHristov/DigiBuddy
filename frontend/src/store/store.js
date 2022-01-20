@@ -11,3 +11,5 @@ const store = configureStore({
 const homeStateSelector = state => state.homeState;
 
 export default store;
+
+export { homeStateSelector };

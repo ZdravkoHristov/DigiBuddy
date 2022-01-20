@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { homeStateSelector } from './store/store';
 import './App.css';
 import wave from './assets/svgs/wave.svg';
 import Header from './components/Header';
@@ -10,6 +12,8 @@ import LogStudent from './components/LogStudent';
 import Faq from './components/Faq';
 
 function App() {
+	const { activeForm } = useSelector(homeStateSelector);
+
 	return (
 		<>
 			<div className='gradient-holder'>
@@ -17,10 +21,10 @@ function App() {
 				<Header></Header>
 				<AnimatedLine />
 				<RolesSection />
-				{/* <RegTeacher /> */}
-				{/* <RegStudent /> */}
-				{/* <LogTeacher /> */}
-				<LogStudent />
+				{activeForm === 'regTeacher' && <RegTeacher />}
+				{activeForm === 'regStudent' && <RegStudent />}
+				{activeForm === 'logTeacher' && <LogTeacher />}
+				{activeForm === 'logStudent' && <LogStudent />}
 				<Faq />
 			</div>
 		</>

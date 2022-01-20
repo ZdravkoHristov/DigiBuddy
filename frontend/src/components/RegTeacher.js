@@ -1,8 +1,16 @@
+import { useDispatch } from 'react-redux';
+import { changeActive } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
 export default function RegTeacherEl() {
+	const dispatch = useDispatch();
+
+	const changeActiveForm = newActive => {
+		dispatch(changeActive(newActive));
+	};
+
 	return (
 		<RegisterEl className='container'>
 			{/* <AnimatedLine className='line'></AnimatedLine> */}
@@ -12,7 +20,11 @@ export default function RegTeacherEl() {
 				<div className='img-holder'>
 					<img src={illustration} />
 					<p className='heading-m'>Вече имате регистрация?</p>
-					<Button className='button' theme='red'>
+					<Button
+						className='button'
+						theme='red'
+						onClick={() => changeActiveForm('logTeacher')}
+					>
 						Вход
 					</Button>
 				</div>
@@ -91,7 +103,11 @@ export default function RegTeacherEl() {
 					</div>
 					<div className='group'>
 						<Button className='button'>Регистрация</Button>
-						<Button className='button' theme='darkBlue'>
+						<Button
+							className='button'
+							theme='darkBlue'
+							onClick={() => changeActiveForm(null)}
+						>
 							Затвори
 						</Button>
 					</div>

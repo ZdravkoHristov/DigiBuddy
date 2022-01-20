@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const homeStateSlice = createSlice({
 	name: 'homeState',
 	initialState: {
-		activeReg: null,
+		activeForm: null,
 	},
 
 	reducers: {
 		changeActive: (state, { payload }) => {
-			state.activeReg.activeReg = payload;
+			state.activeForm = payload;
 		},
 	},
 });

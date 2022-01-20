@@ -1,8 +1,15 @@
+import { useDispatch } from 'react-redux';
+import { changeActive } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from '../components/AnimatedLine';
 import illustration from '../assets/svgs/role-student.svg';
 import Button from './Button';
-export default function LogStudentEl() {
+export default function LogStudent() {
+	const dispatch = useDispatch();
+
+	const changeActiveForm = newActive => {
+		dispatch(changeActive(newActive));
+	};
 	return (
 		<RegisterEl className='container'>
 			{/* <AnimatedLine className='line'></AnimatedLine> */}
@@ -12,7 +19,11 @@ export default function LogStudentEl() {
 				<div className='img-holder'>
 					<img src={illustration} />
 					<p className='heading-m'>Нямате регистрация?</p>
-					<Button className='button' theme='red'>
+					<Button
+						className='button'
+						theme='red'
+						onClick={() => changeActiveForm('regStudent')}
+					>
 						Регистрация
 					</Button>
 				</div>
@@ -31,7 +42,11 @@ export default function LogStudentEl() {
 					</div>
 					<div className='group'>
 						<Button className='button'>Вход</Button>
-						<Button className='button' theme='darkBlue'>
+						<Button
+							className='button'
+							theme='darkBlue'
+							onClick={() => changeActiveForm(null)}
+						>
 							Затвори
 						</Button>
 					</div>
