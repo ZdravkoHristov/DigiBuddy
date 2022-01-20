@@ -23,7 +23,6 @@ a {
 }
 
 body {
-	overflow-x: hidden;
 	background-color: #f5f5f5;
 	letter-spacing: 1px;
 }
@@ -51,7 +50,6 @@ body {
 		#30475e 58%,
 		#213140 100%
 	);
-	overflow: hidden;
 }
 
 .container {

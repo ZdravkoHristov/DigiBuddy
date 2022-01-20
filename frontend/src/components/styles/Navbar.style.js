@@ -30,13 +30,18 @@ const NavbarEl = styled.nav`
 	.menu-item {
 		background: transparent;
 		margin-right: 2rem;
-		padding: 8px 15px;
+
 		border-radius: 8px;
 		border: 1px solid transparent;
 		outline: 2px solid transparent;
 		letter-spacing: 0.5px;
 		cursor: pointer;
 		font-size: 1.3rem;
+
+		a {
+			padding: 8px 15px;
+			display: block;
+		}
 
 		&:hover {
 			background: #f5f5f5;
@@ -51,7 +56,11 @@ const NavbarEl = styled.nav`
 		margin-right: 0;
 	}
 
-	.active-out {
+	.out a {
+		color: #744263;
+	}
+
+	.active.out {
 		background: linear-gradient(90deg, #7a4464, #9b4b67);
 		border: 1px solid #f5f5f5;
 		outline: 2px solid #744263;
@@ -68,7 +77,7 @@ const NavbarEl = styled.nav`
 		}
 	}
 
-	.active-in {
+	.active.in {
 		background: #f5f5f5;
 		a {
 			color: #724263;

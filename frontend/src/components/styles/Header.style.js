@@ -9,6 +9,7 @@ const HeaderEl = styled.header`
 		background-position-y: bottom;
 		background-size: cover;
 		background-repeat: no-repeat;
+		position: relative;
 	}
 `;
 

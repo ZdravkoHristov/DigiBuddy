@@ -2,31 +2,31 @@ import NavbarEl from './styles/Navbar.style';
 import logo from '../assets/logo/logo-short.svg';
 
 export default function Navbar({ active, setActive }) {
-	const getActiveClass = (checkFor, resultIn) => {
-		return active === checkFor ? resultIn : '';
+	const getActiveClass = checkFor => {
+		return active === checkFor ? 'active' : '';
 	};
 
 	return (
-		<NavbarEl className='main-nav '>
+		<NavbarEl className='main-nav'>
 			<div className='logo-holder'>
 				<img src={logo} alt='logo' />
 			</div>
 
 			<ul className='main-menu'>
 				<li
-					className={`menu-item ${getActiveClass('home', 'active-out')}`}
+					className={`menu-item out ${getActiveClass('home')}`}
 					onClick={() => setActive('home')}
 				>
 					<a href='#'>Начало</a>
 				</li>
 				<li
-					className={`menu-item ${getActiveClass('register', 'active-in')}`}
+					className={`menu-item out ${getActiveClass('register')}`}
 					onClick={() => setActive('register')}
 				>
 					<a href='#register'>Регистрация</a>
 				</li>
 				<li
-					className={`menu-item ${getActiveClass('faq', 'active-in')}`}
+					className={`menu-item in ${getActiveClass('faq')}`}
 					onClick={() => setActive('faq')}
 				>
 					<a href='#faq'>ЧЗВ</a>

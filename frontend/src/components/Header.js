@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import HeaderEl from './styles/Header.style';
 import Navbar from './Navbar';
 import Hero from './Hero';
 
-export default function Header() {
-	const [activeItem, setActiveItem] = useState('home');
+export default function Header({ children }) {
 	return (
 		<HeaderEl>
-			<Navbar active={activeItem} setActive={setActiveItem} />
+			{children}
 			<Hero />
 		</HeaderEl>
 	);
