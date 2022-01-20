@@ -13,10 +13,10 @@ export default function Roles() {
 
 	return (
 		<RolesSec className='roles container'>
-			<h1 class='heading-l'>
+			<h1 className='heading-l'>
 				Регистрирайте се и станете част от нашата платформа!
 			</h1>
-			<h3 class='heading-s'>Моля първо изберете своята роля:</h3>
+			<h3 className='heading-s'>Моля първо изберете своята роля:</h3>
 			<div className='holder'>
 				<div className='img-holder'>
 					<img src={illustration2} alt='teacher' />
