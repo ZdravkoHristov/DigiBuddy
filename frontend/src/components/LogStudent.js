@@ -29,7 +29,7 @@ export default function LogStudent() {
 				</div>
 				<form className='input-holder flex-c'>
 					<div className='group'>
-						<label for='email'>Email:</label>
+						<label htmlFor='email'>Email:</label>
 						<input
 							name='email'
 							type='email'
@@ -37,7 +37,7 @@ export default function LogStudent() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='pass'>Парола:</label>
+						<label htmlFor='pass'>Парола:</label>
 						<input name='pass' type='text' placeholder='Въведете парола' />
 					</div>
 					<div className='group'>

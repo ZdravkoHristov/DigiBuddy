@@ -30,11 +30,11 @@ export default function RegTeacherEl() {
 				</div>
 				<form className='input-holder'>
 					<div className='group'>
-						<label for='name'>Име:</label>
+						<label htmlFor='name'>Име:</label>
 						<input name='name' type='text' placeholder='Въведете своето име' />
 					</div>
 					<div className='group'>
-						<label for='l-name'>Фамилия:</label>
+						<label htmlFor='l-name'>Фамилия:</label>
 						<input
 							name='l-name'
 							type='text'
@@ -42,7 +42,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='email'>Email:</label>
+						<label htmlFor='email'>Email:</label>
 						<input
 							name='email'
 							type='email'
@@ -50,7 +50,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='subject'>Учебен предмет/и:</label>
+						<label htmlFor='subject'>Учебен предмет/и:</label>
 						<input
 							name='subject'
 							type='text'
@@ -58,7 +58,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='school'>Учебно заведение:</label>
+						<label htmlFor='school'>Учебно заведение:</label>
 						<input
 							name='school'
 							type='text'
@@ -66,7 +66,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='town'>Град/село:</label>
+						<label htmlFor='town'>Град/село:</label>
 						<input
 							name='town'
 							type='text'
@@ -74,7 +74,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='comm'>Община:</label>
+						<label htmlFor='comm'>Община:</label>
 						<input
 							name='comm'
 							type='text'
@@ -82,7 +82,7 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='area'>Област:</label>
+						<label htmlFor='area'>Област:</label>
 						<input
 							name='area'
 							type='text'
@@ -90,11 +90,11 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<label for='pass'>Парола:</label>
+						<label htmlFor='pass'>Парола:</label>
 						<input name='pass' type='text' placeholder='Въведете парола' />
 					</div>
 					<div className='group'>
-						<label for='name'>Потвърдете паролата:</label>
+						<label htmlFor='name'>Потвърдете паролата:</label>
 						<input
 							name='c-pass'
 							type='text'
