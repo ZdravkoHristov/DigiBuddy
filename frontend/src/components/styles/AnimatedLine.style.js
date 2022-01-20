@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const AnimatedLineEl = styled.div`
 	& {
-		width: 3px;
+		width: 2px;
 		height: 120px;
 		background: rgba(245, 245, 245, 0.4);
 		position: absolute;
 		margin: auto;
-		transform: translateY(100px);
+
 		position: relative;
 		overflow: hidden;
 	}

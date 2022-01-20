@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { changeActive } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
-import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
-export default function LogTeacherEl() {
+export default function LogTeacher() {
 	const dispatch = useDispatch();
 
 	const changeActiveForm = newActive => {
@@ -12,8 +11,8 @@ export default function LogTeacherEl() {
 	};
 	return (
 		<RegisterEl className='container'>
-			{/* <AnimatedLine className='line'></AnimatedLine> */}
 			<h1 className='heading-l'>Вход като учител</h1>
+			<br />
 			<h3 className='heading-s'>Моля попълнете всички полета:</h3>
 			<div className='holder'>
 				<div className='img-holder'>

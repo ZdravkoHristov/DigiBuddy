@@ -10,11 +10,23 @@ export default function RegStudent() {
 	const changeActiveForm = newActive => {
 		dispatch(changeActive(newActive));
 	};
+
+	const headingStyle = {
+		left: 0,
+		width: '63%',
+		textAlign: 'right',
+	};
+
 	return (
 		<RegisterEl className='container'>
 			{/* <AnimatedLine className='line'></AnimatedLine> */}
-			<h1 className='heading-l'>Регистрация като ученик</h1>
-			<h3 className='heading-s'>Моля попълнете всички полета:</h3>
+			<h1 className='heading-l' style={headingStyle}>
+				Регистрация като ученик
+			</h1>
+
+			<h3 className='heading-s' style={headingStyle}>
+				Моля попълнете всички полета:
+			</h3>
 			<div className='holder'>
 				<div className='img-holder'>
 					<img src={illustration} />

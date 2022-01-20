@@ -13,9 +13,18 @@ export default function RegTeacherEl() {
 
 	return (
 		<RegisterEl className='container'>
-			{/* <AnimatedLine className='line'></AnimatedLine> */}
+			{/* <header>
+				<AnimatedLine className='line'></AnimatedLine>
+				<div className='text'>
+					<h1 className='heading-l'>Регистрация като учител</h1>
+					<h3 className='heading-s'>Моля попълнете всички полета:</h3>
+				</div>
+			</header> */}
+
 			<h1 className='heading-l'>Регистрация като учител</h1>
+			<br />
 			<h3 className='heading-s'>Моля попълнете всички полета:</h3>
+
 			<div className='holder'>
 				<div className='img-holder'>
 					<img src={illustration} />

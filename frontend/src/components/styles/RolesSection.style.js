@@ -26,7 +26,13 @@ const RolesSec = styled.section`
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 18%;
 	}
+	.animated-line {
+		position: absolute;
+		bottom: -140px;
+		left: 50%;
+	}
 	.holder .img-holder {
+		position: relative;
 		display: grid;
 		grid-template-rows: 3.25fr 1.75fr 1fr;
 		grid-gap: 3%;

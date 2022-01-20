@@ -13,17 +13,22 @@ const RegisterEl = styled.section`
 		align-items: center;
 		justify-content: center;
 	}
+
 	h1,
 	h3 {
 		text-align: left;
 		left: 40%; /* naglasi go posle :DD*/
 		margin: 1rem 0;
+		display: inline-block;
+		position: relative;
 	}
 	h1 {
 		letter-spacing: 2px;
+		margin-top: 50px;
 	}
 	h3 {
 		font-weight: 300;
+		margin-bottom: 50px;
 	}
 	.group {
 		width: 100%;

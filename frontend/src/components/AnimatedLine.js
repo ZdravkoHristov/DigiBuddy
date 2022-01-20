@@ -1,8 +1,8 @@
 import AnimatedLineEl from './styles/AnimatedLine.style.js';
 
-export default function AnimatedLine() {
+export default function AnimatedLine(props) {
 	return (
-		<AnimatedLineEl>
+		<AnimatedLineEl {...props}>
 			<div className='content'></div>
 		</AnimatedLineEl>
 	);
