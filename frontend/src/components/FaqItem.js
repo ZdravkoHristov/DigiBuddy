@@ -12,7 +12,7 @@ export default function FaqItem({ number, question, answer }) {
 			</div>
 			<div className='bottom-row'>
 				<div className='arrow-holder'>
-					<img class='arrow-img' src={arrow} alt='arrow' />
+					<img className='arrow-img' src={arrow} alt='arrow' />
 				</div>
 
 				<p className='answer'>{answer}</p>
