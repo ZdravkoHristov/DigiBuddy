@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
-import LoggedTeacher from './components/LoggedTeacher';
+import LoggedTeacher from './components/LoggedTeacher/LoggedTeacher';
 import './App.css';
 
 function App() {
