@@ -13,11 +13,11 @@ import Navbar from './Navbar';
 
 export default function Home() {
 	const { activeForm } = useSelector(homeStateSelector);
-	const [active, setActive] = useState('#');
+	const [active, setActive] = useState('home');
 	const navLinks = [
-		{ text: 'Начало', to: '#' },
-		{ text: 'Регистрация', to: '#register' },
-		{ text: 'ЧЗВ', to: '#faq' },
+		{ text: 'Начало', to: '#', value: 'home' },
+		{ text: 'Регистрация', to: '#register', value: 'register' },
+		{ text: 'ЧЗВ', to: '#faq', value: 'faq' },
 	];
 
 	const navBreakpoints = new Map();

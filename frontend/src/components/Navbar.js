@@ -46,12 +46,13 @@ export default function Navbar({
 	useEffect(handleClasses);
 
 	useEffect(() => {
+		if (!breakpoints) return;
 		checkBreakpoints();
 
 		window.addEventListener('resize', checkBreakpoints);
 
 		return () => window.removeEventListener('resize', checkBreakpoints);
-	}, []);
+	}, [breakpoints]);
 
 	return (
 		<NavbarEl className='main-nav'>
@@ -61,12 +62,12 @@ export default function Navbar({
 
 			<ul className='main-menu' ref={menuRef}>
 				{links.map(link => {
-					const activeClass = getActiveClass(link.to);
+					const activeClass = getActiveClass(link.value);
 					const className = 'menu-item' + activeClass;
 					return (
 						<li
 							className={className}
-							onClick={() => setActive(link.to)}
+							onClick={() => setActive(link.value)}
 							key={link.text}
 						>
 							<a href={link.to}>{link.text}</a>
