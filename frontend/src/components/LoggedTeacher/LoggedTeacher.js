@@ -7,7 +7,6 @@ import '../../LoggedTeacher.css';
 import heroIllustration from '../../assets/illustrations/11037.png';
 
 export default function LoggedTeacher() {
-	const [active, setActive] = useState('home');
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
 		{ text: 'Колекции', to: '#', value: 'collections' },
@@ -20,12 +19,7 @@ export default function LoggedTeacher() {
 		<>
 			<div className='gradient-holder'>
 				<Header>
-					<Navbar
-						active={active}
-						setActive={setActive}
-						links={navLinks}
-						outCount={4}
-					></Navbar>
+					<Navbar links={navLinks} outCount={4}></Navbar>
 					<Hero>
 						<Home />
 					</Hero>

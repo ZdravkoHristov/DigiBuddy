@@ -10,13 +10,14 @@ import LogTeacher from './LogTeacher';
 import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
+import Hero from './Hero';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
 import '../Home.css';
 
 export default function Home() {
 	const { activeForm } = useSelector(homeStateSelector);
-	const [active, setActive] = useState('home');
+
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
 		{ text: 'Регистрация', to: '#register', value: 'register' },
@@ -46,13 +47,10 @@ export default function Home() {
 		<>
 			<div className='gradient-holder'>
 				<Header heroContent={<HeroContent />}>
-					<Navbar
-						active={active}
-						setActive={setActive}
-						links={navLinks}
-						outCount={2}
-						breakpoints={navBreakpoints}
-					/>
+					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
+					<Hero>
+						<HeroContent />
+					</Hero>
 				</Header>
 				<AnimatedLine />
 				<RolesSection />

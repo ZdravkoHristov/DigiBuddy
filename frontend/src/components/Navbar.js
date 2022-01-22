@@ -1,14 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { navbarSelector } from '../store/store';
+import { setActive } from '../store/slices/navbarSlice';
 import NavbarEl from './styles/Navbar.style';
 import logo from '../assets/logo/logo-short.svg';
 
-export default function Navbar({
-	active,
-	setActive,
-	links,
-	outCount,
-	breakpoints,
-}) {
+export default function Navbar({ links, outCount, breakpoints }) {
+	const dispatch = useDispatch();
+	const { active } = useSelector(navbarSelector);
 	const [outItemCount, setOutItemCount] = useState(outCount);
 	const menuRef = useRef();
 	const getActiveClass = checkFor => {
@@ -54,6 +53,10 @@ export default function Navbar({
 		return () => window.removeEventListener('resize', checkBreakpoints);
 	}, [breakpoints]);
 
+	useEffect(() => {
+		dispatch(setActive('home'));
+	}, []);
+
 	return (
 		<NavbarEl className='main-nav'>
 			<div className='logo-holder'>
@@ -67,7 +70,7 @@ export default function Navbar({
 					return (
 						<li
 							className={className}
-							onClick={() => setActive(link.value)}
+							onClick={() => dispatch(setActive(link.value))}
 							key={link.text}
 						>
 							<a href={link.to}>{link.text}</a>
