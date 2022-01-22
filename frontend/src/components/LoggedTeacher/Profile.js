@@ -1,50 +1,34 @@
 import { useState } from 'react';
-import Header from './Header';
-import Navbar from './Navbar';
-import '../LoggedTeacher.css';
-import heroIllustration from '../assets/illustrations/11037.png';
+import MyProfile from './MyProfile.js';
+import Settings from './Settings.js';
+import ProfileEl from './Profile.style.js';
 
 export default function LoggedTeacher() {
-	const [active, setActive] = useState('home');
-	const navLinks = [
-		{ text: 'Начало', to: '#', value: 'home' },
-		{ text: 'Колекции', to: '#', value: 'collections' },
-		{ text: 'Моят клас', to: '#', value: 'class' },
-		{ text: 'Моят профил', to: '#', value: 'profile' },
-		{ text: 'Изход', to: '#', value: 'exit' },
-	];
-
-	const HeroContent = () => {
-		return (
-			<>
-				<div className='img-holder'>
-					<img
-						style={{ width: '500px', height: '400px' }}
-						src={heroIllustration}
-						alt='illustration'
-					/>
-				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
-					quibusdam qui adipisci, culpa odio veniam nobis! Corporis vel
-					reprehenderit eos.
-				</p>
-			</>
-		);
-	};
-
+	const [active, setActive] = useState('myProfile');
 	return (
 		<>
-			<div className='gradient-holder'>
-				<Header heroContent={<HeroContent />}>
-					<Navbar
-						active={active}
-						setActive={setActive}
-						links={navLinks}
-						outCount={4}
-					></Navbar>
-				</Header>
-			</div>
+			<ProfileEl className='profile-holder container'>
+				<aside className='sidebar'>
+					<ul className='tabs'>
+						<li
+							className={active === 'myProfile' ? 'active tab' : 'tab'}
+							onClick={() => setActive('myProfile')}
+						>
+							Моят профил
+						</li>
+						<li
+							className={active === 'settings' ? 'active tab' : 'tab'}
+							onClick={() => setActive('settings')}
+						>
+							Настройки
+						</li>
+					</ul>
+				</aside>
+				<article className='profile-info'>
+					{active === 'myProfile' && <MyProfile />}
+					{active === 'settings' && <Settings />}
+				</article>
+			</ProfileEl>
 		</>
 	);
 }

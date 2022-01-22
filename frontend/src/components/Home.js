@@ -10,7 +10,6 @@ import LogTeacher from './LogTeacher';
 import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
-import Hero from './Hero';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
 import '../Home.css';
@@ -27,9 +26,9 @@ export default function Home() {
 	const navBreakpoints = new Map();
 	navBreakpoints.set(800, 3);
 
-	const HeroContent = () => {
+	const HeroContent = props => {
 		return (
-			<>
+			<section {...props}>
 				{' '}
 				<p>
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
@@ -39,7 +38,7 @@ export default function Home() {
 				<div className='img-holder'>
 					<img src={heroIllustration} alt='illustration' />
 				</div>
-			</>
+			</section>
 		);
 	};
 
@@ -48,9 +47,8 @@ export default function Home() {
 			<div className='gradient-holder'>
 				<Header heroContent={<HeroContent />}>
 					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
-					<Hero>
-						<HeroContent />
-					</Hero>
+
+					<HeroContent className='hero container' />
 				</Header>
 				<AnimatedLine />
 				<RolesSection />

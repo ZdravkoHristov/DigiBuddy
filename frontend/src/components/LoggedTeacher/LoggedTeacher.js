@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { navbarSelector } from '../../store/store';
 import Header from '../Header';
 import Navbar from '../Navbar';
 import Hero from '../Hero';
 import Home from './Home';
+import Class from './Class';
+import Profile from './Profile';
 import '../../LoggedTeacher.css';
-import heroIllustration from '../../assets/illustrations/11037.png';
 
 export default function LoggedTeacher() {
+	const { active: navActive } = useSelector(navbarSelector);
+
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
 		{ text: 'Колекции', to: '#', value: 'collections' },
@@ -20,9 +24,9 @@ export default function LoggedTeacher() {
 			<div className='gradient-holder'>
 				<Header>
 					<Navbar links={navLinks} outCount={4}></Navbar>
-					<Hero>
-						<Home />
-					</Hero>
+					{navActive === 'home' && <Home />}{' '}
+					{navActive === 'class' && <Class />}
+					{navActive === 'profile' && <Profile />}
 				</Header>
 			</div>
 		</>
