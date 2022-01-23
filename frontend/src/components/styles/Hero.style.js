@@ -4,7 +4,7 @@ const HeroEl = styled.section`
 	& {
 		display: grid;
 		grid-template-columns:1fr 1fr;
-		padding: 0 0 13vw;
+		padding: 128px 0 13vw;
 	}
 	& p {align-self:center;}
 

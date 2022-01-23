@@ -1,4 +1,4 @@
-import heroIllustration from '../../assets/illustrations/11037.png';
+import heroIllustration from '../../assets/illustrations/welcome-image.svg';
 export default function Home() {
 	return (
 		<section className='hero container'>

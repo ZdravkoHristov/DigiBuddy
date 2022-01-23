@@ -46,8 +46,7 @@ export default function Home() {
 		<>
 			<div className='gradient-holder'>
 				<Header heroContent={<HeroContent />}>
-					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
-
+				<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
 					<HeroContent className='hero container' />
 				</Header>
 				<AnimatedLine />

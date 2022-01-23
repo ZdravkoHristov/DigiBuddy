@@ -13,7 +13,7 @@ const ButtonEl = styled.button`
 		justify-content: center;
 		letter-spacing: 1px;
 		position: relative;
-		transition: 1s ease-in-out;
+		transition: 0.5s ease-in-out;
 	}
 	&::before {
 		content: '';
@@ -26,7 +26,7 @@ const ButtonEl = styled.button`
 		z-index: -1;
 		transform: scale(1.06) rotate(5deg);
 		border-radius: 8px;
-		transition: 1s ease-in-out;
+		transition: 0.5s ease-in-out;
 	}
 	//hover
 	&:hover {

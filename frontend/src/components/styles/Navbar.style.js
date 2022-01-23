@@ -2,13 +2,9 @@ import styled from 'styled-components';
 
 const NavbarEl = styled.nav`
 	& {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 1.5rem 2rem;
-		width: 84%;
-		margin: auto;
-		max-width: 1200px;
+		width: 100%;
+		position: fixed;
+		top: 0;
 	}
 
 	.logo-holder {
@@ -20,6 +16,16 @@ const NavbarEl = styled.nav`
 	.main-menu {
 		list-style: none;
 		display: flex;
+	}
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.5rem 2rem;
+		width: 84%;
+		margin: auto;
+		max-width: 1200px;
 	}
 
 	a {
@@ -37,6 +43,7 @@ const NavbarEl = styled.nav`
 		letter-spacing: 0.5px;
 		cursor: pointer;
 		font-size: 1.3rem;
+		transition: background 0.5s ease-in-out;
 
 		a {
 			padding: 8px 15px;
@@ -45,7 +52,6 @@ const NavbarEl = styled.nav`
 
 		&:hover {
 			background: #f5f5f5;
-			transition: background 0.5s ease-in-out;
 			a {
 				color: #724263;
 			}

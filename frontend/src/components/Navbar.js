@@ -59,25 +59,27 @@ export default function Navbar({ links, outCount, breakpoints }) {
 
 	return (
 		<NavbarEl className='main-nav'>
-			<div className='logo-holder'>
-				<img src={logo} alt='logo' />
-			</div>
+			<div className='container'>
+					<div className='logo-holder'>
+						<img src={logo} alt='logo' />
+					</div>
 
-			<ul className='main-menu' ref={menuRef}>
-				{links.map(link => {
-					const activeClass = getActiveClass(link.value);
-					const className = 'menu-item' + activeClass;
-					return (
-						<li
-							className={className}
-							onClick={() => dispatch(setActive(link.value))}
-							key={link.text}
-						>
-							<a href={link.to}>{link.text}</a>
-						</li>
-					);
-				})}
-			</ul>
+				<ul className='main-menu' ref={menuRef}>
+					{links.map(link => {
+						const activeClass = getActiveClass(link.value);
+						const className = 'menu-item' + activeClass;
+						return (
+							<li
+								className={className}
+								onClick={() => dispatch(setActive(link.value))}
+								key={link.text}
+							>
+								<a href={link.to}>{link.text}</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		</NavbarEl>
 	);
 }

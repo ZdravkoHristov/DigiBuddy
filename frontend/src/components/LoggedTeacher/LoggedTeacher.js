@@ -23,7 +23,7 @@ export default function LoggedTeacher() {
 		<>
 			<div className='gradient-holder'>
 				<Header>
-					<Navbar links={navLinks} outCount={4}></Navbar>
+					<Navbar links={navLinks} outCount={1}></Navbar>
 					{navActive === 'home' && <Home />}{' '}
 					{navActive === 'class' && <Class />}
 					{navActive === 'profile' && <Profile />}

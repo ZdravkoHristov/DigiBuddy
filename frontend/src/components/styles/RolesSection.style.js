@@ -28,7 +28,7 @@ const RolesSec = styled.section`
 	}
 	.animated-line {
 		position: absolute;
-		bottom: -140px;
+		bottom: -192px;
 		left: 50%;
 	}
 	.holder .img-holder {
