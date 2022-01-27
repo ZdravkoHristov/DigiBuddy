@@ -32,6 +32,14 @@ body {
 	font-family: 'a_AvanteLt Light', arial;
 }
 
+.icons > * {
+	transition: 0.3s ease-in-out;
+}
+
+.icons > *:hover {
+	transform: scale(1.1);
+}
+
 .gradient {
 	background: linear-gradient(
 		#f05454 0%,

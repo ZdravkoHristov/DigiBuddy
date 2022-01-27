@@ -4,7 +4,7 @@ import Header from '../Header';
 import Navbar from '../Navbar';
 
 import Home from './Home';
-import Class from './Class';
+import MyClasses from './MyClasses';
 import Profile from './Profile';
 import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
 import '../../LoggedTeacher.css';
@@ -15,7 +15,7 @@ export default function LoggedTeacher() {
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
 		{ text: 'Колекции', to: '#', value: 'collections' },
-		{ text: 'Моят клас', to: '#', value: 'class' },
+		{ text: 'Моите класове', to: '#', value: 'class' },
 		{ text: 'Моят профил', to: '#', value: 'profile' },
 		{ text: 'Изход', to: '#', value: 'exit' },
 	];
@@ -25,9 +25,11 @@ export default function LoggedTeacher() {
 			<div className='gradient-holder'>
 				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
 					<Navbar links={navLinks} outCount={1}></Navbar>
-					{navActive === 'home' && <Home />}{' '}
-					{navActive === 'class' && <Class />}
-					{navActive === 'profile' && <Profile />}
+					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
+						{navActive === 'home' && <Home />}{' '}
+						{navActive === 'class' && <MyClasses />}
+						{navActive === 'profile' && <Profile />}
+					</div>
 				</Header>
 			</div>
 		</>

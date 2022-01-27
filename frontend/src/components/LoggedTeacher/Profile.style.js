@@ -5,7 +5,7 @@ const ProfileEl = styled.section`
 		color: #744263;
 		display: grid;
 		grid-template-columns: 1fr 4fr;
-		padding: 4rem 1rem 1rem 1rem;
+
 		min-height: 500px;
 	}
 

@@ -7,7 +7,7 @@ export default function LoggedTeacher() {
 	const [active, setActive] = useState('myProfile');
 	return (
 		<>
-			<ProfileEl className='profile-holder container'>
+			<ProfileEl className='hero profile-holder container'>
 				<aside className='sidebar'>
 					<ul className='tabs'>
 						<li
