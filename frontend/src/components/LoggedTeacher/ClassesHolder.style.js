@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-const SingleClassEl = styled.div`
+const ClassesHolderEl = styled.div`
 	& {
 		padding: 0 3rem;
-		margin-bottom: 2rem;
 	}
 	.class-header {
 		background-color: var(--purple);
@@ -43,7 +42,6 @@ const SingleClassEl = styled.div`
 		.icons > * {
 			font-size: 1.4rem;
 			margin-right: 1rem;
-			cursor: pointer;
 		}
 	}
 
@@ -55,8 +53,8 @@ const SingleClassEl = styled.div`
 	}
 
 	.students {
-		max-height: 100px;
-		overflow-y: scroll;
+		max-height: 300px;
+		overflow-y: auto;
 
 		&::-webkit-scrollbar {
 			width: 5px;
@@ -104,6 +102,16 @@ const SingleClassEl = styled.div`
 		cursor: pointer;
 		margin-right: 2px;
 	}
+
+	.new-class {
+		cursor: pointer;
+		font-size: 1.2rem;
+		padding: 10px 8px;
+		color: var(--purple);
+		i {
+			margin-right: 5px;
+		}
+	}
 `;
 
-export default SingleClassEl;
+export default ClassesHolderEl;

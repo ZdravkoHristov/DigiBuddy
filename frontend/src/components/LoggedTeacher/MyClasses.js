@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
+import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 
 export default function MyClasses() {
@@ -7,11 +8,14 @@ export default function MyClasses() {
 
 	return (
 		<>
-			<div className=' classes-holder container'>
+			<ClassesHolderEl className=' classes-holder container'>
 				{classes.map(singleClass => {
 					return <SingleClass key={singleClass.id} info={singleClass} />;
 				})}
-			</div>
+				<div className='new-class'>
+					<i class='fas fa-user-plus'></i> Добавете клас
+				</div>
+			</ClassesHolderEl>
 		</>
 	);
 }

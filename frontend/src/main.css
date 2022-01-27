@@ -34,6 +34,7 @@ body {
 
 .icons > * {
 	transition: 0.3s ease-in-out;
+	cursor: pointer;
 }
 
 .icons > *:hover {

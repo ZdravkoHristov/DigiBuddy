@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 
-import SingleClassEl from './SingleClass.style.js';
-
 const MainPart = ({ info }) => {
 	return (
 		<main className='class-main'>
@@ -68,7 +66,7 @@ export default function SingleClass({ info }) {
 	}, [editing]);
 
 	return (
-		<SingleClassEl>
+		<div className='single-class'>
 			<header className='class-header' style={radiusStyle}>
 				<input
 					className='class-name'
@@ -93,6 +91,6 @@ export default function SingleClass({ info }) {
 				</div>
 			</header>
 			{showMain ? <MainPart info={info} /> : null}
-		</SingleClassEl>
+		</div>
 	);
 }

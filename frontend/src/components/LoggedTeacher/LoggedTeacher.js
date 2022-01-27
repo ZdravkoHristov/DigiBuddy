@@ -14,9 +14,10 @@ export default function LoggedTeacher() {
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
-		{ text: 'Колекции', to: '#', value: 'collections' },
-		{ text: 'Моите класове', to: '#', value: 'class' },
-		{ text: 'Моят профил', to: '#', value: 'profile' },
+		{ text: 'Работни листове', to: '#', value: 'worksheets' },
+		{ text: 'Задачи', to: '#', value: 'assignments' },
+		{ text: 'Класове', to: '#', value: 'classes' },
+		{ text: 'Профил', to: '#', value: 'profile' },
 		{ text: 'Изход', to: '#', value: 'exit' },
 	];
 
@@ -27,7 +28,7 @@ export default function LoggedTeacher() {
 					<Navbar links={navLinks} outCount={1}></Navbar>
 					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
 						{navActive === 'home' && <Home />}{' '}
-						{navActive === 'class' && <MyClasses />}
+						{navActive === 'classes' && <MyClasses />}
 						{navActive === 'profile' && <Profile />}
 					</div>
 				</Header>
