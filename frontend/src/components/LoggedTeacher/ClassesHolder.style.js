@@ -4,6 +4,11 @@ const ClassesHolderEl = styled.div`
 	& {
 		padding: 0 3rem;
 	}
+
+	h1 {
+		font-weight: normal;
+	}
+
 	.class-header {
 		background-color: var(--purple);
 		border-top-left-radius: 8px;
