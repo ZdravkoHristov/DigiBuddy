@@ -60,18 +60,6 @@ const ClassesHolderEl = styled.div`
 	.students {
 		max-height: 300px;
 		overflow-y: auto;
-
-		&::-webkit-scrollbar {
-			width: 5px;
-			background: #bebcbd;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: var(--purple);
-		}
-
-		scrollbar-color: var(--purple) #bebcbd;
-		scrollbar-width: thin;
 	}
 
 	.student-row {

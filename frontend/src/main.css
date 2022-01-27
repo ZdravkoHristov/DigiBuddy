@@ -32,13 +32,29 @@ body {
 	font-family: 'a_AvanteLt Light', arial;
 }
 
-.icons > * {
+.icons > *,
+.icon {
 	transition: 0.3s ease-in-out;
 	cursor: pointer;
 }
 
-.icons > *:hover {
+.icons > *:hover,
+.icon:hover {
 	transform: scale(1.1);
+}
+
+.purple-scrollbar {
+	scrollbar-color: var(--purple) #bebcbd;
+	scrollbar-width: thin;
+}
+
+.purple-scrollbar::-webkit-scrollbar {
+	width: 5px;
+	background: #bebcbd;
+}
+
+.purple-scrollbar::-webkit-scrollbar-thumb {
+	background: var(--purple);
 }
 
 .gradient {

@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 
-const MainPart = ({ info }) => {
+const MainPart = ({ info, activateStudentId, activateClassId }) => {
 	return (
 		<main className='class-main'>
-			<div className='students'>
-				{info.students.map((student, index) => {
+			<div className='students purple-scrollbar'>
+				{info.students.map(student => {
 					return (
-						<div className='student-row'>
+						<div className='student-row' key={student.id}>
 							<div className='left-side'>
-								<span className='order'>{index + 1}.</span>
+								<span className='order'>{student.number}.</span>
 
-								<span className='name'>{student.name}</span>
+								<span className='name'>{student.fullName}</span>
 							</div>
 
 							<div className='right-side'>
@@ -19,7 +19,14 @@ const MainPart = ({ info }) => {
 									{student.doneAssignments}/{student.totalAssignments}
 								</span>
 								<div className='icons'>
-									<i class='fas fa-eye'></i> <i class='fas fa-user-minus'></i>
+									<i
+										className='fas fa-eye'
+										onClick={() => {
+											activateStudentId(student.id);
+											activateClassId(info.id);
+										}}
+									></i>{' '}
+									<i className='fas fa-user-minus'></i>
 								</div>
 							</div>
 						</div>
@@ -30,7 +37,11 @@ const MainPart = ({ info }) => {
 	);
 };
 
-export default function SingleClass({ info }) {
+export default function SingleClass({
+	info,
+	activateStudentId,
+	activateClassId,
+}) {
 	const [editing, setEditing] = useState(false);
 	const [showMain, setShowMain] = useState(true);
 	const [inputValue, setInputValue] = useState(info.name);
@@ -43,21 +54,23 @@ export default function SingleClass({ info }) {
 	};
 
 	const UpArrow = () => {
-		return <i class='fas fa-chevron-up' onClick={() => setShowMain(false)}></i>;
+		return (
+			<i className='fas fa-chevron-up' onClick={() => setShowMain(false)}></i>
+		);
 	};
 
 	const DownArrow = () => {
 		return (
-			<i class='fas fa-chevron-down' onClick={() => setShowMain(true)}></i>
+			<i className='fas fa-chevron-down' onClick={() => setShowMain(true)}></i>
 		);
 	};
 
 	const EditIcon = () => {
-		return <i class='fas fa-edit' onClick={() => setEditing(true)}></i>;
+		return <i className='fas fa-edit' onClick={() => setEditing(true)}></i>;
 	};
 
 	const SaveIcon = () => {
-		return <i class='fas fa-save' onClick={() => setEditing(false)}></i>;
+		return <i className='fas fa-save' onClick={() => setEditing(false)}></i>;
 	};
 
 	useEffect(() => {
@@ -84,13 +97,19 @@ export default function SingleClass({ info }) {
 					</span>
 					<div className='icons'>
 						{editing ? <SaveIcon /> : <EditIcon />}
-						<i class='fas fa-trash-alt'></i>
+						<i className='fas fa-trash-alt'></i>
 
 						{showMain ? <UpArrow /> : <DownArrow />}
 					</div>
 				</div>
 			</header>
-			{showMain ? <MainPart info={info} /> : null}
+			{showMain ? (
+				<MainPart
+					info={info}
+					activateStudentId={activateStudentId}
+					activateClassId={activateClassId}
+				/>
+			) : null}
 		</div>
 	);
 }
