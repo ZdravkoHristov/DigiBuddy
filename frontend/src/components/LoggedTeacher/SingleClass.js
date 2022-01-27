@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+
 import SingleClassEl from './SingleClass.style.js';
 
 const MainPart = ({ info }) => {

@@ -54,6 +54,23 @@ const SingleClassEl = styled.div`
 		border-bottom-right-radius: 8px;
 	}
 
+	.students {
+		max-height: 100px;
+		overflow-y: scroll;
+
+		&::-webkit-scrollbar {
+			width: 5px;
+			background: #bebcbd;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: var(--purple);
+		}
+
+		scrollbar-color: var(--purple) #bebcbd;
+		scrollbar-width: thin;
+	}
+
 	.student-row {
 		display: flex;
 		justify-content: space-between;
