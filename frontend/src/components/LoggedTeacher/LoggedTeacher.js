@@ -2,10 +2,11 @@ import { useSelector } from 'react-redux';
 import { navbarSelector } from '../../store/store';
 import Header from '../Header';
 import Navbar from '../Navbar';
-import Hero from '../Hero';
+
 import Home from './Home';
 import Class from './Class';
 import Profile from './Profile';
+import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
 import '../../LoggedTeacher.css';
 
 export default function LoggedTeacher() {
@@ -22,7 +23,7 @@ export default function LoggedTeacher() {
 	return (
 		<>
 			<div className='gradient-holder'>
-				<Header>
+				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
 					<Navbar links={navLinks} outCount={1}></Navbar>
 					{navActive === 'home' && <Home />}{' '}
 					{navActive === 'class' && <Class />}

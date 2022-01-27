@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { changeActive } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
+
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
 export default function LogTeacher() {

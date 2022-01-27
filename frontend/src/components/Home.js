@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { homeStateSelector } from '../store/store';
 import Header from './Header';
@@ -10,6 +9,7 @@ import LogTeacher from './LogTeacher';
 import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
+import headerBackground from '../assets/svgs/white-space-header.svg';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
 import '../Home.css';
@@ -45,8 +45,14 @@ export default function Home() {
 	return (
 		<>
 			<div className='gradient-holder'>
-				<Header heroContent={<HeroContent />}>
-				<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
+				<Header
+					heroContent={<HeroContent />}
+					style={{
+						backgroundImage: `url("${headerBackground}")`,
+						backgroundPositionY: 'bottom',
+					}}
+				>
+					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
 					<HeroContent className='hero container' />
 				</Header>
 				<AnimatedLine />
