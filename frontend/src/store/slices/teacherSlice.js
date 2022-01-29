@@ -93,7 +93,7 @@ const teacherSlice = createSlice({
 			classes: [
 				{
 					id: uuid(),
-					name: '12. "б" клас',
+					name: '12. "a" клас',
 					students: FAKE_STUDENTS,
 				},
 				{

@@ -7,6 +7,7 @@ import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
 import AssignmentsInfo from './AssignmentsInfoModal';
+import CreateAssignmentModal from './CreateAssignmentModal';
 
 export default function MyClasses() {
 	// const [activeStudentId, setActiveStudentId] = useState(null);
@@ -26,6 +27,7 @@ export default function MyClasses() {
 
 	return (
 		<>
+			<CreateAssignmentModal />
 			{showStudentInfo && <StudentInfoModal></StudentInfoModal>}
 
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
