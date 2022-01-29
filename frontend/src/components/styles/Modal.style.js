@@ -8,6 +8,7 @@ const ModalEl = styled.div`
 		right: 0;
 		bottom: 0;
 		background-color: rgba(0, 0, 0, 0.6);
+		z-index: 200;
 	}
 
 	.modal-box {

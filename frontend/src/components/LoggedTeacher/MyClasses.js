@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
+import AddAssignmentModal from './AddAssignmentModal';
 import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 import StudentInfo from './StudentInfo';
@@ -41,6 +42,7 @@ export default function MyClasses() {
 
 	return (
 		<>
+			<AddAssignmentModal />
 			{activeStudentId === null ? null : (
 				<>
 					<StudentInfo
