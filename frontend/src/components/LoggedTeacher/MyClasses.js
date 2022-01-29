@@ -1,82 +1,45 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
+import { setUiInfo } from '../../store/slices/teacherSlice';
 import AddAssignmentModal from './AddAssignmentModal';
 import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
-import StudentInfo from './StudentInfo';
+import StudentInfoModal from './StudentInfoModal';
+import AssignmentsInfo from './AssignmentsInfoModal';
 
 export default function MyClasses() {
-	const [activeStudentId, setActiveStudentId] = useState(null);
-	const [activeClassId, setActiveClassId] = useState(null);
-	const { info } = useSelector(teacherSelector);
+	// const [activeStudentId, setActiveStudentId] = useState(null);
+	// const [showStudentInfo, setShowStudentInfo] = useState(false);
+	// const [activeClassId, setActiveClassId] = useState(null);
+	const dispatch = useDispatch();
+	const {
+		info,
+		uiInfo: {
+			showStudentInfo,
+			showAssignmentInfo,
+			activeClassId,
+			activeStudentId,
+		},
+	} = useSelector(teacherSelector);
 	const { classes, students } = info;
-
-	const getCurrentStudentInfo = () => {
-		const studentClass = classes.find(({ id }) => id === activeClassId);
-
-		const studentIndex = studentClass.students.findIndex(
-			({ id }) => id === activeStudentId
-		);
-
-		return [studentClass, studentIndex];
-	};
-
-	const prevStudent = () => {
-		const [currentClass, currentIndex] = getCurrentStudentInfo();
-		const newIndex =
-			(currentIndex + currentClass.students.length - 1) %
-			currentClass.students.length;
-		console.log(newIndex);
-		const previousStudent = currentClass.students[newIndex];
-		setActiveStudentId(previousStudent.id);
-	};
-
-	const nextStudent = () => {
-		const [currentClass, currentIndex] = getCurrentStudentInfo();
-		const newIndex = (currentIndex + 1) % currentClass.students.length;
-
-		const previousStudent = currentClass.students[newIndex];
-		setActiveStudentId(previousStudent.id);
-	};
 
 	return (
 		<>
-			<AddAssignmentModal />
-			{activeStudentId === null ? null : (
-				<>
-					<StudentInfo
-						id={activeStudentId}
-						activateStudentId={setActiveStudentId}
-					>
-						<i
-							className='fas fa-chevron-left prev-arrow icon'
-							onClick={prevStudent}
-						></i>
-						<i
-							className='fas fa-chevron-right next-arrow icon'
-							onClick={nextStudent}
-						></i>
-					</StudentInfo>
-				</>
-			)}
+			{showStudentInfo && <StudentInfoModal></StudentInfoModal>}
+
+			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
+
 			<ClassesHolderEl className='classes-holder  container'>
 				{classes.length === 0 ? (
 					<h1>Здравейте, г-н/г-жо {info.fullName}, Вие нямате класове</h1>
 				) : null}
 
 				{classes.map(singleClass => {
-					return (
-						<SingleClass
-							key={singleClass.id}
-							info={singleClass}
-							activateStudentId={setActiveStudentId}
-							activateClassId={setActiveClassId}
-						/>
-					);
+					return <SingleClass key={singleClass.id} info={singleClass} />;
 				})}
 				<div className='new-class'>
-					<i className='fas fa-user-plus'></i> Добавете клас
+					<i className='fas fa-user-plus icon'></i> Добавете клас
 				</div>
 			</ClassesHolderEl>
 		</>

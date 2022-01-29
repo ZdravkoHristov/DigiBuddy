@@ -19,8 +19,6 @@ const StudentInfoEl = styled.div`
 	}
 	h2 {
 		font-size: 2.5rem;
-		text-align: center;
-		font-weight: normal;
 	}
 
 	.assignments-field {
@@ -42,24 +40,6 @@ const StudentInfoEl = styled.div`
 	.state,
 	.state + * {
 		justify-self: end;
-	}
-
-	.prev-arrow,
-	.next-arrow {
-		position: fixed;
-		z-index: 2000;
-		color: #fff;
-		font-size: 2rem;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	.prev-arrow {
-		left: 5%;
-	}
-
-	.next-arrow {
-		right: 5%;
 	}
 `;
 

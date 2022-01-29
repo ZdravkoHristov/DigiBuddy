@@ -5,11 +5,7 @@ const AssignmentModalEl = styled.div`
 		color: var(--purple);
 		letter-spacing: 2px;
 	}
-	h2 {
-		font-size: 3.2rem;
-		font-weight: normal;
-		text-align: center;
-	}
+
 	.grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;

@@ -6,16 +6,38 @@ const FAKE_ASSIGNMENTS = [
 		id: uuid(),
 		name: 'Есе',
 		state: 'предадено',
+		files: [
+			{
+				id: uuid(),
+				name: 'Есе-1.docx',
+			},
+		],
 	},
 	{
 		id: uuid(),
 		name: 'Съчинение',
 		state: 'предадено',
+		files: [
+			{
+				id: uuid(),
+				name: 'Съчиниение.docx',
+			},
+			{
+				id: uuid(),
+				name: 'Чернова.docs',
+			},
+		],
 	},
 	{
 		id: uuid(),
 		name: 'Тест',
 		state: 'възложено',
+		files: [
+			{
+				id: uuid(),
+				name: 'Отговори.docx',
+			},
+		],
 	},
 ];
 
@@ -83,7 +105,22 @@ const teacherSlice = createSlice({
 			students: FAKE_STUDENTS,
 			activeAssignments: [],
 		},
+		uiInfo: {
+			showStudentInfo: false,
+			showAssignmentInfo: false,
+			activeClassId: null,
+			activeStudentId: null,
+			activeAssignmentId: null,
+		},
+	},
+
+	reducers: {
+		setUiInfo: (state, { payload }) => {
+			state.uiInfo = { ...state.uiInfo, ...payload };
+		},
 	},
 });
 
 export default teacherSlice.reducer;
+
+export const { setUiInfo } = teacherSlice.actions;

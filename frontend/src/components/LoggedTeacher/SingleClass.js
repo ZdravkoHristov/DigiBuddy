@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUiInfo } from '../../store/slices/teacherSlice';
 
-const MainPart = ({ info, activateStudentId, activateClassId }) => {
+const MainPart = ({ info }) => {
+	const dispatch = useDispatch();
 	return (
 		<main className='class-main'>
 			<div className='students purple-scrollbar'>
@@ -22,8 +25,13 @@ const MainPart = ({ info, activateStudentId, activateClassId }) => {
 									<i
 										className='fas fa-eye'
 										onClick={() => {
-											activateStudentId(student.id);
-											activateClassId(info.id);
+											dispatch(
+												setUiInfo({
+													activeClassId: info.id,
+													activeStudentId: student.id,
+													showStudentInfo: true,
+												})
+											);
 										}}
 									></i>{' '}
 									<i className='fas fa-user-minus'></i>
@@ -37,11 +45,7 @@ const MainPart = ({ info, activateStudentId, activateClassId }) => {
 	);
 };
 
-export default function SingleClass({
-	info,
-	activateStudentId,
-	activateClassId,
-}) {
+export default function SingleClass({ info }) {
 	const [editing, setEditing] = useState(false);
 	const [showMain, setShowMain] = useState(true);
 	const [inputValue, setInputValue] = useState(info.name);
@@ -103,13 +107,7 @@ export default function SingleClass({
 					</div>
 				</div>
 			</header>
-			{showMain ? (
-				<MainPart
-					info={info}
-					activateStudentId={activateStudentId}
-					activateClassId={activateClassId}
-				/>
-			) : null}
+			{showMain ? <MainPart info={info} /> : null}
 		</div>
 	);
 }

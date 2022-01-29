@@ -11,6 +11,11 @@ const ModalEl = styled.div`
 		z-index: 200;
 	}
 
+	h2 {
+		text-align: center;
+		font-weight: normal;
+	}
+
 	.modal-box {
 		background-color: #f5f5f5;
 		width: 80%;
