@@ -28,13 +28,13 @@ export default function NewAssignmentForm() {
 
 		let newInputsData = [...inputsData];
 
-		const newSelectedClasses = selectedClasses.concat([selectedClass]);
+		let newSelectedClasses = selectedClasses.concat([selectedClass]);
 
 		if (inputData.value !== 'default') {
-			const indexInSelected = newSelectedClasses.findIndex(
-				({ id }) => id === selectedClass.id
+			newSelectedClasses = newSelectedClasses.filter(
+				({ id }) => id !== inputData.value
 			);
-			newSelectedClasses.splice(indexInSelected, 1);
+
 			newInputsData = newInputsData.map((data, currentIndex) => {
 				if (currentIndex === inputIndex) return data;
 				const newShowClasses = data.showClasses.concat([selectedClass]);
@@ -72,13 +72,11 @@ export default function NewAssignmentForm() {
 	};
 
 	const deleteSelect = selectIndex => {
-		console.log(selectIndex);
 		const deletedId = inputsData[selectIndex].value;
 		const indexInSelected = selectedClasses.findIndex(
 			({ id }) => id === deletedId
 		);
 		const [deletedClass] = selectedClasses.splice(indexInSelected, 1);
-		console.log(deletedClass);
 
 		const newInputsData = inputsData
 			.filter((_, index) => index !== selectIndex)
