@@ -120,10 +120,12 @@ export default function NewAssignmentForm() {
 									);
 								})}
 							</select>
-							<i
-								className='fas fa-trash-alt icon'
-								onClick={() => deleteSelect(inputIndex)}
-							></i>
+							{value !== 'default' && (
+								<i
+									className='fas fa-trash-alt icon'
+									onClick={() => deleteSelect(inputIndex)}
+								></i>
+							)}
 						</div>
 					);
 				})}
