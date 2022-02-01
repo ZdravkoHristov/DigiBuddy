@@ -6,11 +6,13 @@ export default function CreateAssignmentModal() {
 	return (
 		<NewAssignmentModalEl>
 			<Modal>
-				<h2>Създаване на задание: </h2>
-				<p className='create-instruction'>
-					Попълнете всички полета и създайте задание с нашите инструменти!
-				</p>
-				<NewAssignmentForm />
+				<div className='content'>
+					<h2>Създаване на задание: </h2>
+					<p className='instruction'>
+						Попълнете всички полета и създайте задание с нашите инструменти!
+					</p>
+					<NewAssignmentForm />{' '}
+				</div>
 			</Modal>
 		</NewAssignmentModalEl>
 	);

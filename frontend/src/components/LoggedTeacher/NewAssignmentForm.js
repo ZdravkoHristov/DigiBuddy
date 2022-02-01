@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import { teacherSelector } from '../../store/store';
+import NewAssignmentFormEl from './NewAssignmentForm.style';
 
 export default function NewAssignmentForm() {
 	const { classes } = useSelector(teacherSelector).info;
@@ -13,6 +14,18 @@ export default function NewAssignmentForm() {
 	});
 
 	const [selectedClasses, setSelectedClasses] = useState([]);
+	const [allCategories, setAllCategories] = useState([
+		{
+			name: 'категория 1',
+			id: uuid(),
+		},
+		{
+			name: 'категория 2',
+			id: uuid(),
+		},
+	]);
+
+	const [categoryValue, setCategoryValue] = useState('default');
 
 	const changeHandler = (e, inputIndex) => {
 		if (e.target.value === 'all') {
@@ -44,19 +57,19 @@ export default function NewAssignmentForm() {
 	}, [selectedClasses]);
 
 	return (
-		<form>
-			<div className='labels'>
+		<NewAssignmentFormEl>
+			<div className='form-grid'>
 				<label htmlFor='name'>Име: </label>
+				<input
+					id='name'
+					name='name'
+					type='text'
+					placeholder='Въведете името на заданието'
+				/>
 				<label htmlFor='for'>За: </label>
-				<label htmlFor='deadline'>Краен срок: </label>
-				<label htmlFor='category'>Категория: </label>
-			</div>
-			<div className='inputs'>
-				<input type='text' placeholder='Въведете името на заданието' />
 				<select
 					name='for'
 					id='for'
-					key={selectData.id}
 					value={selectData.value}
 					onChange={e => changeHandler(e)}
 				>
@@ -64,7 +77,7 @@ export default function NewAssignmentForm() {
 						Изберете класове
 					</option>
 					{selectData.showClasses.length && <option value='all'>Всички</option>}
-					{selectData.showClasses.map((currentClass, index) => {
+					{selectData.showClasses.map(currentClass => {
 						return (
 							<option value={currentClass.id} key={currentClass.id}>
 								{currentClass.name}
@@ -72,7 +85,32 @@ export default function NewAssignmentForm() {
 						);
 					})}
 				</select>
+				<label htmlFor='deadline'>Краен срок: </label>
+				<div className='deadline-holder'>
+					<input id='deadline' name='date' type='date' />
+					<input type='time' name='time' />
+				</div>
+				<label htmlFor='category'>Категория: </label>
+
+				<select
+					name='category'
+					id='category'
+					value={categoryValue}
+					onChange={e => setCategoryValue(e.target.value)}
+				>
+					<option value='default' disabled hidden>
+						Изберете категория
+					</option>
+					{allCategories.map(category => {
+						return (
+							<option value={category.name} key={category.id}>
+								{category.name}
+							</option>
+						);
+					})}
+				</select>
 			</div>
+
 			<div className='selected-class'>
 				{selectedClasses.map(singleClass => {
 					return (
@@ -86,6 +124,6 @@ export default function NewAssignmentForm() {
 					);
 				})}
 			</div>
-		</form>
+		</NewAssignmentFormEl>
 	);
 }
