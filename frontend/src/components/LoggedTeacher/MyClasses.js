@@ -1,8 +1,5 @@
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
-import { setUiInfo } from '../../store/slices/teacherSlice';
-import AddAssignmentModal from './AddAssignmentModal';
 import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
@@ -10,20 +7,11 @@ import AssignmentsInfo from './AssignmentsInfoModal';
 import CreateAssignmentModal from './CreateAssignmentModal';
 
 export default function MyClasses() {
-	// const [activeStudentId, setActiveStudentId] = useState(null);
-	// const [showStudentInfo, setShowStudentInfo] = useState(false);
-	// const [activeClassId, setActiveClassId] = useState(null);
-	const dispatch = useDispatch();
 	const {
 		info,
-		uiInfo: {
-			showStudentInfo,
-			showAssignmentInfo,
-			activeClassId,
-			activeStudentId,
-		},
+		uiInfo: { showStudentInfo, showAssignmentInfo },
 	} = useSelector(teacherSelector);
-	const { classes, students } = info;
+	const { classes } = info;
 
 	return (
 		<>
