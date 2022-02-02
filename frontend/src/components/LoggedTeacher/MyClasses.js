@@ -4,7 +4,7 @@ import ClassesHolderEl from './ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
 import AssignmentsInfo from './AssignmentsInfoModal';
-import CreateAssignmentModal from './CreateAssignmentModal';
+import UploadAssignmentModal from './UploadAssignmentModal';
 
 export default function MyClasses() {
 	const {
@@ -15,7 +15,7 @@ export default function MyClasses() {
 
 	return (
 		<>
-			<CreateAssignmentModal />
+			<UploadAssignmentModal />
 			{showStudentInfo && <StudentInfoModal></StudentInfoModal>}
 
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}

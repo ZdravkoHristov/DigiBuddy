@@ -3,7 +3,6 @@ import wave from '../../assets/svgs/modal-wave.svg';
 
 const NewAssignmentModalEl = styled.div`
 	.modal-box {
-		width: 70%;
 		background: linear-gradient(#243a4c, #213140);
 		overflow: hidden;
 	}
@@ -49,6 +48,22 @@ const NewAssignmentModalEl = styled.div`
 		margin: 1rem auto;
 		font-size: 1.3rem;
 		text-align: center;
+	}
+
+	.modal-grid {
+		display: flex;
+		justify-content: space-around;
+	}
+	.upload-holder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 2rem;
+
+		p {
+			margin: 1.3rem 0;
+		}
 	}
 `;
 

@@ -24,8 +24,7 @@ const AssignmentModalEl = styled.div`
 		.icon {
 			font-size: 70px;
 			position: absolute;
-			left: 40%;
-			top: 36%;
+
 			color: #fff;
 		}
 
@@ -54,10 +53,6 @@ const AssignmentModalEl = styled.div`
 			margin-top: 1.5rem;
 		}
 	}
-
-	/* .modal-box {
-		background: red;
-	} */
 `;
 
 export default AssignmentModalEl;

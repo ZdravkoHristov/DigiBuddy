@@ -6,7 +6,7 @@ import Button from '../Button';
 export default function CreateAssignmentModal() {
 	return (
 		<NewAssignmentModalEl>
-			<Modal>
+			<Modal style={{ width: '70%' }}>
 				<div className='wave'></div>
 				<div className='content'>
 					<h2>Създаване на задание: </h2>
