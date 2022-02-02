@@ -1,26 +1,9 @@
 import styled from 'styled-components';
-import wave from '../../assets/svgs/modal-wave.svg';
 
 const NewAssignmentModalEl = styled.div`
-	.modal-box {
-		background: linear-gradient(#243a4c, #213140);
-		overflow: hidden;
-	}
-
-	.wave {
-		background-image: url(${wave});
-		position: absolute;
-		top: 0;
-		left: 58px;
-		right: 0;
-		bottom: 0;
-		background-size: cover;
-		z-index: -1;
-		background-repeat: no-repeat;
-	}
-
 	.button-holder {
-		position: relative;
+		display: flex;
+		justify-content: flex-end;
 
 		margin: 2rem 0 5rem 0;
 
@@ -28,8 +11,7 @@ const NewAssignmentModalEl = styled.div`
 			padding: 0.5rem 2rem;
 			font-size: 1.4rem;
 			letter-spacing: 0.1rem;
-			position: absolute;
-			right: 0;
+			margin: 0;
 		}
 	}
 

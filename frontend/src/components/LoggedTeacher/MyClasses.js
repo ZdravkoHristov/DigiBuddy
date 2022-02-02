@@ -5,6 +5,8 @@ import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
 import AssignmentsInfo from './AssignmentsInfoModal';
 import UploadAssignmentModal from './UploadAssignmentModal';
+import AddAssignmentModal from './AddAssignmentModal';
+import ToolsModal from './ToolsModal';
 
 export default function MyClasses() {
 	const {
@@ -15,7 +17,7 @@ export default function MyClasses() {
 
 	return (
 		<>
-			<UploadAssignmentModal />
+			<ToolsModal />
 			{showStudentInfo && <StudentInfoModal></StudentInfoModal>}
 
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}

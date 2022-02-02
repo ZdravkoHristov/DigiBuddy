@@ -7,7 +7,7 @@ import UploadIcon from './UploadIcon';
 export default function UploadAssignmentModal() {
 	return (
 		<NewAssignmentModalEl>
-			<Modal>
+			<Modal className='gradient-modal'>
 				<div className='wave'></div>
 				<div className='content'>
 					<h2>Качване на задание: </h2>

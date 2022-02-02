@@ -7,7 +7,8 @@ import createBg from '../../assets/svgs/create-assignment-bg.svg';
 export default function AddAssignmentModal() {
 	return (
 		<AddAssignmentEl>
-			<Modal>
+			<Modal className='gradient-modal'>
+				<div className='wave'></div>
 				<h2>Добавяне на задание: </h2>
 				<div className='grid'>
 					<div className='upload'>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import wave from '../../assets/svgs/modal-wave.svg';
 const ModalEl = styled.div`
 	& {
 		position: fixed;
@@ -11,9 +11,22 @@ const ModalEl = styled.div`
 		z-index: 200;
 	}
 
+	.wave {
+		background-image: url(${wave});
+		position: absolute;
+		top: 0;
+		left: 58px;
+		right: 0;
+		bottom: 0;
+		background-size: cover;
+		z-index: -1;
+		background-repeat: no-repeat;
+	}
+
 	h2 {
 		text-align: center;
 		font-weight: normal;
+		font-size: 2.5rem;
 	}
 
 	.modal-box {
@@ -25,6 +38,11 @@ const ModalEl = styled.div`
 		transform: translate(-50%, -50%);
 		border-radius: 40px;
 		padding: 4rem 2rem;
+		overflow: hidden;
+	}
+
+	&.gradient-modal .modal-box {
+		background: linear-gradient(#243a4c, #213140);
 	}
 
 	.close-icon {
