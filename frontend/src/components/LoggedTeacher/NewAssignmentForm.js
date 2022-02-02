@@ -111,7 +111,7 @@ export default function NewAssignmentForm() {
 				</select>
 			</div>
 
-			<div className='selected-class'>
+			<div className='selected-classes'>
 				{selectedClasses.map(singleClass => {
 					return (
 						<div className='selected-class' key={singleClass.id}>

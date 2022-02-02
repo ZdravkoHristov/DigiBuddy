@@ -24,7 +24,7 @@ const ModalEl = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		border-radius: 40px;
-		padding: 3rem 2rem;
+		padding: 4rem 2rem;
 	}
 
 	.close-icon {
