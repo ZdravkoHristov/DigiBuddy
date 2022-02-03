@@ -17,7 +17,6 @@ export default function MyClasses() {
 
 	return (
 		<>
-			<ToolsModal />
 			{showStudentInfo && <StudentInfoModal></StudentInfoModal>}
 
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}

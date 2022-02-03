@@ -76,6 +76,94 @@ const FAKE_STUDENTS = [
 	},
 ];
 
+const FAKE_COLLECTIONS = [
+	{
+		id: uuid(),
+		name: 'Задания 12. клас',
+		files: [],
+		children: [
+			{
+				id: uuid(),
+				name: '12а',
+				files: [
+					{
+						id: uuid(),
+						name: 'Контролна работа №1',
+					},
+					{
+						id: uuid(),
+						name: 'Контролна работа №2',
+					},
+				],
+				children: [
+					{
+						id: uuid(),
+						name: '1 група',
+						files: [
+							{
+								id: uuid(),
+								name: 'Тест',
+							},
+						],
+						children: [
+							{
+								id: uuid(),
+								name: 'папка',
+								files: [
+									{
+										id: uuid(),
+										name: 'fail',
+									},
+								],
+								children: [],
+							},
+						],
+					},
+				],
+			},
+			{
+				id: uuid(),
+				name: '12б',
+				files: [
+					{
+						id: uuid(),
+						name: 'Контролна работа №1',
+					},
+				],
+				children: [],
+			},
+		],
+	},
+	{
+		id: uuid(),
+		name: 'Задания 11. клас',
+		files: [
+			{
+				id: uuid(),
+				name: 'Контролна работа №1',
+			},
+		],
+		children: [],
+	},
+	{
+		id: uuid(),
+		name: 'Задания 10. клас',
+		files: [
+			{
+				id: uuid(),
+				name: 'Контролна работа №1',
+			},
+		],
+		children: [],
+	},
+	{
+		id: uuid(),
+		name: 'Задания 9. клас',
+		files: [],
+		children: [],
+	},
+];
+
 const teacherSlice = createSlice({
 	name: 'teacher',
 	initialState: {
@@ -89,7 +177,7 @@ const teacherSlice = createSlice({
 			region: 'Пловдив',
 			role: 'Учител',
 			subject: 'информационни технологии',
-			collections: [],
+			collections: [...FAKE_COLLECTIONS],
 			classes: [
 				{
 					id: uuid(),

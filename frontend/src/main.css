@@ -28,7 +28,7 @@ body {
 	letter-spacing: 1px;
 }
 
-*:not(.fa, .fas) {
+*:not(i) {
 	font-family: 'a_AvanteLt Light', arial;
 }
 

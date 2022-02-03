@@ -4,6 +4,7 @@ import Header from '../Header';
 import Navbar from '../Navbar';
 
 import Home from './Home';
+import Worksheets from './Worksheets';
 import MyClasses from './MyClasses';
 import Profile from './Profile';
 import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
@@ -27,7 +28,8 @@ export default function LoggedTeacher() {
 				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
 					<Navbar links={navLinks} outCount={1}></Navbar>
 					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
-						{navActive === 'home' && <Home />}{' '}
+						{navActive === 'home' && <Home />}
+						{navActive === 'worksheets' && <Worksheets />}
 						{navActive === 'classes' && <MyClasses />}
 						{navActive === 'profile' && <Profile />}
 					</div>
