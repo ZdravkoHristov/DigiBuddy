@@ -1,48 +1,41 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { teacherSelector } from '../../store/store';
-import { setUiInfo } from '../../store/slices/teacherSlice';
+import { loggedUiSelector, teacherSelector } from '../../store/store';
+import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import Modal from '../Modal';
 import StudentInfoModalEl from './StudentInfoModal.style';
 
 export default function StudentInfoModal({ children }) {
 	const dispatch = useDispatch();
-	const { info, uiInfo } = useSelector(teacherSelector);
+	const { info } = useSelector(teacherSelector);
+	const { uiInfo } = useSelector(loggedUiSelector);
 	const { students, classes } = info;
-	const { activeStudentId, activeClassId } = uiInfo;
+	const { activeStudent, activeClass } = uiInfo;
 
-	const activeStudent = students.find(
-		student => student.id === activeStudentId
-	);
 	const doneAssignments = activeStudent.assignments.filter(
 		({ state }) => state === 'предадено'
 	);
 
-	const getCurrentStudentInfo = () => {
-		const studentClass = classes.find(({ id }) => id === activeClassId);
-
-		const studentIndex = studentClass.students.findIndex(
-			({ id }) => id === activeStudentId
-		);
-
-		return [studentClass, studentIndex];
-	};
-
 	const prevStudent = () => {
-		const [currentClass, currentIndex] = getCurrentStudentInfo();
+		const currentIndex = activeClass.students.findIndex(
+			({ id }) => id === activeStudent.id
+		);
 		const newIndex =
-			(currentIndex + currentClass.students.length - 1) %
-			currentClass.students.length;
+			(currentIndex + activeClass.students.length - 1) %
+			activeClass.students.length;
 
-		const previousStudent = currentClass.students[newIndex];
-		dispatch(setUiInfo({ activeStudentId: previousStudent.id }));
+		const newStudent = activeClass.students[newIndex];
+		dispatch(setUiInfo({ activeStudent: newStudent }));
 	};
 
 	const nextStudent = () => {
-		const [currentClass, currentIndex] = getCurrentStudentInfo();
-		const newIndex = (currentIndex + 1) % currentClass.students.length;
+		const currentIndex = activeClass.students.findIndex(
+			({ id }) => id === activeStudent.id
+		);
 
-		const previousStudent = currentClass.students[newIndex];
-		dispatch(setUiInfo({ activeStudentId: previousStudent.id }));
+		const newIndex = (currentIndex + 1) % activeClass.students.length;
+
+		const newStudent = activeClass.students[newIndex];
+		dispatch(setUiInfo({ activeStudent: newStudent }));
 	};
 
 	return (
@@ -94,7 +87,7 @@ export default function StudentInfoModal({ children }) {
 												setUiInfo({
 													showStudentInfo: false,
 													showAssignmentInfo: true,
-													activeAssignmentId: assignment.id,
+													activeAssignment: assignment,
 												})
 											)
 										}

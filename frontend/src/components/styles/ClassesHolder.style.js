@@ -38,10 +38,6 @@ const ClassesHolderEl = styled.div`
 
 		.students-count {
 			margin-right: 5rem;
-			.number {
-				font-size: 1.8rem;
-				margin-right: 8px;
-			}
 		}
 
 		.icons > * {
@@ -55,6 +51,11 @@ const ClassesHolderEl = styled.div`
 		padding: 0.5rem 2rem;
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
+	}
+
+	.number {
+		font-size: 1.8rem;
+		margin-right: 8px;
 	}
 
 	.students {
@@ -82,6 +83,24 @@ const ClassesHolderEl = styled.div`
 			margin-left: 10px;
 			margin-right: 2rem;
 		}
+
+		.deadline {
+			flex: 1;
+			margin-right: 50px;
+			text-align: right;
+		}
+
+		.state {
+			margin-right: 20px;
+		}
+	}
+
+	.more-info {
+		margin-top: 1rem;
+	}
+
+	.done-assignments {
+		margin-left: 30px;
 	}
 
 	.students {
@@ -93,7 +112,11 @@ const ClassesHolderEl = styled.div`
 
 	.icons > * {
 		cursor: pointer;
-		margin-right: 2px;
+		margin-right: 5px;
+	}
+
+	.fa-file-import {
+		margin-right: 10px;
 	}
 
 	.new-class {

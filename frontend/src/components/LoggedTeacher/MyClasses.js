@@ -1,18 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { teacherSelector } from '../../store/store';
-import ClassesHolderEl from './ClassesHolder.style';
+import { loggedUiSelector, teacherSelector } from '../../store/store';
+import ClassesHolderEl from '../styles/ClassesHolder.style';
 import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
-import AssignmentsInfo from './AssignmentsInfoModal';
+import AssignmentsInfo from '../AssignmentsInfoModal';
 import UploadAssignmentModal from './UploadAssignmentModal';
 import AddAssignmentModal from './AddAssignmentModal';
 import ToolsModal from './ToolsModal';
 
 export default function MyClasses() {
-	const {
-		info,
-		uiInfo: { showStudentInfo, showAssignmentInfo },
-	} = useSelector(teacherSelector);
+	const { info } = useSelector(teacherSelector);
+	const { showStudentInfo, showAssignmentInfo } =
+		useSelector(loggedUiSelector).uiInfo;
+
 	const { classes } = info;
 
 	return (

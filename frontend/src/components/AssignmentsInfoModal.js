@@ -1,43 +1,36 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { setUiInfo } from '../../store/slices/teacherSlice';
-import { teacherSelector } from '../../store/store';
-import Modal from '../Modal';
-import AssignmentsInfoEl from './AssignmentsInfoModal.style';
+import { setUiInfo } from '../store/slices/loggedUiSlice';
+import { loggedUiSelector, teacherSelector } from '../store/store';
+import Modal from './Modal';
+import AssignmentsInfoEl from './styles/AssignmentsInfoModal.style';
 
-export default function AssignmentsInfoModal({ children }) {
+export default function AssignmentsInfoModal() {
 	const dispatch = useDispatch();
-	const { info, uiInfo } = useSelector(teacherSelector);
-	const { activeClassId, activeStudentId, activeAssignmentId } = uiInfo;
-	const activeClass = info.classes.find(({ id }) => id === activeClassId);
-	const activeStudent = activeClass.students.find(
-		({ id }) => id === activeStudentId
-	);
-
-	const activeAssignment = activeStudent.assignments.find(
-		({ id }) => id === activeAssignmentId
-	);
+	const { info } = useSelector(teacherSelector);
+	const { uiInfo } = useSelector(loggedUiSelector);
+	const { activeStudent, activeAssignment } = uiInfo;
 
 	const prevAssignment = () => {
 		const assignmentIndex = activeStudent.assignments.findIndex(
-			({ id }) => id === activeAssignmentId
+			({ id }) => id === activeAssignment.id
 		);
 		const newIndex =
 			(assignmentIndex + activeStudent.assignments.length - 1) %
 			activeStudent.assignments.length;
 
 		const previousAssignment = activeStudent.assignments[newIndex];
-		dispatch(setUiInfo({ activeAssignmentId: previousAssignment.id }));
+		dispatch(setUiInfo({ activeAssignment: previousAssignment }));
 	};
 
 	const nextAssignment = () => {
 		const assignmentIndex = activeStudent.assignments.findIndex(
-			({ id }) => id === activeAssignmentId
+			({ id }) => id === activeAssignment.id
 		);
 		const newIndex = (assignmentIndex + 1) % activeStudent.assignments.length;
 
 		const nextAssignment = activeStudent.assignments[newIndex];
-		dispatch(setUiInfo({ activeAssignmentId: nextAssignment.id }));
+		dispatch(setUiInfo({ activeAssignment: nextAssignment }));
 	};
 
 	return (

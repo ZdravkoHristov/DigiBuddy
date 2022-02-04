@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUiInfo } from '../../store/slices/teacherSlice';
+import { setUiInfo } from '../../store/slices/loggedUiSlice';
 
 const MainPart = ({ info }) => {
 	const dispatch = useDispatch();
@@ -27,8 +27,8 @@ const MainPart = ({ info }) => {
 										onClick={() => {
 											dispatch(
 												setUiInfo({
-													activeClassId: info.id,
-													activeStudentId: student.id,
+													activeClass: info,
+													activeStudent: student,
 													showStudentInfo: true,
 												})
 											);
@@ -52,9 +52,10 @@ export default function SingleClass({ info }) {
 	const inputRef = useRef();
 
 	const borderRadiusBottom = showMain ? 0 : 8;
-	const radiusStyle = {
+	const style = {
 		borderBottomLeftRadius: borderRadiusBottom + 'px',
 		borderBottomRightRadius: borderRadiusBottom + 'px',
+		marginBottom: showMain ? '0' : '10px',
 	};
 
 	const UpArrow = () => {
@@ -84,7 +85,7 @@ export default function SingleClass({ info }) {
 
 	return (
 		<div className='single-class'>
-			<header className='class-header' style={radiusStyle}>
+			<header className='class-header' style={style}>
 				<input
 					className='class-name'
 					type='text'

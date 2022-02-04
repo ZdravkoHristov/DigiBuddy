@@ -193,22 +193,7 @@ const teacherSlice = createSlice({
 			students: FAKE_STUDENTS,
 			activeAssignments: [],
 		},
-		uiInfo: {
-			showStudentInfo: false,
-			showAssignmentInfo: false,
-			activeClassId: null,
-			activeStudentId: null,
-			activeAssignmentId: null,
-		},
-	},
-
-	reducers: {
-		setUiInfo: (state, { payload }) => {
-			state.uiInfo = { ...state.uiInfo, ...payload };
-		},
 	},
 });
 
 export default teacherSlice.reducer;
-
-export const { setUiInfo } = teacherSlice.actions;

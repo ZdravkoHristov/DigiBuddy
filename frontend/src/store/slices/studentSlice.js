@@ -4,8 +4,10 @@ import uuid from 'react-uuid';
 const FAKE_ASSIGNMENTS = [
 	{
 		id: uuid(),
+
 		name: 'Есе',
 		state: 'предадено',
+		deadline: '12.03.2022',
 		files: [
 			{
 				id: uuid(),
@@ -17,6 +19,7 @@ const FAKE_ASSIGNMENTS = [
 		id: uuid(),
 		name: 'Съчинение',
 		state: 'предадено',
+		deadline: '12.03.2022',
 		files: [
 			{
 				id: uuid(),
@@ -32,6 +35,7 @@ const FAKE_ASSIGNMENTS = [
 		id: uuid(),
 		name: 'Тест',
 		state: 'възложено',
+		deadline: '12.03.2022',
 		files: [
 			{
 				id: uuid(),
@@ -45,6 +49,7 @@ const studentSlice = createSlice({
 	name: 'student',
 	initialState: {
 		info: {
+			number: 12,
 			name: 'Здравко',
 			surname: 'Христов',
 			fullName: 'Здравко Христов',
@@ -54,6 +59,7 @@ const studentSlice = createSlice({
 			region: 'Пловдив',
 			role: 'Ученик',
 			grade: '12 б клас',
+			assignments: [...FAKE_ASSIGNMENTS],
 
 			classes: [
 				{
@@ -70,18 +76,7 @@ const studentSlice = createSlice({
 				},
 			],
 		},
-		uiInfo: {
-			showJoinClass: false,
-		},
-
-		// reducers: {
-		// 	setUiInfo: (state, { payload }) => {
-		// 		state.uiInfo = { ...state.uiInfo, ...payload };
-		// 	},
-		// },
 	},
 });
 
 export default studentSlice.reducer;
-
-// export const { setUiInfo } = studentSlice.actions;
