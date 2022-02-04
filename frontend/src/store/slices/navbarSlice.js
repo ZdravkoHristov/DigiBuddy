@@ -8,6 +8,7 @@ const navbarSlice = createSlice({
 
 	reducers: {
 		setActive: (state, { payload }) => {
+			console.log(payload);
 			state.active = payload;
 		},
 	},

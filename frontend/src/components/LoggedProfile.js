@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import MyProfile from './MyProfile.js';
-import Settings from './Settings.js';
-import ProfileEl from './Profile.style.js';
 
-export default function LoggedTeacher() {
+import ProfileEl from './styles/LoggedProfile.style';
+
+export default function LoggedTeacher({ myProfile, settings }) {
 	const [active, setActive] = useState('myProfile');
 	return (
 		<>
@@ -25,8 +24,8 @@ export default function LoggedTeacher() {
 					</ul>
 				</aside>
 				<article className='profile-info'>
-					{active === 'myProfile' && <MyProfile />}
-					{active === 'settings' && <Settings />}
+					{active === 'myProfile' && myProfile}
+					{active === 'settings' && settings}
 				</article>
 			</ProfileEl>
 		</>

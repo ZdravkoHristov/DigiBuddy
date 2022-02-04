@@ -1,4 +1,4 @@
-import FormField from './FormField';
+import FormField from '../SettingsFormField';
 import Button from '../Button';
 
 export default function Settings() {

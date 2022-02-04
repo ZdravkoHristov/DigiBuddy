@@ -1,9 +1,15 @@
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { teacherSelector } from '../../store/store';
-export default function FormField({ labelTxt, dataChunk, inputType = 'text' }) {
+import { studentSelector, teacherSelector } from '../store/store';
+export default function FormField({
+	labelTxt,
+	dataChunk,
+	inputType = 'text',
+	role = 'teacher',
+}) {
 	const [editing, setEditing] = useState(false);
-	const data = useSelector(teacherSelector).info[dataChunk];
+	const dataSelector = role === 'teacher' ? teacherSelector : studentSelector;
+	const data = useSelector(dataSelector).info[dataChunk];
 	const [value, setValue] = useState(data);
 	const inputRef = useRef();
 
