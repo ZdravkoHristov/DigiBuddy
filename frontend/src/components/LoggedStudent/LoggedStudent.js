@@ -8,7 +8,7 @@ import Classes from './Classes';
 import LoggedProfile from '../LoggedProfile';
 import MyProfile from './MyProfile';
 import Settings from './Settings';
-import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
+import headerBackground from '../../assets/svgs/full-back-student.svg';
 // import '../../LoggedTeacher.css';
 
 export default function LoggedStudent() {
@@ -25,7 +25,12 @@ export default function LoggedStudent() {
 	return (
 		<>
 			<div className='gradient-holder'>
-				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
+				<Header
+					style={{
+						backgroundImage: `url("${headerBackground}")`,
+						backgroundPositionY: '-81px',
+					}}
+				>
 					<Navbar links={navLinks} outCount={1}></Navbar>
 					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
 						{navActive === 'home' && <Home text='ученик' />}
