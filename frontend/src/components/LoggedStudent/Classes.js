@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { loggedUiSelector, studentSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
-import ClassesHolderEl from '../styles/ClassesHolder.style';
+import FoldingContainer from '../styles/FoldingContainer.style';
 import SingleClass from './SingleClass.js';
 import AssignmentsInfo from '../AssignmentsInfoModal';
 import JoinClassModal from './JoinClassModal';
@@ -15,7 +15,7 @@ export default function Classes() {
 	return (
 		<>
 			{uiInfo.showJoinClass && <JoinClassModal />}
-			<ClassesHolderEl className='classes-holder  container'>
+			<FoldingContainer className='classes-holder  container'>
 				{uiInfo.showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
 				{classes.length === 0 ? (
 					<h1>
@@ -34,7 +34,7 @@ export default function Classes() {
 				>
 					<i className='fas fa-user-plus icon'></i> Присъединете се към клас
 				</div>
-			</ClassesHolderEl>
+			</FoldingContainer>
 		</>
 	);
 }

@@ -39,11 +39,11 @@ const MainPart = ({ info }) => {
 	};
 
 	return (
-		<main className='class-main'>
-			<div className='students purple-scrollbar'>
+		<main className='main'>
+			<div className='content purple-scrollbar'>
 				{info.assignments.map((assignment, index) => {
 					return (
-						<div className='student-row' key={assignment.id}>
+						<div className='row' key={assignment.id}>
 							<div className='left-side'>
 								<span className='order'>{index + 1}.</span>
 
@@ -112,7 +112,7 @@ export default function SingleClass({ info }) {
 
 	return (
 		<div className='single-class'>
-			<header className='class-header' style={style}>
+			<header className='header' style={style}>
 				<div style={{ flex: 1 }}>
 					<input
 						className='class-name'

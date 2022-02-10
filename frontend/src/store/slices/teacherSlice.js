@@ -177,6 +177,15 @@ const teacherSlice = createSlice({
 			region: 'Пловдив',
 			role: 'Учител',
 			subject: 'информационни технологии',
+			assignments: [
+				{
+					id: uuid(),
+					name: 'През коя година...',
+					type: 'singleAnswer',
+					answers: ['681', '865', '311', '2017'],
+					correctAnswer: '865',
+				},
+			],
 			collections: [...FAKE_COLLECTIONS],
 			classes: [
 				{

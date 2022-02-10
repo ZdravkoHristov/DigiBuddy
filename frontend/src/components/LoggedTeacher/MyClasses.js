@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { loggedUiSelector, teacherSelector } from '../../store/store';
-import ClassesHolderEl from '../styles/ClassesHolder.style';
+import FoldingContainer from '../styles/FoldingContainer.style';
 import SingleClass from './SingleClass.js';
 import StudentInfoModal from './StudentInfoModal';
 import AssignmentsInfo from '../AssignmentsInfoModal';
@@ -21,7 +21,7 @@ export default function MyClasses() {
 
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
 
-			<ClassesHolderEl className='classes-holder  container'>
+			<FoldingContainer className='classes-holder  container'>
 				{classes.length === 0 ? (
 					<h1>Здравейте, г-н/г-жо {info.fullName}, Вие нямате класове</h1>
 				) : null}
@@ -32,7 +32,7 @@ export default function MyClasses() {
 				<div className='new-class'>
 					<i className='fas fa-user-plus icon'></i> Добавете клас
 				</div>
-			</ClassesHolderEl>
+			</FoldingContainer>
 		</>
 	);
 }

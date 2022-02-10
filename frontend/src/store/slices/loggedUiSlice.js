@@ -6,6 +6,8 @@ const loggedUiSlice = createSlice({
 		uiInfo: {
 			showStudentInfo: false,
 			showAssignmentInfo: false,
+			showCustomAssignment: true,
+			customType: 'singleAnswer',
 			showJoinClass: false,
 			activeClass: null,
 			activeStudent: null,

@@ -9,6 +9,7 @@ import MyClasses from './MyClasses';
 import LoggedProfile from '../LoggedProfile';
 import MyProfile from './MyProfile';
 import Settings from './Settings';
+import Assignments from './Assignments';
 import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
 import '../../LoggedTeacher.css';
 
@@ -33,6 +34,7 @@ export default function LoggedTeacher() {
 						{navActive === 'home' && <Home text='учител' />}
 						{navActive === 'worksheets' && <Worksheets />}
 						{navActive === 'classes' && <MyClasses />}
+						{navActive === 'assignments' && <Assignments />}
 						{navActive === 'profile' && (
 							<LoggedProfile
 								myProfile={<MyProfile />}

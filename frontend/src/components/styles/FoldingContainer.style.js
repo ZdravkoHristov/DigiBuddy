@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ClassesHolderEl = styled.div`
+const FoldingContainer = styled.div`
 	& {
 		padding: 0 3rem;
 	}
@@ -9,7 +9,7 @@ const ClassesHolderEl = styled.div`
 		font-weight: normal;
 	}
 
-	.class-header {
+	.header {
 		background-color: var(--purple);
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;
@@ -17,6 +17,7 @@ const ClassesHolderEl = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		color: #fff;
+
 		padding: 1rem 2.5rem;
 
 		input {
@@ -29,6 +30,10 @@ const ClassesHolderEl = styled.div`
 			width: 50%;
 		}
 
+		.main-text {
+			font-size: 1.8rem;
+		}
+
 		.right-side {
 			display: flex;
 			align-items: center;
@@ -36,7 +41,7 @@ const ClassesHolderEl = styled.div`
 			font-size: 1.6rem;
 		}
 
-		.students-count {
+		.count {
 			margin-right: 5rem;
 		}
 
@@ -46,7 +51,7 @@ const ClassesHolderEl = styled.div`
 		}
 	}
 
-	.class-main {
+	.main {
 		background-color: #fff;
 		padding: 0.5rem 2rem;
 		border-bottom-left-radius: 8px;
@@ -58,17 +63,17 @@ const ClassesHolderEl = styled.div`
 		margin-right: 8px;
 	}
 
-	.students {
+	.content {
 		max-height: 300px;
 		overflow-y: auto;
 	}
 
-	.student-row {
+	.row {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		color: var(--purple);
-		margin-top: 1rem;
+		margin: 1rem 0;
 		font-size: 1.2rem;
 		.right-side {
 			display: flex;
@@ -130,4 +135,4 @@ const ClassesHolderEl = styled.div`
 	}
 `;
 
-export default ClassesHolderEl;
+export default FoldingContainer;
