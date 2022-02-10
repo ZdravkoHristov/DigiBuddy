@@ -33,9 +33,26 @@ export default function CustomAssignmentModal() {
 				<form>
 					<div className='generic-data'>
 						<label htmlFor='name'>Въведете име на задачата: </label>
-						<input type='text' id='name' />
+						<input
+							type='text'
+							id='name'
+							value={assignmentInfo.name}
+							onChange={e => {
+								setAssignmentInfo({ ...assignmentInfo, name: e.target.value });
+							}}
+						/>
 						<label htmlFor='question'>Въведете въпрос: </label>
-						<input type='text' id='question' />
+						<input
+							type='text'
+							id='question'
+							value={assignmentInfo.question}
+							onChange={e => {
+								setAssignmentInfo({
+									...assignmentInfo,
+									question: e.target.value,
+								});
+							}}
+						/>
 					</div>
 
 					{uiInfo.customType === 'selectAnswer' && (
