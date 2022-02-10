@@ -15,7 +15,7 @@ export default function Roles() {
 	};
 
 	return (
-		<RolesSec className='roles container' id='register'>
+		<RolesSec className='roles container' id='entrance'>
 			<h1 className='heading-l'>
 				Регистрирайте се и станете част от нашата платформа!
 			</h1>
@@ -26,7 +26,7 @@ export default function Roles() {
 					<div className='line'></div>
 					<Button
 						className='button heading-s'
-						onClick={() => changeActiveForm('regTeacher')}
+						onClick={() => changeActiveForm('logTeacher')}
 					>
 						Учител
 					</Button>
@@ -39,7 +39,7 @@ export default function Roles() {
 					<div className='line'></div>
 					<Button
 						className='button heading-s'
-						onClick={() => changeActiveForm('regStudent')}
+						onClick={() => changeActiveForm('logStudent')}
 					>
 						Ученик
 					</Button>

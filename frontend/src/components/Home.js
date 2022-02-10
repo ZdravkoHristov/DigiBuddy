@@ -19,7 +19,7 @@ export default function Home() {
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
-		{ text: 'Регистрация', to: '#register', value: 'register' },
+		{ text: 'Вход', to: '#entrance', value: 'entrance' },
 		{ text: 'ЧЗВ', to: '#faq', value: 'faq' },
 	];
 
