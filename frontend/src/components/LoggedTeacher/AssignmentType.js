@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 export default function AssignmentType({ info }) {
+	const dispatch = useDispatch();
 	const [showMain, setShowMain] = useState(true);
 	const { assignments } = useSelector(teacherSelector).info;
 
@@ -19,7 +20,6 @@ export default function AssignmentType({ info }) {
 	};
 
 	const MainPart = ({ assignments }) => {
-		const dispatch = useDispatch();
 		return (
 			<main className='main'>
 				<div className='content purple-scrollbar'>
@@ -69,7 +69,12 @@ export default function AssignmentType({ info }) {
 						{typeAssignments.length === 1 ? 'задача' : 'задачи'}
 					</span>
 					<div className='icons'>
-						<i className='fas fa-plus'></i>
+						<i
+							className='fas fa-plus'
+							onClick={() => {
+								dispatch(setUiInfo({ showCustomAssignment: true }));
+							}}
+						></i>
 						{showMain ? <UpArrow /> : <DownArrow />}
 					</div>
 				</div>
