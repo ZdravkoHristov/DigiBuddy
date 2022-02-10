@@ -30,13 +30,6 @@ const CustomAssignmentModalEl = styled.div`
 		margin: 1rem 0;
 	}
 
-	input[id='count'] {
-		border: 0;
-		width: 60px;
-		padding: 10px;
-		margin-left: 10px;
-	}
-
 	h3 {
 		font-size: 2rem;
 		margin: 1rem 0;
@@ -46,12 +39,31 @@ const CustomAssignmentModalEl = styled.div`
 		margin: 10px 0;
 	}
 
-	input[type='radio'],
 	input[type='checkbox'] {
-		margin-right: 10px;
+		-webkit-appearance: none;
+		appearance: none;
+		-moz-appearance: none;
+		width: 20px;
+		height: 20px;
+		border: 1px solid var(--purple);
+		border-radius: 5px;
+		margin: 0 10px;
+		position: relative;
+		top: 5px;
+		cursor: pointer;
 	}
 
-	input[type='radio'] + input,
+	input[type='checkbox']:checked::before {
+		content: '';
+		width: 10px;
+		height: 10px;
+		top: 4px;
+		left: 4px;
+		position: absolute;
+		background: var(--purple);
+		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	}
+
 	input[type='checkbox'] + input {
 		padding: 5px 8px;
 		border: 0;

@@ -4,7 +4,7 @@ import { loggedUiSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import Modal from '../Modal';
 import Button from '../Button';
-import SingleAnswerType from './SelectAnswerType';
+import SelectAnswerType from './SelectAnswerType';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
 	const { uiInfo } = useSelector(loggedUiSelector);
@@ -27,12 +27,7 @@ export default function CustomAssignmentModal() {
 						<input type='text' id='question' />
 					</div>
 
-					{uiInfo.customType === 'singleAnswer' && (
-						<SingleAnswerType type='singleAnswer' />
-					)}
-					{uiInfo.customType === 'multipleChoice' && (
-						<SingleAnswerType type='multipleChoice' />
-					)}
+					{uiInfo.customType === 'selectAnswer' && <SelectAnswerType />}
 				</form>
 
 				<div className='button-holder'>

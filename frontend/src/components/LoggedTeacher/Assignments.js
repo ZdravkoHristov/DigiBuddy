@@ -14,8 +14,8 @@ export default function Assignments() {
 
 	const types = [
 		{
-			name: 'Задачи с 1 верен отговор',
-			type: 'singleAnswer',
+			name: 'Задачи с избираем отговор',
+			type: 'selectAnswer',
 		},
 	];
 

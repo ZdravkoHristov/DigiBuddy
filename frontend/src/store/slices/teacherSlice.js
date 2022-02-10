@@ -181,7 +181,7 @@ const teacherSlice = createSlice({
 				{
 					id: uuid(),
 					name: 'През коя година...',
-					type: 'singleAnswer',
+					type: 'selectAnswer',
 					answers: ['681', '865', '311', '2017'],
 					correctAnswer: '865',
 				},

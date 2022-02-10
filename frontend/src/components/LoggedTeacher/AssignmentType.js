@@ -72,7 +72,12 @@ export default function AssignmentType({ info }) {
 						<i
 							className='fas fa-plus'
 							onClick={() => {
-								dispatch(setUiInfo({ showCustomAssignment: true }));
+								dispatch(
+									setUiInfo({
+										showCustomAssignment: true,
+										customType: info.type,
+									})
+								);
 							}}
 						></i>
 						{showMain ? <UpArrow /> : <DownArrow />}

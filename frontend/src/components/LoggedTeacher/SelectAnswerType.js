@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
-export default function SingleAnswerType({ type }) {
-	const [answersCount, setAnswersCount] = useState(0);
+export default function SingleAnswerType() {
 	const [answersInfo, setAnswersInfo] = useState([]);
+	const [answersCount, setAnswersCount] = useState(1);
 
 	useEffect(() => {
 		const prevValue = answersInfo.length;
+		console.log(prevValue, answersCount);
 		if (answersCount < prevValue) {
 			const cutArray = answersInfo.slice(0, answersCount);
 			setAnswersInfo(cutArray);
@@ -25,15 +26,7 @@ export default function SingleAnswerType({ type }) {
 		setAnswersInfo(newArray);
 	}, [answersCount]);
 
-	const radioUpdate = (e, index) => {
-		setAnswersInfo(info => {
-			return info.map((answerInfo, i) => {
-				return { ...answerInfo, isCorrect: index === i };
-			});
-		});
-	};
-
-	const checkboxUpdate = e => {
+	const handleMark = (e, index) => {
 		setAnswersInfo(info => {
 			return info.map((answerInfo, i) => {
 				if (i === e.target.value) {
@@ -45,33 +38,16 @@ export default function SingleAnswerType({ type }) {
 		});
 	};
 
-	const handleMark = (e, index) => {
-		if (type === 'singleAnswer') radioUpdate();
-		else checkboxUpdate();
-	};
-
 	return (
 		<>
-			{' '}
-			<div>
-				<label htmlFor='count'>Брой отговори:</label>
-
-				<input
-					type='number'
-					min='0'
-					id='count'
-					value={answersCount}
-					onChange={e => setAnswersCount(+e.target.value)}
-				/>
-			</div>
-			{answersCount > 0 && <h3>Отговори: </h3>}
+			<h3>Отговори: </h3>
 			<div className='answers'>
 				{answersInfo.map((info, index) => {
 					return (
 						<div className='answer' key={info.id}>
 							<input
 								name='answer'
-								type={type === 'singleAnswer' ? 'radio' : 'checkbox'}
+								type='checkbox'
 								id={index}
 								value={index}
 								onChange={e => handleMark(e, index)}
