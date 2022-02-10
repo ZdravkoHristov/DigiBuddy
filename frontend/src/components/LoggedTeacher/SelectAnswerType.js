@@ -1,12 +1,22 @@
 import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
-export default function SingleAnswerType() {
+export default function SingleAnswerType({ initialAnswers }) {
 	const [answersInfo, setAnswersInfo] = useState([]);
-	const [answersCount, setAnswersCount] = useState(1);
+	const [answersCount, setAnswersCount] = useState(0);
 
 	useEffect(() => {
+		setAnswersInfo(initialAnswers.map(answerInfo => ({ ...answerInfo })));
+	}, [initialAnswers]);
+
+	useEffect(() => {
+		setAnswersCount(answersInfo.length);
+	}, [answersInfo]);
+
+	useEffect(() => {
+		if (!answersCount) return;
 		const prevValue = answersInfo.length;
-		console.log(prevValue, answersCount);
+
+		if (prevValue === answersCount) return;
 		if (answersCount < prevValue) {
 			const cutArray = answersInfo.slice(0, answersCount);
 			setAnswersInfo(cutArray);
@@ -29,8 +39,8 @@ export default function SingleAnswerType() {
 	const handleMark = (e, index) => {
 		setAnswersInfo(info => {
 			return info.map((answerInfo, i) => {
-				if (i === e.target.value) {
-					return { ...answerInfo, isCorrect: true };
+				if (i === +e.target.name) {
+					return { ...answerInfo, isCorrect: e.target.checked };
 				}
 
 				return answerInfo;
@@ -49,8 +59,9 @@ export default function SingleAnswerType() {
 								name='answer'
 								type='checkbox'
 								id={index}
-								value={index}
+								name={index}
 								onChange={e => handleMark(e, index)}
+								checked={info.isCorrect}
 							/>
 							<input
 								type='text'
@@ -58,6 +69,7 @@ export default function SingleAnswerType() {
 								value={info.value}
 								onChange={e =>
 									setAnswersInfo(info => {
+										console.log(info);
 										const copy = [...info];
 										copy[index].value = e.target.value;
 										return copy;

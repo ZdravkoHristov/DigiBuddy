@@ -7,6 +7,7 @@ const loggedUiSlice = createSlice({
 			showStudentInfo: false,
 			showAssignmentInfo: false,
 			showCustomAssignment: false,
+			reviewingCustomAssignment: false,
 			customType: 'selectAnswer',
 			showJoinClass: false,
 			activeClass: null,

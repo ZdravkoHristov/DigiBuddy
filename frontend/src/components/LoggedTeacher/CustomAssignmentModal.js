@@ -1,4 +1,5 @@
 import CustomAssignmentModalEl from './CustomAssignmentModal.style';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loggedUiSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
@@ -8,6 +9,16 @@ import SelectAnswerType from './SelectAnswerType';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
 	const { uiInfo } = useSelector(loggedUiSelector);
+	const [assignmentInfo, setAssignmentInfo] = useState([]);
+
+	useEffect(() => {
+		const updatedInfo = uiInfo.reviewingCustomAssignment
+			? uiInfo.customAssignment
+			: [];
+
+		setAssignmentInfo(updatedInfo);
+	}, [uiInfo.reviewingCustomAssignment]);
+
 	return (
 		<CustomAssignmentModalEl>
 			<Modal
@@ -27,7 +38,9 @@ export default function CustomAssignmentModal() {
 						<input type='text' id='question' />
 					</div>
 
-					{uiInfo.customType === 'selectAnswer' && <SelectAnswerType />}
+					{uiInfo.customType === 'selectAnswer' && (
+						<SelectAnswerType initialAnswers={assignmentInfo.answers || []} />
+					)}
 				</form>
 
 				<div className='button-holder'>

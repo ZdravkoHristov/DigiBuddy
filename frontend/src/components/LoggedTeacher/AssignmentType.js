@@ -39,8 +39,9 @@ export default function AssignmentType({ info }) {
 											onClick={() => {
 												dispatch(
 													setUiInfo({
-														activeAssignment: assignment,
-														showAssignmentInfo: true,
+														customAssignment: assignment,
+														showCustomAssignment: true,
+														reviewingCustomAssignment: true,
 													})
 												);
 											}}
@@ -76,6 +77,7 @@ export default function AssignmentType({ info }) {
 									setUiInfo({
 										showCustomAssignment: true,
 										customType: info.type,
+										reviewingCustomAssignment: false,
 									})
 								);
 							}}
