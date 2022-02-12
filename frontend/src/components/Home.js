@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { homeStateSelector } from '../store/store';
 import Header from './Header';
 import AnimatedLine from './AnimatedLine';
+import AnimatedElement from './AnimatedElement';
 import RolesSection from './RolesSection';
 import RegTeacher from './RegTeacher';
 import RegStudent from './RegStudent';
@@ -57,10 +58,38 @@ export default function Home() {
 				</Header>
 				<AnimatedLine />
 				<RolesSection />
-				{activeForm === 'regTeacher' && <RegTeacher />}
-				{activeForm === 'regStudent' && <RegStudent />}
-				{activeForm === 'logTeacher' && <LogTeacher />}
-				{activeForm === 'logStudent' && <LogStudent />}
+				<AnimatedElement
+					isMounted={activeForm === 'regTeacher'}
+					inClass={'test'}
+					outClass='out'
+					delayTime={700}
+				>
+					<RegTeacher />
+				</AnimatedElement>
+				<AnimatedElement
+					isMounted={activeForm === 'regStudent'}
+					inClass={'test'}
+					outClass='out'
+					delayTime={700}
+				>
+					<RegStudent />
+				</AnimatedElement>
+				<AnimatedElement
+					isMounted={activeForm === 'logTeacher'}
+					inClass={'test'}
+					outClass='out'
+					delayTime={700}
+				>
+					<LogTeacher />
+				</AnimatedElement>
+				<AnimatedElement
+					isMounted={activeForm === 'logStudent'}
+					inClass={'test'}
+					outClass='out'
+					delayTime={700}
+				>
+					<LogStudent />
+				</AnimatedElement>
 				<Faq />
 			</div>
 		</>

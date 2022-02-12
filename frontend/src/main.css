@@ -110,3 +110,29 @@ body {
 .heading-s {
 	font-size: 1.5rem;
 }
+
+.test {
+	animation: slide-down 0.7s ease-in forwards;
+}
+
+.out {
+	animation: slide-up 0.7s ease-in forwards;
+}
+
+@keyframes slide-down {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-up {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
