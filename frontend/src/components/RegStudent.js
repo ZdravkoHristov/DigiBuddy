@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { changeActive } from '../store/slices/homeStateSlice';
+import { setHomeData } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-student.svg';
@@ -8,7 +8,7 @@ export default function RegStudent() {
 	const dispatch = useDispatch();
 
 	const changeActiveForm = newActive => {
-		dispatch(changeActive(newActive));
+		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
 	const headingStyle = {

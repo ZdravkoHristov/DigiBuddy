@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeActive } from '../store/slices/homeStateSlice';
+import { setHomeData } from '../store/slices/homeStateSlice';
 import { homeStateSelector } from '../store/store';
 import RolesSec from './styles/RolesSection.style';
 import Button from './Button';
@@ -11,7 +11,7 @@ export default function Roles() {
 	const { activeForm } = useSelector(homeStateSelector);
 
 	const changeActiveForm = newActive => {
-		dispatch(changeActive(newActive));
+		dispatch(setHomeData({ activeForm: newActive, showForm: true }));
 	};
 
 	return (

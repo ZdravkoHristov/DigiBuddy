@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { changeActive } from '../store/slices/homeStateSlice';
+import { setHomeData } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-teacher.svg';
@@ -8,7 +8,7 @@ export default function RegTeacherEl() {
 	const dispatch = useDispatch();
 
 	const changeActiveForm = newActive => {
-		dispatch(changeActive(newActive));
+		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
 	return (

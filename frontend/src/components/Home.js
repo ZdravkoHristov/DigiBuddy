@@ -16,7 +16,7 @@ import heroIllustration from '../assets/illustrations/home-image.svg';
 import '../Home.css';
 
 export default function Home() {
-	const { activeForm } = useSelector(homeStateSelector);
+	const { activeForm, showForm } = useSelector(homeStateSelector).data;
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
@@ -59,37 +59,18 @@ export default function Home() {
 				<AnimatedLine />
 				<RolesSection />
 				<AnimatedElement
-					isMounted={activeForm === 'regTeacher'}
-					inClass={'test'}
-					outClass='out'
+					isMounted={showForm}
+					inClass={'slide-down-animation'}
+					outClass='slide-up-animation'
 					delayTime={700}
 				>
-					<RegTeacher />
+					{console.log(showForm, activeForm)}
+					{activeForm === 'regTeacher' && <RegTeacher />}
+					{activeForm === 'regStudent' && <RegStudent />}
+					{activeForm === 'logTeacher' && <LogTeacher />}
+					{activeForm === 'logStudent' && <LogStudent />}
 				</AnimatedElement>
-				<AnimatedElement
-					isMounted={activeForm === 'regStudent'}
-					inClass={'test'}
-					outClass='out'
-					delayTime={700}
-				>
-					<RegStudent />
-				</AnimatedElement>
-				<AnimatedElement
-					isMounted={activeForm === 'logTeacher'}
-					inClass={'test'}
-					outClass='out'
-					delayTime={700}
-				>
-					<LogTeacher />
-				</AnimatedElement>
-				<AnimatedElement
-					isMounted={activeForm === 'logStudent'}
-					inClass={'test'}
-					outClass='out'
-					delayTime={700}
-				>
-					<LogStudent />
-				</AnimatedElement>
+
 				<Faq />
 			</div>
 		</>

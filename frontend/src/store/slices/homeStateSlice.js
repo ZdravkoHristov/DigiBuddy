@@ -3,20 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const homeStateSlice = createSlice({
 	name: 'homeState',
 	initialState: {
-		activeForm: null,
-		activeNavItem: 'home',
+		data: {
+			activeForm: null,
+			showForm: false,
+		},
 	},
 
 	reducers: {
-		changeActive: (state, { payload }) => {
-			state.activeForm = payload;
-		},
-		changeActiveNavItem: (state, { payload }) => {
-			state.activeNavItem = payload;
+		setHomeData: (state, { payload }) => {
+			state.data = { ...state.data, ...payload };
 		},
 	},
 });
 
 export default homeStateSlice.reducer;
 
-export const { changeActive, changeActiveNavItem } = homeStateSlice.actions;
+export const { setHomeData } = homeStateSlice.actions;
