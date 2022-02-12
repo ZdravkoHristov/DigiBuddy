@@ -11,6 +11,10 @@ export default function RegStudent() {
 		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
+	const closeForm = () => {
+		dispatch(setHomeData({ showForm: false }));
+	};
+
 	const headingStyle = {
 		left: 0,
 		width: '63%',
@@ -114,11 +118,7 @@ export default function RegStudent() {
 					</div>
 					<div className='group'>
 						<Button className='button'>Регистрация</Button>
-						<Button
-							className='button'
-							theme='darkBlue'
-							onClick={() => changeActiveForm(null)}
-						>
+						<Button className='button' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>

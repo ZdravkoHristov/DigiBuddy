@@ -11,16 +11,12 @@ export default function RegTeacherEl() {
 		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
+	const closeForm = () => {
+		dispatch(setHomeData({ showForm: false }));
+	};
+
 	return (
 		<RegisterEl className='container'>
-			{/* <header>
-				<AnimatedLine className='line'></AnimatedLine>
-				<div className='text'>
-					<h1 className='heading-l'>Регистрация като учител</h1>
-					<h3 className='heading-s'>Моля попълнете всички полета:</h3>
-				</div>
-			</header> */}
-
 			<h1 className='heading-l'>Регистрация като учител</h1>
 			<br />
 			<h3 className='heading-s'>Моля попълнете всички полета:</h3>
@@ -32,6 +28,7 @@ export default function RegTeacherEl() {
 					<Button
 						className='button'
 						theme='red'
+						type='button'
 						onClick={() => changeActiveForm('logTeacher')}
 					>
 						Вход
@@ -112,11 +109,7 @@ export default function RegTeacherEl() {
 					</div>
 					<div className='group'>
 						<Button className='button'>Регистрация</Button>
-						<Button
-							className='button'
-							theme='darkBlue'
-							onClick={() => changeActiveForm(null)}
-						>
+						<Button className='button' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>

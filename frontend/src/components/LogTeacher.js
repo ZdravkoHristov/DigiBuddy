@@ -10,6 +10,10 @@ export default function LogTeacher() {
 	const changeActiveForm = newActive => {
 		dispatch(setHomeData({ activeForm: newActive }));
 	};
+
+	const closeForm = () => {
+		dispatch(setHomeData({ showForm: false }));
+	};
 	return (
 		<RegisterEl className='container'>
 			<h1 className='heading-l'>Вход като учител</h1>
@@ -23,6 +27,7 @@ export default function LogTeacher() {
 						className='button'
 						theme='red'
 						onClick={() => changeActiveForm('regTeacher')}
+						type='button'
 					>
 						Регистрация
 					</Button>
@@ -42,11 +47,7 @@ export default function LogTeacher() {
 					</div>
 					<div className='group'>
 						<Button className='button'>Вход</Button>
-						<Button
-							className='button'
-							theme='darkBlue'
-							onClick={() => changeActiveForm(null)}
-						>
+						<Button className='button' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>

@@ -1,7 +1,7 @@
 import { ButtonEl } from './styles/Button.style';
 import { ThemeProvider } from 'styled-components';
 
-export default function Button({ theme, children, ...rest }) {
+export default function Button({ theme, children, type = 'button', ...rest }) {
 	const defaultTheme = {
 		background: '#714264',
 		hover: '#bd4255',
@@ -22,7 +22,9 @@ export default function Button({ theme, children, ...rest }) {
 
 	return (
 		<ThemeProvider theme={themes[theme] || themes.default}>
-			<ButtonEl {...rest}>{children}</ButtonEl>
+			<ButtonEl {...rest} type={type}>
+				{children}
+			</ButtonEl>
 		</ThemeProvider>
 	);
 }
