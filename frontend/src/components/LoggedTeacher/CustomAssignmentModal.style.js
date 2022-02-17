@@ -23,10 +23,12 @@ const CustomAssignmentModalEl = styled.div`
 	.generic-data input {
 		background-color: #fff;
 		border: 0;
+		font-size: 1.4rem;
+		color: var(--purple);
 		border-radius: 25px;
 		display: block;
 		width: 100%;
-		padding: 5px 12px;
+		padding: 12px 2rem;
 		margin: 1rem 0;
 	}
 

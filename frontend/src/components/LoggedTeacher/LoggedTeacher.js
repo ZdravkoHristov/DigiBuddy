@@ -18,8 +18,9 @@ export default function LoggedTeacher() {
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
-		{ text: 'Работни листове', to: '#', value: 'worksheets' },
+
 		{ text: 'Задачи', to: '#', value: 'assignments' },
+		{ text: 'Работни листове', to: '#', value: 'worksheets' },
 		{ text: 'Класове', to: '#', value: 'classes' },
 		{ text: 'Профил', to: '#', value: 'profile' },
 		{ text: 'Изход', to: '#', value: 'exit' },
@@ -29,7 +30,7 @@ export default function LoggedTeacher() {
 		<>
 			<div className='gradient-holder'>
 				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
-					<Navbar links={navLinks} outCount={1}></Navbar>
+					<Navbar links={navLinks} outCount={2}></Navbar>
 					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
 						{navActive === 'home' && <Home text='учител' />}
 						{navActive === 'worksheets' && <Worksheets />}
