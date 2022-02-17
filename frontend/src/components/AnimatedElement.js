@@ -27,9 +27,5 @@ export default function AnimatedElement({
 				</div>
 			)}
 		</>
-
-		// <div className={className + (isMounted ? inClass : outClass)}>
-		// 	{children}
-		// </div>
 	);
 }
