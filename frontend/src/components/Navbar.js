@@ -9,10 +9,22 @@ export default function Navbar({ links, outCount, breakpoints }) {
 	const dispatch = useDispatch();
 	const { active } = useSelector(navbarSelector);
 	const [outItemCount, setOutItemCount] = useState(outCount);
+	const [isSticky, setIsSticky] = useState(false);
 	const menuRef = useRef();
 	const getActiveClass = checkFor => {
 		return active === checkFor ? ' active' : '';
 	};
+
+	useEffect(() => {
+		const handleSticky = e => {
+			setIsSticky(window.scrollY > 50);
+		};
+		window.addEventListener('scroll', handleSticky);
+
+		return () => {
+			window.removeEventListener('scroll', handleSticky);
+		};
+	}, []);
 
 	const checkBreakpoints = () => {
 		const currentWidth = window.innerWidth;
@@ -58,11 +70,12 @@ export default function Navbar({ links, outCount, breakpoints }) {
 	}, []);
 
 	return (
-		<NavbarEl className='main-nav'>
+		<NavbarEl className={'main-nav ' + (isSticky ? 'sticky' : '')}>
+			{console.log(isSticky)}
 			<div className='container'>
-					<div className='logo-holder'>
-						<img src={logo} alt='logo' />
-					</div>
+				<div className='logo-holder'>
+					<img src={logo} alt='logo' />
+				</div>
 
 				<ul className='main-menu' ref={menuRef}>
 					{links.map(link => {

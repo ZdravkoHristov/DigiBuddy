@@ -6,6 +6,15 @@ const NavbarEl = styled.nav`
 		position: fixed;
 		top: 0;
 		z-index: 100;
+
+		&.sticky {
+			background-color: #fff;
+			//	padding: 1rem 2rem;
+
+			li:not(.active) a {
+				color: var(--purple);
+			}
+		}
 	}
 
 	.logo-holder {
