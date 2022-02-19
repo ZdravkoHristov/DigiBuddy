@@ -1,14 +1,14 @@
-import { useState, createRef, useRef, useEffect, forwardRef } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import WorksheetsEl from './Worksheets.style';
 export default function Worksheets() {
 	const { collections } = useSelector(teacherSelector).info;
 
-	const Content = forwardRef(({ collection }, ref) => {
+	const Content = ({ collection }) => {
 		return (
 			<>
-				<div className='files-wrapper' ref={ref}>
+				<div className='files-wrapper'>
 					<div className='files-holder'>
 						{collection.files.map(file => {
 							return (
@@ -36,118 +36,16 @@ export default function Worksheets() {
 				})}
 			</>
 		);
-	});
+	};
 
 	const FolderHolder = ({ collection }) => {
 		const [opened, setOpened] = useState(false);
-		const [branchDownHeight, setBranchDownHeight] = useState(0);
-		const filesWrapperRef = createRef();
-		const folderContentRef = useRef();
-
-		useEffect(() => {
-			if (!filesWrapperRef.current || !folderContentRef.current) return;
-			const filesHeight = filesWrapperRef.current.offsetHeight;
-			let foldersHeight = 0;
-			// const foldersHeight =
-			// 	filesWrapperRef.current.nextElementSibling?.offsetHeight || 0;
-
-			// folderContentRef.current
-			// 	.querySelectorAll('.folder-content')
-			// 	.forEach(folderContent => {
-			// 		foldersHeight += folderContent.offsetHeight;
-			// 	});
-
-			// console.log(
-			// 	folderContentRef.current.querySelectorAll(':scope > .folder-content')
-			// );
-			console.log(
-				folderContentRef.current.parentElement.querySelectorAll(
-					':scope > .folder-holder'
-				)
-			);
-
-			folderContentRef.current.parentElement
-				.querySelectorAll(':scope > .folder-holder')
-				.forEach(holder => {
-					foldersHeight += holder.offsetHeight;
-				});
-
-			// for (
-			// 	let nextFolder = folderContentRef.current;
-			// 	nextFolder;
-			// 	nextFolder = folderContentRef.nextElementSibling
-			// ) {
-			// 	foldersHeight += nextFolder.offsetHeight;
-			// 	console.log(nextFolder);
-			// }
-			// console.log('stop');
-
-			// // console.log(filesWrapperRef.current.nextElementSibling);
-			// // console.log(filesHeight, foldersHeight);
-			// // console.log(
-			// // 	folderHolderRef.current.nextElementSibling,
-			// // 	folderHolderRef.current.offsetHeight,
-			// // 	filesHeight,
-			// // 	foldersHeight
-			// // );
-
-			setBranchDownHeight(foldersHeight);
-		});
-
-		// setInterval(() => {
-		// 	if (!filesWrapperRef.current || !folderContentRef.current) return;
-		// 	const filesHeight = filesWrapperRef.current.offsetHeight;
-		// 	let foldersHeight = 0;
-		// 	// const foldersHeight =
-		// 	// 	filesWrapperRef.current.nextElementSibling?.offsetHeight || 0;
-
-		// 	folderContentRef.current
-		// 		.querySelectorAll('.folder-content')
-		// 		.forEach(folderContent => {
-		// 			console.log(folderContent);
-		// 			foldersHeight += folderContent.offsetHeight;
-		// 		});
-
-		// 	console.log(foldersHeight);
-
-		// 	// for (
-		// 	// 	let nextFolder =
-		// 	// 		folderContentRef.current.querySelector('.folder-content');
-		// 	// 	nextFolder;
-		// 	// 	nextFolder =
-		// 	// 		nextFolder.parentElement.nextElementSibling?.querySelector(
-		// 	// 			'.folder-content'
-		// 	// 		)
-		// 	// ) {
-		// 	// 	foldersHeight += nextFolder.offsetHeight;
-		// 	// 	console.log(nextFolder);
-		// 	// }
-		// 	// console.log('stop');
-
-		// 	// // console.log(filesWrapperRef.current.nextElementSibling);
-		// 	// // console.log(filesHeight, foldersHeight);
-		// 	// // console.log(
-		// 	// // 	folderHolderRef.current.nextElementSibling,
-		// 	// // 	folderHolderRef.current.offsetHeight,
-		// 	// // 	filesHeight,
-		// 	// // 	foldersHeight
-		// 	// // );
-
-		// 	setBranchDownHeight(foldersHeight);
-		// }, 3000);
 
 		return (
-			<section
-				className='folder-holder'
-				key={collection.id}
-				ref={folderContentRef}
-			>
+			<section className='folder-holder' key={collection.id}>
 				<div className='folder-content'>
+					<div className='branch-down'></div>
 					<div className='row content-row'>
-						<div
-							className='branch-down'
-							style={{ height: branchDownHeight + 'px' }}
-						></div>
 						<div className='info'>
 							<i className='far fa-folder'></i>{' '}
 							<span className='name'>{collection.name}</span>
@@ -173,9 +71,7 @@ export default function Worksheets() {
 							</span>
 						</div>
 					</div>
-					{opened ? (
-						<Content collection={collection} ref={filesWrapperRef} />
-					) : null}
+					{opened ? <Content collection={collection} /> : null}
 				</div>
 			</section>
 		);

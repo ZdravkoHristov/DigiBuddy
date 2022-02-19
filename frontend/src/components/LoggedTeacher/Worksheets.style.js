@@ -19,8 +19,8 @@ const WorksheetsEl = styled.div`
 	}
 
 	.folder-content {
-		/* position: relative;
-
+		position: relative;
+		/*
 		&::before {
 			content: '';
 			position: absolute;
@@ -30,6 +30,16 @@ const WorksheetsEl = styled.div`
 			left: -2px;
 		} */
 		width: 98%;
+	}
+
+	.branch-down {
+		position: absolute;
+		width: 1px;
+		top: 1rem;
+		background: var(--purple);
+		left: -1%;
+		height: calc(100% - 3rem);
+		top: 2rem;
 	}
 
 	.row {
@@ -57,14 +67,6 @@ const WorksheetsEl = styled.div`
 
 			width: 1px;
 			background: var(--purple);
-		}
-
-		.branch-down {
-			position: absolute;
-			width: 1px;
-			top: 1rem;
-			background: var(--purple);
-			left: -1%;
 		}
 
 		.icons-holder {
