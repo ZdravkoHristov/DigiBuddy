@@ -6,14 +6,12 @@ const NavbarEl = styled.nav`
 		position: fixed;
 		top: 0;
 		z-index: 100;
+		transition: 0.5s ease-in-out;
+		max-height: 8rem;
 
 		&.sticky {
-			background-color: #fff;
-			//	padding: 1rem 2rem;
-
-			li:not(.active) a {
-				color: var(--purple);
-			}
+			box-shadow: 0 0 25px #242130;
+			background: #f1f1f1fa;
 		}
 	}
 

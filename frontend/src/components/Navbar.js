@@ -44,7 +44,7 @@ export default function Navbar({ links, outCount, breakpoints }) {
 		const children = menuRef.current.childNodes;
 		for (let i = 0; i < children.length; i++) {
 			const item = children[i];
-			if (i < outItemCount) {
+			if (isSticky || i < outItemCount) {
 				item.classList.remove('in');
 				item.classList.add('out');
 			} else {
