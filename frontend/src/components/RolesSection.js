@@ -8,7 +8,7 @@ import illustration1 from '../assets/svgs/role-student.svg';
 import illustration2 from '../assets/svgs/role-teacher.svg';
 export default function Roles() {
 	const dispatch = useDispatch();
-	const { activeForm } = useSelector(homeStateSelector);
+	const { activeForm, showForm } = useSelector(homeStateSelector).data;
 
 	const changeActiveForm = newActive => {
 		dispatch(setHomeData({ activeForm: newActive, showForm: true }));
@@ -30,9 +30,10 @@ export default function Roles() {
 					>
 						Учител
 					</Button>
-					{(activeForm === 'regTeacher' || activeForm === 'logTeacher') && (
-						<AnimatedLine className='animated-line' />
-					)}
+					{showForm &&
+						(activeForm === 'regTeacher' || activeForm === 'logTeacher') && (
+							<AnimatedLine className='animated-line' />
+						)}
 				</div>
 				<div className='img-holder'>
 					<img src={illustration1} alt='student' />
@@ -43,9 +44,10 @@ export default function Roles() {
 					>
 						Ученик
 					</Button>
-					{(activeForm === 'regStudent' || activeForm === 'logStudent') && (
-						<AnimatedLine className='animated-line' />
-					)}
+					{showForm &&
+						(activeForm === 'regStudent' || activeForm === 'logStudent') && (
+							<AnimatedLine className='animated-line' />
+						)}
 				</div>
 			</div>
 		</RolesSec>
