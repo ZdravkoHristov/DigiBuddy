@@ -23,12 +23,12 @@ const CustomAssignmentModalEl = styled.div`
 	.generic-data input {
 		background-color: #fff;
 		border: 0;
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		color: var(--purple);
 		border-radius: 25px;
 		display: block;
 		width: 100%;
-		padding: 12px 2rem;
+		padding: 12px 1.2rem;
 		margin: 1rem 0;
 	}
 
@@ -39,6 +39,10 @@ const CustomAssignmentModalEl = styled.div`
 
 	.answer {
 		margin: 10px 0;
+
+		input {
+			color: var(--purple);
+		}
 	}
 
 	input[type='checkbox'] {

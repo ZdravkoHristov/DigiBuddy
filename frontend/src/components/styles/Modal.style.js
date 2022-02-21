@@ -41,7 +41,7 @@ const ModalEl = styled.div`
 		overflow: hidden;
 
 		& > .content {
-			max-height: 550px;
+			max-height: 350px;
 			overflow-x: hidden;
 			overflow-y: auto;
 			padding-right: 20px;

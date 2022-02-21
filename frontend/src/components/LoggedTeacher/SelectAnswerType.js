@@ -48,21 +48,6 @@ export default function SingleAnswerType({ initialAnswers }) {
 		});
 	};
 
-	// const changeCountHandler = e => {
-	// 	const newValue = +e.target.value;
-	// 	if (newValue < answersCount) {
-	// 		setAnswersInfo(info => {
-	// 			return info.slice(0, newValue);
-	// 		});
-
-	// 		return;
-	// 	}
-
-	// 	for (let i = answersCount; i < newValue; i++) {
-	// 		setAnswersInfo([...answersInfo, {}])
-	// 	}
-	// };
-
 	return (
 		<>
 			<p className='answers-count'>

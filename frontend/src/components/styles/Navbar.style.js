@@ -18,7 +18,9 @@ const NavbarEl = styled.nav`
 	.logo-holder {
 		width: 80px;
 		height: 80px;
-		padding-top: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.main-menu {
