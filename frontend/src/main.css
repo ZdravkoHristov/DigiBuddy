@@ -141,3 +141,9 @@ body {
 		opacity: 0;
 	}
 }
+
+@media (min-width: 2799px) {
+	.container {
+		max-width: calc(1200px + 30vw);
+	}
+}
