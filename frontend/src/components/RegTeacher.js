@@ -26,7 +26,7 @@ export default function RegTeacherEl() {
 					<img src={illustration} />
 					<p className='heading-m'>Вече имате регистрация?</p>
 					<Button
-						className='button'
+						className='button heading-s'
 						theme='red'
 						type='button'
 						onClick={() => changeActiveForm('logTeacher')}
@@ -108,8 +108,8 @@ export default function RegTeacherEl() {
 						/>
 					</div>
 					<div className='group'>
-						<Button className='button'>Регистрация</Button>
-						<Button className='button' theme='darkBlue' onClick={closeForm}>
+						<Button className='button heading-s'>Регистрация</Button>
+						<Button className='button heading-s' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>

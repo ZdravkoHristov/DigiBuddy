@@ -24,7 +24,7 @@ const FoldingContainer = styled.div`
 			background: transparent;
 			border: 0;
 			outline: 0;
-			color: #fff;
+			color: #f1f1f1;
 			font-size: 1.8rem;
 			display: block;
 			width: 50%;

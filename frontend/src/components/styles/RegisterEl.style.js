@@ -89,8 +89,11 @@ const RegisterEl = styled.section`
 	}
 	.button {
 		padding: 1rem 3rem;
+	}
 
-		font-size: 16px;
+	@media (min-width: 1800px){
+		label {font-size: 1.9rem;}
+		.group input {font-size: 1.7rem;}
 	}
 `;
 

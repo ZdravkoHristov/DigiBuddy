@@ -75,11 +75,27 @@ const FaqEl = styled.section`
 	}
 
 	.number-wrapper .number {
-		color: #fff;
+		color: #f1f1f1;
 		position: absolute;
 		font-size: 16px;
 		left: 37%;
 		top: 25%;
+	}
+
+	@media (min-width: 1800px){
+		.number-wrapper .number{
+			font-size: 1.8rem;
+
+		}
+		.question {font-size: 2rem;}
+		.top-row {
+			grid-template-columns: 80px 1fr;
+		}
+		.answer{font-size: 1.8rem;}
+		  
+		   
+		  |
+		__|__
 	}
 `;
 

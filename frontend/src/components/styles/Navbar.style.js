@@ -35,7 +35,6 @@ const NavbarEl = styled.nav`
 		padding: 1.5rem 2rem;
 		width: 84%;
 		margin: auto;
-		max-width: 1200px;
 	}
 
 	a {

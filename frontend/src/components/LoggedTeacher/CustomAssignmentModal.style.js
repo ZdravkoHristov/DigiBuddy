@@ -21,7 +21,7 @@ const CustomAssignmentModalEl = styled.div`
 	}
 
 	.generic-data input {
-		background-color: #fff;
+		background-color: #f1f1f1;
 		border: 0;
 		font-size: 1.2rem;
 		color: var(--purple);

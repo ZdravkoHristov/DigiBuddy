@@ -36,7 +36,7 @@ export default function RegStudent() {
 					<img src={illustration} />
 					<p className='heading-m'>Вече имате регистрация?</p>
 					<Button
-						className='button'
+						className='button heading-s'
 						theme='red'
 						onClick={() => changeActiveForm('logStudent')}
 					>
@@ -117,8 +117,8 @@ export default function RegStudent() {
 						/>
 					</div>
 					<div className='group'>
-						<Button className='button'>Регистрация</Button>
-						<Button className='button' theme='darkBlue' onClick={closeForm}>
+						<Button className='button heading-s'>Регистрация</Button>
+						<Button className='button heading-s' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>

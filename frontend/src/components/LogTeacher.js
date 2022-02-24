@@ -24,7 +24,7 @@ export default function LogTeacher() {
 					<img src={illustration} />
 					<p className='heading-m'>Нямате регистрация?</p>
 					<Button
-						className='button'
+						className='button heading-s'
 						theme='red'
 						onClick={() => changeActiveForm('regTeacher')}
 						type='button'
@@ -46,8 +46,8 @@ export default function LogTeacher() {
 						<input name='pass' type='text' placeholder='Въведете парола' />
 					</div>
 					<div className='group'>
-						<Button className='button'>Вход</Button>
-						<Button className='button' theme='darkBlue' onClick={closeForm}>
+						<Button className='button heading-s'>Вход</Button>
+						<Button className='button heading-s' theme='darkBlue' onClick={closeForm}>
 							Затвори
 						</Button>
 					</div>
