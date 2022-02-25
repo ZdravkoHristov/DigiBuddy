@@ -48,10 +48,10 @@ export default function Home() {
             <div className="gradient-holder">
                 <Header
                     heroContent={<HeroContent />}
-                    style={{
-                        backgroundImage: `url("${headerBackground}")`,
-                        backgroundPositionY: "bottom",
-                    }}
+                    // style={{
+                    //     backgroundImage: `url("${headerBackground}")`,
+                    //     backgroundPositionY: "bottom",
+                    // }}
                 >
                     <Navbar
                         links={navLinks}

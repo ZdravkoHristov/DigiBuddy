@@ -208,3 +208,22 @@ body {
         padding: 1.5vw 3vw;
     }
 }
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .hero .img-holder {
+        display: none;
+    }
+
+    .heading-l {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 100%;
+    }
+}
