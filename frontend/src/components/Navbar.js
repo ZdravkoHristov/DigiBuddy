@@ -28,6 +28,7 @@ export default function Navbar({ links, outCount, breakpoints }) {
 
     const checkBreakpoints = () => {
         const currentWidth = window.innerWidth;
+        console.log(currentWidth);
         let newCount = outCount;
 
         for (const pair of breakpoints) {

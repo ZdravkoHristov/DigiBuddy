@@ -10,10 +10,8 @@ import LogTeacher from "./LogTeacher";
 import LogStudent from "./LogStudent";
 import Faq from "./Faq";
 import Navbar from "./Navbar";
-import headerBackground from "../assets/svgs/white-space-header.svg";
+import HomeEl from "./styles/Home.style";
 import heroIllustration from "../assets/illustrations/home-image.svg";
-
-import "../Home.css";
 
 export default function Home() {
     const { activeForm, showForm } = useSelector(homeStateSelector).data;
@@ -44,7 +42,7 @@ export default function Home() {
     };
 
     return (
-        <>
+        <HomeEl>
             <div className="gradient-holder">
                 <Header
                     heroContent={<HeroContent />}
@@ -77,6 +75,6 @@ export default function Home() {
 
                 <Faq />
             </div>
-        </>
+        </HomeEl>
     );
 }

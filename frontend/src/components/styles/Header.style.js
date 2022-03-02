@@ -6,7 +6,7 @@ const HeaderEl = styled.header`
         position: relative;
         z-index: 100;
         color: #5f5d66;
-        min-height: min(100vh, 1200px);
+        min-height: 800px;
         background-position-y: top;
         background-size: cover;
         background-repeat: no-repeat;
