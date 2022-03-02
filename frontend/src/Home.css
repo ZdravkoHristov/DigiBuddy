@@ -64,7 +64,7 @@
 }
 
 @media (min-width: 901px) {
-    section[id="entrance"] + div .mobile-btn {
+    section[id="entrance"] ~ div .mobile-button {
         display: none;
     }
 }
