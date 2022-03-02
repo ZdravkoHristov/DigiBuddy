@@ -143,9 +143,6 @@ body {
 }
 
 @media (min-width: 1800px) {
-    /* header{
-		min-height: 50vw;
-	} */
     .container {
         max-width: 1800px;
     }

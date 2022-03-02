@@ -23,7 +23,10 @@ export default function Home() {
     ];
 
     const navBreakpoints = new Map();
+
     navBreakpoints.set(1800, 3);
+    navBreakpoints.set(1751, 2);
+    navBreakpoints.set(1035, 3);
 
     const HeroContent = (props) => {
         return (
@@ -53,7 +56,7 @@ export default function Home() {
                 >
                     <Navbar
                         links={navLinks}
-                        outCount={2}
+                        outCount={1}
                         breakpoints={navBreakpoints}
                     />
                     <HeroContent className="hero container" />

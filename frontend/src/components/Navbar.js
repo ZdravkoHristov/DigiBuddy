@@ -34,7 +34,6 @@ export default function Navbar({ links, outCount, breakpoints }) {
         for (const pair of breakpoints) {
             if (currentWidth < pair[0]) {
                 newCount = pair[1];
-                break;
             }
         }
 

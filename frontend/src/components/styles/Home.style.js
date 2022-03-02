@@ -15,11 +15,31 @@ const HomeEl = styled.div`
     .gradient-holder header {
         background-image: url(${headerBg});
         background-position-y: bottom;
+
+        @media (min-width: 1800px) {
+            background-position-x: -30px;
+        }
+
+        @media (max-width: 1751px) {
+            background-position-x: -75px;
+        }
+
+        @media (max-width: 1660px) {
+            background-position-x: -40px;
+        }
+
+        @media (max-width: 1500px) {
+            background-position-x: -20px;
+        }
+
+        @media (max-width: 1350px) {
+            min-height: 700px;
+        }
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1180px) {
         .gradient-holder header {
-            background-position: -200px -160px;
+            background-position-x: -75px;
         }
 
         .hero {
