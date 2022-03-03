@@ -5,6 +5,16 @@ const FoldingContainer = styled.div`
         padding: 0 3rem;
     }
 
+    .single-class .right-side {
+        padding-left: 1rem;
+
+        @media (max-width: 500px) {
+            .text {
+                display: none;
+            }
+        }
+    }
+
     h1 {
         font-weight: normal;
     }
@@ -28,6 +38,13 @@ const FoldingContainer = styled.div`
             font-size: 1.8rem;
             display: block;
             width: 50%;
+
+            @media (max-width: 640px) {
+                width: 100%;
+                font-size: 1.4rem;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
         }
 
         .main-text {
@@ -139,8 +156,13 @@ const FoldingContainer = styled.div`
         }
 
         @media (max-width: 640px) {
-            .name {
+            /* .name {
                 font-size: 1rem;
+            } */
+            font-size: 1rem;
+
+            .icons {
+                font-size: 1.2rem;
             }
         }
     }
