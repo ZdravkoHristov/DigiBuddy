@@ -28,6 +28,10 @@ body {
     letter-spacing: 1px;
 }
 
+input {
+    outline: none;
+}
+
 *:not(i) {
     font-family: "a_AvanteLt Light", arial;
 }
