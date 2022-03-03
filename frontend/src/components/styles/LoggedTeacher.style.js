@@ -28,6 +28,20 @@ const TeacherEl = styled.div`
     .next-arrow {
         right: 5%;
     }
+
+    .main-nav + div {
+        padding: 4rem 1rem 1rem;
+
+        .container {
+            padding: 0 0.5rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .main-nav + div {
+            padding: 4rem 0;
+        }
+    }
 `;
 
 export default TeacherEl;

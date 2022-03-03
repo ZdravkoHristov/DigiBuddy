@@ -36,7 +36,7 @@ export default function LoggedTeacher() {
                         }}
                     >
                         <Navbar links={navLinks} outCount={2}></Navbar>
-                        <div style={{ padding: "4rem 1rem 1rem 1rem" }}>
+                        <div>
                             {navActive === "home" && <Home text="учител" />}
                             {navActive === "worksheets" && <Worksheets />}
                             {navActive === "classes" && <MyClasses />}
