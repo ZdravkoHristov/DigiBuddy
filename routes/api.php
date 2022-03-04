@@ -48,7 +48,9 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 
 // });
 
-
+Route::get('/', function(){
+    return 1;
+});
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
 Route::get('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
@@ -57,9 +59,6 @@ Route::get('/teacher/login', [TeacherRegisterController::class, 'login'])->name(
 Route::post('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
 //--------------------LOGGEDTEACHER/HOME-----------------
 
-Route::middleware(['auth'])->group(function(){
-    
-});
 //--------------------LOGGEDTEACHER/SETTINGS-----------------
 Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('home');
 Route::get("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
