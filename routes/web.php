@@ -15,3 +15,6 @@ use App\Http\Controllers\TeacherController;
 |
 */
 
+Route::get('/', function(){
+    return 'ti li si';
+});
