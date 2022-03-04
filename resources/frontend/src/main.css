@@ -1,4 +1,4 @@
-@import url(https://bg.allfont.net/allfont.css?fonts=a_avantelt-light);
+/* @import url(https://bg.allfont.net/allfont.css?fonts=a_avantelt-light); */
 
 :root {
 	--logged-teacher-controls-clr: #4b4f5c;
@@ -29,7 +29,7 @@ body {
 }
 
 *:not(i) {
-	font-family: 'a_AvanteLt Light', arial;
+	font-family: arial;
 }
 
 .icons > *,
