@@ -45,6 +45,9 @@ export default function RegTeacherEl() {
 			'https://digibuddy-backend.herokuapp.com/api/teacher/register',
 			data
 		);
+
+		console.log('res: ', res);
+		console.log('res.data: ', res.data);
 		// console.log(res.data.status);
 		if (res.data.status === 200) {
 			setErrors({});
