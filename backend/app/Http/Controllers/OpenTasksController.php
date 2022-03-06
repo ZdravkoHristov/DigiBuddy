@@ -13,12 +13,6 @@ use Illuminate\Http\Request;
 
 class OpenTasksController extends Controller
 {
-    protected function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
-
     protected function insertOpenTask($id){
         $teacher = Teacher::findOrFail($id);
         
