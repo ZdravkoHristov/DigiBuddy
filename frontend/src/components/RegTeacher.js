@@ -46,23 +46,23 @@ export default function RegTeacherEl() {
 				'https://digibuddy-backend.herokuapp.com/api/teacher/register',
 				data
 			);
-		} catch (e) {
-			console.log('error: ', e);
-		}
 
-		console.log('res: ', res);
-		console.log('res.data: ', res.data);
-		// console.log(res.data.status);
-		if (res.data.status === 200) {
-			setErrors({});
-			setData({ ...dataTemp });
-			window.location.href = res.data.url;
-		}
-		if (res.data.status === 400) {
-			setErrors(res.data.errors);
-		} else {
 			console.log('res: ', res);
 			console.log('res.data: ', res.data);
+			// console.log(res.data.status);
+			if (res.data.status === 200) {
+				setErrors({});
+				setData({ ...dataTemp });
+				window.location.href = res.data.url;
+			}
+			if (res.data.status === 400) {
+				setErrors(res.data.errors);
+			} else {
+				console.log('res: ', res);
+				console.log('res.data: ', res.data);
+			}
+		} catch (e) {
+			console.log('error: ', e);
 		}
 	};
 
