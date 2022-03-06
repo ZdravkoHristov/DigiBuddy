@@ -9,10 +9,9 @@ import LogTeacher from './LogTeacher';
 import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
+import HomeEl from './styles/Home.style';
 import headerBackground from '../assets/svgs/white-space-header.svg';
 import heroIllustration from '../assets/illustrations/home-image.svg';
-
-import '../Home.css';
 
 export default function Home() {
 	const { activeForm } = useSelector(homeStateSelector);
@@ -24,7 +23,10 @@ export default function Home() {
 	];
 
 	const navBreakpoints = new Map();
-	navBreakpoints.set(800, 3);
+
+	navBreakpoints.set(1800, 3);
+	navBreakpoints.set(1751, 2);
+	navBreakpoints.set(1035, 3);
 
 	const HeroContent = props => {
 		return (
@@ -43,15 +45,9 @@ export default function Home() {
 	};
 
 	return (
-		<>
+		<HomeEl>
 			<div className='gradient-holder'>
-				<Header
-					heroContent={<HeroContent />}
-					style={{
-						backgroundImage: `url("${headerBackground}")`,
-						backgroundPositionY: 'bottom',
-					}}
-				>
+				<Header heroContent={<HeroContent />}>
 					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
 					<HeroContent className='hero container' />
 				</Header>
@@ -63,6 +59,6 @@ export default function Home() {
 				{activeForm === 'logStudent' && <LogStudent />}
 				<Faq />
 			</div>
-		</>
+		</HomeEl>
 	);
 }
