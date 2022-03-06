@@ -7,12 +7,12 @@ import Button from "./Button";
 export default function LogStudent() {
     const dispatch = useDispatch();
 
-    const changeActiveForm = (newActive) => {
-        dispatch(setHomeData({ activeForm: newActive }));
-    };
-
     const closeForm = () => {
         dispatch(setHomeData({ showForm: false }));
+    };
+
+    const changeActiveForm = (newActive) => {
+        dispatch(setHomeData({ activeForm: newActive }));
     };
 
     const headingStyle = {

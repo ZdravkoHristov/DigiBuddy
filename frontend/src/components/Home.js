@@ -47,13 +47,7 @@ export default function Home() {
     return (
         <HomeEl>
             <div className="gradient-holder">
-                <Header
-                    heroContent={<HeroContent />}
-                    // style={{
-                    //     backgroundImage: `url("${headerBackground}")`,
-                    //     backgroundPositionY: "bottom",
-                    // }}
-                >
+                <Header heroContent={<HeroContent />}>
                     <Navbar
                         links={navLinks}
                         outCount={1}

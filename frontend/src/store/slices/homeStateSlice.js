@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const homeStateSlice = createSlice({
-	name: 'homeState',
-	initialState: {
-		data: {
-			activeForm: null,
-			showForm: false,
-		},
-	},
+    name: "homeState",
+    initialState: {
+        data: {
+            activeForm: null,
+            showForm: false,
+        },
+    },
 
-	reducers: {
-		setHomeData: (state, { payload }) => {
-			state.data = { ...state.data, ...payload };
-		},
-	},
+    reducers: {
+        setHomeData: (state, { payload }) => {
+            state.data = { ...state.data, ...payload };
+        },
+    },
 });
 
 export default homeStateSlice.reducer;

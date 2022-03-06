@@ -6,13 +6,11 @@ import illustration from "../assets/svgs/role-student.svg";
 import Button from "./Button";
 export default function RegStudent() {
     const dispatch = useDispatch();
-
-    const changeActiveForm = (newActive) => {
-        dispatch(setHomeData({ activeForm: newActive }));
-    };
-
     const closeForm = () => {
         dispatch(setHomeData({ showForm: false }));
+    };
+    const changeActiveForm = (newActive) => {
+        dispatch(setHomeData({ activeForm: newActive }));
     };
 
     const headingStyle = {
