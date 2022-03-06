@@ -26,7 +26,7 @@ export default function Assignments() {
 		let currentInfo = {};
 		const typesLength = Object.keys(assignmentTypes).length;
 		Object.entries(assignmentTypes).forEach( async ([type, title], index) => {
-			const res = await axios.get(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}`);
+			const res = await axios.get(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/tasks/${type}`);
 		// console.log(res.data);
 			if(res.data.status === 200){
 				const newType  = {title, items:res.data.tasks};

@@ -27,7 +27,7 @@ export default function LoggedTeacher() {
 	const {id} = useParams();
 	
 	const exit = async () => {
-		const res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/exit`);
+		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/exit`);
 	}
 
 	const navLinks = [
@@ -42,7 +42,7 @@ export default function LoggedTeacher() {
 
 	/**Denitsa */
 	const fetchData = async () => {
-		const res = await axios.get(`http://127.0.0.1:8000/api/teacher/${id}/home`);
+		const res = await axios.get(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/home`);
 
 		console.log(res.data.info);
 		const fullName = res.data.info.name + " " + res.data.info.lname;

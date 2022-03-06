@@ -34,7 +34,7 @@ export default function LogTeacher() {
 	const login = async e => {
 		e.preventDefault();
 		
-		const res = await axios.post('http://127.0.0.1:8000/api/teacher/login', data) 
+		const res = await axios.post('https://digibuddy-backend.herokuapp.com/api/teacher/login', data) 
 		if(res.data.status === 200){
 			window.location.href = res.data.url;
 		}

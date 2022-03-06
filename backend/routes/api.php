@@ -48,9 +48,6 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 
 // });
 
-Route::get('/', function(){
-    return 1;
-});
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
 Route::get('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');

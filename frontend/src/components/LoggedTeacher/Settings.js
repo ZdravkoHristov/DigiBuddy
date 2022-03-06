@@ -22,7 +22,7 @@ export default function Settings() {
 	
 	const update = async e => {
 		e.preventDefault();
-		const res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/profile/settings`, {...teacherInfo, password}) 
+		const res = await axios.put(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/profile/settings`, {...teacherInfo, password}) 
 		// console.log(teacherInfo);
 		// console.log(password);
 		if(res.data.status === 200){

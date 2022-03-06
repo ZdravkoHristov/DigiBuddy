@@ -27,7 +27,7 @@ export default function CustomAssignmentModal() {
 			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
 		}
 		
-		const res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/choose/insert`, {...assignmentInfo, ...additionalData}) 
+		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/tasks/choose/insert`, {...assignmentInfo, ...additionalData}) 
 		
 		if(res.data.status === 200){
 			console.log(res.data.info);
