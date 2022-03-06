@@ -53,6 +53,9 @@ export default function RegTeacherEl() {
 		}
 		if (res.data.status === 400) {
 			setErrors(res.data.errors);
+		} else {
+			console.log('res: ', res);
+			console.log('res.data: ', res.data);
 		}
 	};
 
