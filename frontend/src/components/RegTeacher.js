@@ -41,10 +41,14 @@ export default function RegTeacherEl() {
 	const register = async e => {
 		e.preventDefault();
 
-		const res = await axios.post(
-			'https://digibuddy-backend.herokuapp.com/api/teacher/register',
-			data
-		);
+		try {
+			const res = await axios.post(
+				'https://digibuddy-backend.herokuapp.com/api/teacher/register',
+				data
+			);
+		} catch (e) {
+			console.log('error: ', e);
+		}
 
 		console.log('res: ', res);
 		console.log('res.data: ', res.data);
