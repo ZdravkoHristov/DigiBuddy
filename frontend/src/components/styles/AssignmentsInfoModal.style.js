@@ -15,7 +15,7 @@ const AssignmentsInfoModalEl = styled.div`
 	}
 
 	.files-field {
-		background: #fff;
+		background: #f1f1f1;
 		width: 95%;
 		margin: 2rem auto;
 		max-height: 320px;

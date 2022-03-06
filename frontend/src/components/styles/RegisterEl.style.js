@@ -89,16 +89,11 @@ const RegisterEl = styled.section`
 	}
 	.button {
 		padding: 1rem 3rem;
-
-		font-size: 16px;
 	}
-	.danger {
-		letter-spacing: 1px;
-		font-size: 1.2rem;
-		width: 100%;
-		display: block;
-		margin: 1rem 0 0.5rem 1rem;
-		color: #d15568;
+
+	@media (min-width: 1800px){
+		label {font-size: 1.9rem;}
+		.group input {font-size: 1.7rem;}
 	}
 `;
 

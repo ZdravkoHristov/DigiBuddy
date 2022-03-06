@@ -39,6 +39,13 @@ const ModalEl = styled.div`
 		border-radius: 40px;
 		padding: 4rem 2rem;
 		overflow: hidden;
+
+		& > .content {
+			max-height: 350px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			padding-right: 20px;
+		}
 	}
 
 	&.gradient-modal .modal-box {
