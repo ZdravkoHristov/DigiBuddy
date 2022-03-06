@@ -85,17 +85,39 @@ class TeacherRegisterController extends Controller
                 'errors' => $errors,
             ]);
         }
+            // $data = [
+            //     'name' => $request->input('name'),
+            //     'lname' => $request->input('lname'),
+            //     'email' => $request->input('email'),
+            //     'subject' => $request->input('subject'),
+            //     'school' => $request->input('school'),
+            //     'town' => $request->input('town'),
+            //     'comm' => $request->input('comm'),
+            //     'area' => $request->input('area'),
+            //     'password' => Hash::make($request->input('password')),
+            // ];
             $data = [
-                'name' => $request->input('name'),
-                'lname' => $request->input('lname'),
-                'email' => $request->input('email'),
-                'subject' => $request->input('subject'),
-                'school' => $request->input('school'),
-                'town' => $request->input('town'),
-                'comm' => $request->input('comm'),
-                'area' => $request->input('area'),
-                'password' => Hash::make($request->input('password')),
+                'name' => 'Деница',
+                'lname' => 'Рашкова',
+                'email' => 'piper.mclean037@gmail.com',
+                'subject' => 'Предмет',
+                'school' => 'СУ',
+                'town' => 'Първомай',
+                'comm' => 'Първомай',
+                'area' => 'Пловдив',
+                'password' => Hash::make('14*72Oo3'),
             ];
+            // $data = [
+            //     'name' => $request->input('name'),
+            //     'lname' => $request->input('lname'),
+            //     'email' => $request->input('email'),
+            //     'subject' => $request->input('subject'),
+            //     'school' => $request->input('school'),
+            //     'town' => $request->input('town'),
+            //     'comm' => $request->input('comm'),
+            //     'area' => $request->input('area'),
+            //     'password' => Hash::make($request->input('password')),
+            // ];
             
             return $this->create($data, $request);
     }
@@ -106,7 +128,7 @@ class TeacherRegisterController extends Controller
 
         $teacher = Auth::guard('teacher');
 
-        if ($teacher->attempt(['email' => $request->input(['email']), 'password' => $request->input(['password'])])) {
+        if ($teacher->attempt(['email' => $data['email'], 'password' => $data['password']])) {
             if($teacher->check()){
                     return response()->json([
                         'status' => 200,
