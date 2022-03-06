@@ -62,73 +62,51 @@ class TeacherRegisterController extends Controller
         -----------------------------------------------------
     */
 
-    protected function validator()
+    protected function validator(Request $request)
     {
-        // $validate = Validator::make($request->all(),[
-        //     'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-        //     'lname' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-        //     'email' => 'required|max:255|email|unique:teachers',
-        //     'subject' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}\x{0430}-\x{044F}]*)*$/u',
-        //     'school' => 'required|max:255|regex:/[\x{0410}-\x{042F}\x{0430}-\x{044F}0-9\s\S]*$/u',
-        //     'town' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-        //     'comm' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-        //     'area' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-        //     'password' => 'required|max:255|confirmed|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-        // ]);
+        $validate = Validator::make($request->all(),[
+            'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
+            'lname' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
+            'email' => 'required|max:255|email|unique:teachers',
+            'subject' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}\x{0430}-\x{044F}]*)*$/u',
+            'school' => 'required|max:255|regex:/[\x{0410}-\x{042F}\x{0430}-\x{044F}0-9\s\S]*$/u',
+            'town' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
+            'comm' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
+            'area' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
+            'password' => 'required|max:255|confirmed|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
+        ]);
 
-        // $errors = $validate->errors();
+        $errors = $validate->errors();
 
-        // if(count($errors) !== 0)
-        // {
-        //     return response()->json([
-        //         'status' => 400,
-        //         'errors' => $errors,
-        //     ]);
-        // }
-            // $data = [
-            //     'name' => $request->input('name'),
-            //     'lname' => $request->input('lname'),
-            //     'email' => $request->input('email'),
-            //     'subject' => $request->input('subject'),
-            //     'school' => $request->input('school'),
-            //     'town' => $request->input('town'),
-            //     'comm' => $request->input('comm'),
-            //     'area' => $request->input('area'),
-            //     'password' => Hash::make($request->input('password')),
-            // ];
+        if(count($errors) !== 0)
+        {
+            return response()->json([
+                'status' => 400,
+                'errors' => $errors,
+            ]);
+        }
             $data = [
-                'name' => 'Деница',
-                'lname' => 'Рашкова',
-                'email' => 'piper.mclean037@gmail.com',
-                'subject' => 'Предмет',
-                'school' => 'СУ',
-                'town' => 'Първомай',
-                'comm' => 'Първомай',
-                'area' => 'Пловдив',
-                'password' => Hash::make('14*72Oo3'),
+                'name' => $request->input('name'),
+                'lname' => $request->input('lname'),
+                'email' => $request->input('email'),
+                'subject' => $request->input('subject'),
+                'school' => $request->input('school'),
+                'town' => $request->input('town'),
+                'comm' => $request->input('comm'),
+                'area' => $request->input('area'),
+                'password' => Hash::make($request->input('password')),
             ];
-            // $data = [
-            //     'name' => $request->input('name'),
-            //     'lname' => $request->input('lname'),
-            //     'email' => $request->input('email'),
-            //     'subject' => $request->input('subject'),
-            //     'school' => $request->input('school'),
-            //     'town' => $request->input('town'),
-            //     'comm' => $request->input('comm'),
-            //     'area' => $request->input('area'),
-            //     'password' => Hash::make($request->input('password')),
-            // ];
             
-            return $this->create($data);
+            return $this->create($data, $request);
     }
 
-    protected function create(array $data)
+    protected function create(array $data, Request $request)
     {
         Teacher::create($data);
 
         $teacher = Auth::guard('teacher');
 
-        if ($teacher->attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        if ($teacher->attempt(['email' => $request->input(['email']), 'password' => $request->input(['password'])])) {
             if($teacher->check()){
                     return response()->json([
                         'status' => 200,
@@ -178,65 +156,4 @@ class TeacherRegisterController extends Controller
         
 
     }
-
-
-    // protected function home($id)
-    // {
-    //     $teacher = Teacher::findOrFail($id);
-    //     $info = $teacher;
-    //     // var_dump($teacher);
-    //     return response()->json([
-    //         'status' => 200,
-    //         'info' => $info,
-    //     ]);
-    // }
-
-    // protected function update($id, Request $request,){
-    //     $teacher = Teacher::findOrFail($id);
-
-    //     $errors = Validator::make($request->all(),[
-    //         'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-    //         'lname' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-    //         // 'email' => 'required|max:255|email|unique:teachers',
-    //         'subject' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}\x{0430}-\x{044F}]*)*$/u',
-    //         'school' => 'required|max:255|regex:/[\x{0410}-\x{042F}\x{0430}-\x{044F}0-9\s\S]*$/u',
-    //         'town' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-    //         'comm' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-    //         'area' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-    //         'password' => 'required|max:255|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-    //     ])->errors();
-
-        
-
-    //     if(count($errors) === 0){
-    //         if(Auth::guard('teacher')->attempt(['id' => $id, 'password' => $request->input(['password'])])){
-    //             $teacher->update([
-    //                 'name' => $request->input(['name']),
-    //                 'lname' => $request->input(['lname']),
-    //                 // 'email' => $request->input(['email']),
-    //                 'subject' => $request->input(['subject']),
-    //                 'school' => $request->input(['school']),
-    //                 'town' => $request->input(['town']),
-    //                 'comm' => $request->input(['comm']),
-    //                 'area' => $request->input(['area']),
-    //             ]);        
-    //             return response()->json([
-    //                 'status' => 200,
-    //             ]);
-    //         }
-    //     }   
-    //     return response()->json([
-    //         'status' => 400,
-    //         'errors' => $errors,
-    //     ]);
-
-
-    // }
-
-    // protected function exit(){
-    //     Session::flush();
-    //     Auth::logout();
-  
-    //     return Redirect('/');
-    // }
 }
