@@ -4,7 +4,7 @@ import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
-import {useState} from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 export default function RegTeacherEl() {
@@ -27,30 +27,34 @@ export default function RegTeacherEl() {
 		password_confirmation: '',
 	};
 
-	const [data, setData] = useState({...dataTemp});
+	const [data, setData] = useState({ ...dataTemp });
 
 	const [errors, setErrors] = useState({});
 
 	const handleInput = e => {
 		setData({
-			...data,[e.target.name]:e.target.value
-		})
-	}
+			...data,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	const register = async e => {
 		e.preventDefault();
-		
-		const res = await axios.post('http://127.0.0.1:8000/api/teacher/register', data) 
+
+		const res = await axios.post(
+			'https://digibuddy-backend.herokuapp.com/api/teacher/register',
+			data
+		);
 		// console.log(res.data.status);
-		if(res.data.status === 200){
+		if (res.data.status === 200) {
 			setErrors({});
-			setData({...dataTemp});
+			setData({ ...dataTemp });
 			window.location.href = res.data.url;
 		}
-		if(res.data.status === 400){
+		if (res.data.status === 400) {
 			setErrors(res.data.errors);
 		}
-	}
+	};
 
 	return (
 		<RegisterEl className='container'>
@@ -84,14 +88,14 @@ export default function RegTeacherEl() {
 				<form className='input-holder' onSubmit={register}>
 					<div className='group'>
 						<label htmlFor='name'>Име:</label>
-						<input 
-							name='name' 
-							type='text' 
-							onChange={handleInput} 
+						<input
+							name='name'
+							type='text'
+							onChange={handleInput}
 							placeholder='Въведете своето име'
 							value={data.name}
 						/>
-						<span className='danger'>{errors.name||""}</span>
+						<span className='danger'>{errors.name || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='lname'>Фамилия:</label>
@@ -102,7 +106,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.lname}
 						/>
-						<span className='danger'>{errors.lname||""}</span>
+						<span className='danger'>{errors.lname || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='email'>Email:</label>
@@ -113,7 +117,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.email}
 						/>
-						<span className='danger'>{errors.email||""}</span>
+						<span className='danger'>{errors.email || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='subject'>Учебен предмет/и:</label>
@@ -124,7 +128,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.subject}
 						/>
-						<span className='danger'>{errors.subject||""}</span>
+						<span className='danger'>{errors.subject || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='school'>Учебно заведение:</label>
@@ -135,7 +139,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.school}
 						/>
-						<span className='danger'>{errors.school||""}</span>
+						<span className='danger'>{errors.school || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='town'>Град/село:</label>
@@ -146,7 +150,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.town}
 						/>
-						<span className='danger'>{errors.town||""}</span>
+						<span className='danger'>{errors.town || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='comm'>Община:</label>
@@ -157,7 +161,7 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.comm}
 						/>
-						<span className='danger'>{errors.comm||""}</span>
+						<span className='danger'>{errors.comm || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='area'>Област:</label>
@@ -168,18 +172,18 @@ export default function RegTeacherEl() {
 							onChange={handleInput}
 							value={data.area}
 						/>
-						<span className='danger'>{errors.area||""}</span>
+						<span className='danger'>{errors.area || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='password'>Парола:</label>
-						<input 
-							name='password' 
-							type='password' 
-							placeholder='Въведете парола' 
+						<input
+							name='password'
+							type='password'
+							placeholder='Въведете парола'
 							onChange={handleInput}
 							value={data.password}
 						/>
-						<span className='danger'>{errors.password||""}</span>
+						<span className='danger'>{errors.password || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='password_confirmation'>Потвърдете паролата:</label>
