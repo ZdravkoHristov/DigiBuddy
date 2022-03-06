@@ -12,6 +12,7 @@ use App\Http\Controllers\ChooseTasksController;
 use App\Http\Controllers\Test\RegisterController;
 use App\Http\Controllers\Auth\StudentRegisterController;
 use App\Http\Controllers\Auth\TeacherRegisterController;
+use App\Models\Teacher;
 
 // use App\Http\Controllers\Auth\HomeController;
 
@@ -47,6 +48,10 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 //     });
 
 // });
+
+Route::get('/', function(){
+    return Teacher::find(1);
+});
 
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
