@@ -119,10 +119,10 @@ class TeacherRegisterController extends Controller
             //     'password' => Hash::make($request->input('password')),
             // ];
             
-            return $this->create($data, $request);
+            return $this->create($data);
     }
 
-    protected function create(array $data, Request $request)
+    protected function create(array $data)
     {
         Teacher::create($data);
 
