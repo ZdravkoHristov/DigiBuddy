@@ -44,9 +44,19 @@ class Teacher extends Authenticatable
     {
         return $this->hasOne('App\Models\OpenTask');//looks teacher_id in the specific table
     }
-
+    
     public function classes()
     {
         return $this->hasMany('App\Models\TeacherClass');
+    }
+    
+    public function folders()//ONE TO MANY
+    {
+        return $this->hasMany('App\Models\Folder');//looks teacher_id in the specific table
+    }
+
+    public function files()
+    {
+        return $this->hasOne('App\Models\File');
     }
 }

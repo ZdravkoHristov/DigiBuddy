@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChooseTask extends Model
+class OpenTask extends Model
 {
     use HasFactory;
 
-    protected $table = 'chtasks';
+    //has n_questions and n_answers that need to be equal 
+    //
+    protected $table = 'optasks';
 
     protected $fillable = [
         'teacher_id',
         'name',
         'question',
-        'n_answers',
+        'answer'
     ];
 
-    public function answers()
+    public function file_contents()
     {
-        return $this->hasMany('App\Models\ChooseAnswer', 'chtask_id');
+        return $this->belongsTo('App\Models\FileContents', 'task_id');
     }
 }

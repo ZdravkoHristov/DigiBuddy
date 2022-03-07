@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\TeacherClasses;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\FoldersController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\OpenTasksController;
 use App\Http\Controllers\CustomAuthController;
@@ -12,7 +15,6 @@ use App\Http\Controllers\ChooseTasksController;
 use App\Http\Controllers\Test\RegisterController;
 use App\Http\Controllers\Auth\StudentRegisterController;
 use App\Http\Controllers\Auth\TeacherRegisterController;
-use App\Models\Teacher;
 
 // use App\Http\Controllers\Auth\HomeController;
 
@@ -65,8 +67,8 @@ Route::post('/teacher/login', [TeacherRegisterController::class, 'login'])->name
 Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('home');
 Route::get("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
 Route::put("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
-Route::post("/teacher/{id}/exit", [TeacherController::class, 'exit'])->name('teacher.exit');
-Route::get("/teacher/{id}/exit", [TeacherController::class, 'exit'])->name('teacher.exit');
+Route::post("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
+Route::get("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
 //--------------------LOGGEDTEACHER/TASKS-----------------
 
 Route::get("teacher/{id}/tasks/open", [OpenTasksController::class, 'showAllOpenTasks'])->name('teacher.all.open.tasks');
@@ -80,6 +82,15 @@ Route::post("teacher/{id}/tasks/open", [OpenTasksController::class, 'insertOpenT
 //--------------------LOGGEDTEACHER/CLASSES-----------------
 Route::get("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
 Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
+// Route::get("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
+// Route::post("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
+// Route::get("teacher/{id}/folders/{f_id}/child", [FoldersController::class, 'createFile'])->name('teacher.folder');
+Route::get('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
+Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);
+Route::get('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
+Route::get('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);
+Route::get('teacher/{id}/folder/{folder_id}/file/show', [FileController::class, 'showFile']);
+Route::get('teacher/{id}/file/{file_id}/show', [FileController::class, 'showTasksOnFile']);
 // Route::post("teacher/{id}/tasks", [TasksController::class, 'insert'])->name('teacher.tasks');
 // Route::get('/teacher/register', [RegisterTeacherController::class, 'show']);
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
