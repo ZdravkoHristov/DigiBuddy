@@ -1,44 +1,48 @@
-import { useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setTeacher } from '../store/slices/teacherSlice';
-import { studentSelector, teacherSelector } from '../store/store';
+import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { studentSelector, teacherSelector } from "../store/store";
 export default function FormField({
-	labelTxt,
-	dataChunk,
-	inputType = 'text',
-	role = 'teacher',
+    labelTxt,
+    dataChunk,
+    inputType = "text",
+    role = "teacher",
 }) {
-	const dispatch = useDispatch();
-	const [editing, setEditing] = useState(false);
-	const dataSelector = role === 'teacher' ? teacherSelector : studentSelector;
-	const data = useSelector(dataSelector).info[dataChunk];
-	const inputRef = useRef();
+    const [editing, setEditing] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const dataSelector = role === "teacher" ? teacherSelector : studentSelector;
+    const data = useSelector(dataSelector).info[dataChunk];
+    const [value, setValue] = useState(data);
+    const inputRef = useRef();
 
-	const handleIconClick = () => {
-		inputRef.current.focus();
-		setEditing(!editing);
-	};
+    const handleIconClick = () => {
+        inputRef.current.focus();
+        setEditing(!editing);
+    };
 
-	const changeHandler = e => {
-		dispatch(setTeacher({[dataChunk]:e.target.value}))
-	}
+    const onResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
 
-	return (
-		<div className='form-field'>
-			<label htmlFor={dataChunk}>{labelTxt}</label>
-			<input
-				type={inputType}
-				value={data}
-				name={dataChunk}
-				onChange={changeHandler}
-				size={data.length * 1.2}
-				ref={inputRef}
-				readOnly={!editing}
-			/>
-			<span className='icon' onClick={handleIconClick}>
-				{editing ? null : <i className='fas fa-edit'></i>}
-			</span>
-			{/* <span className='danger'>{errors.data||""}</span> */}
-		</div>
-	);
+    useEffect(() => {
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    });
+
+    return (
+        <div className="form-field">
+            <label htmlFor={dataChunk}>{labelTxt}</label>
+            <input
+                type={inputType}
+                value={value}
+                name={dataChunk}
+                onChange={(e) => setValue(e.target.value)}
+                size={windowWidth < 470 || data.length * 1.2}
+                ref={inputRef}
+                readOnly={!editing}
+            />
+            <span className="icon" onClick={handleIconClick}>
+                {editing ? null : <i className="fas fa-edit"></i>}
+            </span>
+        </div>
+    );
 }

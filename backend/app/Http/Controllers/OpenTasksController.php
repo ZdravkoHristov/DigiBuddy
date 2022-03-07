@@ -23,7 +23,6 @@ class OpenTasksController extends Controller
         ]);
         
         $teacher->optask()->save($task);
-        return $teacher;
     }
     
     protected function showAllOpenTasks($id){

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { homeStateSelector } from '../store/store';
 import Header from './Header';
 import AnimatedLine from './AnimatedLine';
+import AnimatedElement from './AnimatedElement';
 import RolesSection from './RolesSection';
 import RegTeacher from './RegTeacher';
 import RegStudent from './RegStudent';
@@ -10,11 +11,10 @@ import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
 import HomeEl from './styles/Home.style';
-import headerBackground from '../assets/svgs/white-space-header.svg';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
 export default function Home() {
-	const { activeForm } = useSelector(homeStateSelector);
+	const { activeForm, showForm } = useSelector(homeStateSelector).data;
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
@@ -48,15 +48,24 @@ export default function Home() {
 		<HomeEl>
 			<div className='gradient-holder'>
 				<Header heroContent={<HeroContent />}>
-					<Navbar links={navLinks} outCount={2} breakpoints={navBreakpoints} />
+					<Navbar links={navLinks} outCount={1} breakpoints={navBreakpoints} />
 					<HeroContent className='hero container' />
 				</Header>
 				<AnimatedLine />
 				<RolesSection />
-				{activeForm === 'regTeacher' && <RegTeacher />}
-				{activeForm === 'regStudent' && <RegStudent />}
-				{activeForm === 'logTeacher' && <LogTeacher />}
-				{activeForm === 'logStudent' && <LogStudent />}
+				<AnimatedElement
+					isMounted={showForm}
+					inClass={'slide-down-animation'}
+					outClass='slide-up-animation'
+					delayTime={700}
+				>
+					{console.log(showForm, activeForm)}
+					{activeForm === 'regTeacher' && <RegTeacher />}
+					{activeForm === 'regStudent' && <RegStudent />}
+					{activeForm === 'logTeacher' && <LogTeacher />}
+					{activeForm === 'logStudent' && <LogStudent />}
+				</AnimatedElement>
+
 				<Faq />
 			</div>
 		</HomeEl>

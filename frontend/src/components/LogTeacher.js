@@ -1,47 +1,51 @@
-import { useDispatch } from 'react-redux';
-import { changeActive } from '../store/slices/homeStateSlice';
-import RegisterEl from './styles/RegisterEl.style';
-import {useState} from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setHomeData } from '../store/slices/homeStateSlice';
+import RegisterEl from './styles/RegisterEl.style';
 
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
 export default function LogTeacher() {
 	const dispatch = useDispatch();
-
-	const [errors, setErrors] = useState({});
-
-	const changeActiveForm = newActive => {
-		dispatch(changeActive(newActive));
-
-	};
-
-	
-	/**Denitsa */
 	const dataTemp = {
 		email: '',
 		password: '',
 	};
 
-	const [data, setData] = useState({...dataTemp});
+	const [errors, setErrors] = useState({});
+	const [data, setData] = useState({ ...dataTemp });
+
+	const closeForm = () => {
+		dispatch(setHomeData({ showForm: false }));
+	};
+
+	const changeActiveForm = newActive => {
+		dispatch(setHomeData({ activeForm: newActive }));
+	};
 
 	const handleInput = e => {
 		setData({
-			...data,[e.target.name]:e.target.value
-		})
-	}
+			...data,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	const login = async e => {
 		e.preventDefault();
-		
-		const res = await axios.post('https://digibuddy-backend.herokuapp.com/api/teacher/login', data) 
-		if(res.data.status === 200){
+
+		const res = await axios.post(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/login`,
+			data
+		);
+		console.log(res.data.status);
+		if (res.data.status === 200) {
 			window.location.href = res.data.url;
 		}
-		if(res.data.status === 400){
+		if (res.data.status === 400) {
 			setErrors(res.data.errors);
 		}
-	}
+	};
 
 	return (
 		<RegisterEl className='container'>
@@ -53,52 +57,53 @@ export default function LogTeacher() {
 					<img src={illustration} />
 					<p className='heading-m'>Нямате регистрация?</p>
 					<Button
-						className='button'
+						className='button heading-s'
 						theme='red'
 						onClick={() => changeActiveForm('regTeacher')}
+						type='button'
 					>
 						Регистрация
 					</Button>
 				</div>
-
-				{/* ----------------FORM---------------------- */}
-
-				<form className='input-holder flex-c' /**Denitsa */ onSubmit={login}>
+				<form className='input-holder flex-c' onSubmit={login}>
 					<div className='group'>
 						<label htmlFor='email'>Email:</label>
 						<input
 							name='email'
 							type='email'
 							placeholder='Въведете своя email'
-							/**Denitsa */
 							onChange={handleInput}
 							value={data.email}
-							/>
-						<span className='danger'>{errors.email||""}</span>
+						/>
+						<span className='danger'>{errors.email || ''}</span>
 					</div>
 					<div className='group'>
-						<label htmlFor='password'>Парола:</label>
-						<input 
-							name='password' 
-							type='password' 
-							placeholder='Въведете парола' 
-							/**Denitsa */
+						<label htmlFor='pass'>Парола:</label>
+						<input
+							name='password'
+							type='password'
+							placeholder='Въведете парола'
 							onChange={handleInput}
 							value={data.password}
 						/>
-						<span className='danger'>{errors.login||""}</span>
+						<span className='danger'>{errors.login || ''}</span>
 					</div>
-
-					{/* Button */}
-
 					<div className='group'>
-						<Button className='button'>Вход</Button>
+						<Button className='button heading-s' type='submit'>
+							Вход
+						</Button>
 						<Button
-							className='button'
+							className='button heading-s mobile-button'
+							theme='red'
+							onClick={() => changeActiveForm('regTeacher')}
+							type='button'
+						>
+							Регистрация
+						</Button>
+						<Button
+							className='button heading-s'
 							theme='darkBlue'
-							onClick={() => changeActiveForm(null)}
-							/**Denitsa */
-							type='submit'
+							onClick={closeForm}
 						>
 							Затвори
 						</Button>

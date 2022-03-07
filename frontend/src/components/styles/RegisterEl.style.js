@@ -91,9 +91,13 @@ const RegisterEl = styled.section`
 		padding: 1rem 3rem;
 	}
 
-	@media (min-width: 1800px){
-		label {font-size: 1.9rem;}
-		.group input {font-size: 1.7rem;}
+	@media (min-width: 1800px) {
+		label {
+			font-size: 1.9rem;
+		}
+		.group input {
+			font-size: 1.7rem;
+		}
 	}
 `;
 

@@ -64,7 +64,7 @@ class TeacherRegisterController extends Controller
 
     protected function validator(Request $request)
     {
-        $validate = Validator::make($request->all(),[
+        $errors = Validator::make($request->all(),[
             'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'lname' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'email' => 'required|max:255|email|unique:teachers',
@@ -74,9 +74,7 @@ class TeacherRegisterController extends Controller
             'comm' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'area' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'password' => 'required|max:255|confirmed|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-        ]);
-
-        $errors = $validate->errors();
+        ])->errors();
 
         if(count($errors) !== 0)
         {
@@ -129,8 +127,6 @@ class TeacherRegisterController extends Controller
             'password' => 'required|max:255|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
         ])->errors();
 
-
-
         $teacher = Auth::guard('teacher');    
 
         if(count($errors) === 0){
@@ -148,10 +144,9 @@ class TeacherRegisterController extends Controller
                 'errors' => $error,
             ]);
         }
-        $error = ['login' => 'Грешен имейл или парола.'];
         return response()->json([
             'status' => 400,
-            'errors' => $error,
+            'errors' => $errors,
         ]);
         
 

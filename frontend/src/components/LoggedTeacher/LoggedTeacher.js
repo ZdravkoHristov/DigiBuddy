@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { setTeacher } from '../../store/slices/teacherSlice';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 import { navbarSelector, teacherSelector } from '../../store/store';
+import { setTeacher } from '../../store/slices/teacherSlice';
 import Header from '../Header';
 import Navbar from '../Navbar';
 
@@ -16,7 +15,7 @@ import MyProfile from './MyProfile';
 import Settings from './Settings';
 import Assignments from './Assignments';
 import headerBackground from '../../assets/svgs/full-back-teacher-back.svg';
-import '../../LoggedTeacher.css';
+import TeacherEl from '../styles/LoggedTeacher.style';
 
 export default function LoggedTeacher() {
 	const { active: navActive } = useSelector(navbarSelector);
@@ -24,57 +23,60 @@ export default function LoggedTeacher() {
 
 	const dispatch = useDispatch();
 
-	const {id} = useParams();
-	
-	const exit = async () => {
-		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/exit`);
+	const { id } = useParams();
+	let homeText = 'Зареждане...';
+
+	if (teacherInfo.fullName) {
+		homeText = 'Г-н/Г-жа ' + teacherInfo.fullName;
 	}
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
-		{ text: 'Работни листове', to: '#', value: 'worksheets' },
+
 		{ text: 'Задачи', to: '#', value: 'assignments' },
+		{ text: 'Работни листове', to: '#', value: 'worksheets' },
 		{ text: 'Класове', to: '#', value: 'classes' },
 		{ text: 'Профил', to: '#', value: 'profile' },
-		{ text: 'Изход', to: 'exit', value: 'exit' },
+		{ text: 'Изход', to: '/', value: 'exit' },
 	];
 
+	useEffect(() => {
+		(async () => {
+			const res = await axios.get(
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/home`
+			);
 
-	/**Denitsa */
-	const fetchData = async () => {
-		const res = await axios.get(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/home`);
+			const fullName = res.data.info.name + ' ' + res.data.info.lname;
 
-		console.log(res.data.info);
-		const fullName = res.data.info.name + " " + res.data.info.lname;
-
-		dispatch(setTeacher({...res.data.info, fullName}));
-	}
-	useEffect(fetchData,[]);
-
-	let text = "Зареждане...";
-	if(teacherInfo.fullName){
-		text = "Г-н/Г-жа " + teacherInfo.fullName;
-	}
+			dispatch(setTeacher({ ...res.data.info, fullName }));
+		})();
+	}, []);
 
 	return (
 		<>
-			<div className='gradient-holder'>
-				<Header style={{ backgroundImage: `url("${headerBackground}")` }}>
-					<Navbar links={navLinks} outCount={1}></Navbar>
-					<div style={{ padding: '4rem 1rem 1rem 1rem' }}>
-						{navActive === 'home' && <Home text={text} />}
-						{navActive === 'worksheets' && <Worksheets />}
-						{navActive === 'classes' && <MyClasses />}
-						{navActive === 'assignments' && <Assignments />}
-						{navActive === 'profile' && (
-							<LoggedProfile
-								myProfile={<MyProfile />}
-								settings={<Settings />}
-							/>
-						)}
-					</div>
-				</Header>
-			</div>
+			<TeacherEl>
+				<div className='gradient-holder'>
+					<Header
+						style={{
+							backgroundImage: `url("${headerBackground}")`,
+						}}
+					>
+						<Navbar links={navLinks} outCount={2}></Navbar>
+						<div>
+							{navActive === 'home' && <Home text={homeText} />}
+							{navActive === 'worksheets' && <Worksheets />}
+							{navActive === 'classes' && <MyClasses />}
+							{navActive === 'assignments' && <Assignments />}
+							{navActive === 'profile' && (
+								<LoggedProfile
+									myProfile={<MyProfile />}
+									settings={<Settings />}
+								/>
+							)}
+						</div>
+					</Header>
+				</div>
+			</TeacherEl>
 		</>
 	);
 }

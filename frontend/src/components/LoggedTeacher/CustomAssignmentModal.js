@@ -12,42 +12,56 @@ import { setTeacher } from '../../store/slices/teacherSlice';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
 	const { uiInfo } = useSelector(loggedUiSelector);
-	const [assignmentInfo, setAssignmentInfo] = useState({});
+	const [assignmentInfo, setAssignmentInfo] = useState([]);
+
 	const [answers, setAnswers] = useState([]);
-	const initialAnswers = useMemo(() => assignmentInfo.answers || [],[assignmentInfo]);
-	const {id} = useParams();
+	const initialAnswers = useMemo(
+		() => assignmentInfo.answers || [],
+		[assignmentInfo]
+	);
+	const { id } = useParams();
 	const [errors, setErrors] = useState({});
 
 	let additionalData = {};
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault();
-		if(uiInfo.customType === 'choose'){
-			const filteredAnswers = answers.filter(({value}) => value !== '');
-			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
+		console.log(uiInfo.customType);
+		if (uiInfo.customType === 'choose') {
+			const filteredAnswers = answers.filter(({ value }) => value !== '');
+			additionalData = {
+				...filteredAnswers,
+				n_answers: filteredAnswers.length,
+			};
 		}
-		
-		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/tasks/choose/insert`, {...assignmentInfo, ...additionalData}) 
-		
-		if(res.data.status === 200){
+
+		const res = await axios.post(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/choose/insert`,
+			{ ...assignmentInfo, ...additionalData }
+		);
+
+		console.log('res: ', res);
+
+		if (res.data.status === 200) {
 			console.log(res.data.info);
 		}
-		if(res.data.status === 400){
+		if (res.data.status === 400) {
 			console.log(res.data.errors);
 			setErrors({});
 		}
-	}
+	};
 
 	useEffect(() => {
+		console.log(uiInfo.customAssignment);
 		const updatedInfo = uiInfo.reviewingCustomAssignment
 			? uiInfo.customAssignment
 			: {};
 
-		setAssignmentInfo({...updatedInfo});
+		setAssignmentInfo(updatedInfo);
 	}, [uiInfo.reviewingCustomAssignment]);
 
 	useEffect(() => {
-		dispatch(setTeacher({activeCustomAssignment:assignmentInfo}))
+		dispatch(setTeacher({ activeCustomAssignment: assignmentInfo }));
 	}, [assignmentInfo]);
 
 	return (
@@ -72,7 +86,7 @@ export default function CustomAssignmentModal() {
 								setAssignmentInfo({ ...assignmentInfo, name: e.target.value });
 							}}
 						/>
-						<span className='danger'>{errors.name||""}</span>
+						<span className='danger'>{errors.name || ''}</span>
 						<label htmlFor='question'>Въведете въпрос: </label>
 						<input
 							type='text'
@@ -85,17 +99,20 @@ export default function CustomAssignmentModal() {
 								});
 							}}
 						/>
-						<span className='danger'>{errors.name||""}</span>
+						<span className='danger'>{errors.question || ''}</span>
 					</div>
-
+					{console.log(uiInfo.customType)}
 					{uiInfo.customType === 'choose' && (
-						<SelectAnswerType initialAnswers={initialAnswers} setAnswers={setAnswers} />
+						<SelectAnswerType
+							initialAnswers={initialAnswers}
+							setAnswers={setAnswers}
+						/>
 					)}
+
 					<div className='button-holder'>
 						<Button type='submit'>Готово</Button>
 					</div>
 				</form>
-
 			</Modal>
 		</CustomAssignmentModalEl>
 	);

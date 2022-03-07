@@ -22,4 +22,9 @@ class ChooseTask extends Model
     {
         return $this->hasMany('App\Models\ChooseAnswer', 'chtask_id');
     }
+    
+    public function file_contents()
+    {
+        return $this->belongsTo('App\Models\FileContents', 'task_id');
+    }
 }

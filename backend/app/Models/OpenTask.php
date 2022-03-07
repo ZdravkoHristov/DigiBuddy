@@ -19,4 +19,9 @@ class OpenTask extends Model
         'question',
         'answer'
     ];
+
+    public function file_contents()
+    {
+        return $this->belongsTo('App\Models\FileContents', 'task_id');
+    }
 }

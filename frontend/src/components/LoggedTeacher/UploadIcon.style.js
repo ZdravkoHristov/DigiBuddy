@@ -10,7 +10,7 @@ const UploadIconEl = styled.div`
 		position: absolute;
 		left: 40%;
 		top: 36%;
-		color: #fff;
+		color: #f1f1f1;
 	}
 	.bg {
 		width: 170px;

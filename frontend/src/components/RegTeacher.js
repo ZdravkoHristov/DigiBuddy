@@ -1,18 +1,13 @@
+import { useState } from 'react';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { changeActive } from '../store/slices/homeStateSlice';
+import { setHomeData } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
 import AnimatedLine from './AnimatedLine';
 import illustration from '../assets/svgs/role-teacher.svg';
 import Button from './Button';
-import { useState } from 'react';
-import axios from 'axios';
-
 export default function RegTeacherEl() {
 	const dispatch = useDispatch();
-
-	const changeActiveForm = newActive => {
-		dispatch(changeActive(newActive));
-	};
 
 	const dataTemp = {
 		name: '',
@@ -28,8 +23,11 @@ export default function RegTeacherEl() {
 	};
 
 	const [data, setData] = useState({ ...dataTemp });
-
 	const [errors, setErrors] = useState({});
+
+	const closeForm = () => {
+		dispatch(setHomeData({ showForm: false }));
+	};
 
 	const handleInput = e => {
 		setData({
@@ -41,41 +39,27 @@ export default function RegTeacherEl() {
 	const register = async e => {
 		e.preventDefault();
 
-		try {
-			const res = await axios.post(
-				'https://digibuddy-backend.herokuapp.com/api/teacher/register',
-				data
-			);
+		const res = await axios.post(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/register`,
+			data
+		);
 
-			console.log('res: ', res);
-			console.log('res.data: ', res.data);
-			// console.log(res.data.status);
-			if (res.data.status === 200) {
-				setErrors({});
-				setData({ ...dataTemp });
-				window.location.href = res.data.url;
-			}
-			if (res.data.status === 400) {
-				setErrors(res.data.errors);
-			} else {
-				console.log('res: ', res);
-				console.log('res.data: ', res.data);
-			}
-		} catch (e) {
-			console.log('error: ', e);
+		if (res.data.status === 200) {
+			setErrors({});
+			setData({ ...dataTemp });
+			window.location.href = res.data.url;
 		}
+		if (res.data.status === 400) {
+			setErrors(res.data.errors);
+		}
+	};
+
+	const changeActiveForm = newActive => {
+		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
 	return (
 		<RegisterEl className='container'>
-			{/* <header>
-				<AnimatedLine className='line'></AnimatedLine>
-				<div className='text'>
-					<h1 className='heading-l'>Регистрация като учител</h1>
-					<h3 className='heading-s'>Моля попълнете всички полета:</h3>
-				</div>
-			</header> */}
-
 			<h1 className='heading-l'>Регистрация като учител</h1>
 			<br />
 			<h3 className='heading-s'>Моля попълнете всички полета:</h3>
@@ -85,24 +69,22 @@ export default function RegTeacherEl() {
 					<img src={illustration} />
 					<p className='heading-m'>Вече имате регистрация?</p>
 					<Button
-						className='button'
+						className='button heading-s'
 						theme='red'
+						type='button'
 						onClick={() => changeActiveForm('logTeacher')}
 					>
 						Вход
 					</Button>
 				</div>
-
-				{/* ----------------FORM---------------------- */}
-
-				<form className='input-holder' onSubmit={register}>
+				<form className='input-holder ' onSubmit={register}>
 					<div className='group'>
 						<label htmlFor='name'>Име:</label>
 						<input
 							name='name'
 							type='text'
-							onChange={handleInput}
 							placeholder='Въведете своето име'
+							onChange={handleInput}
 							value={data.name}
 						/>
 						<span className='danger'>{errors.name || ''}</span>
@@ -205,16 +187,22 @@ export default function RegTeacherEl() {
 							value={data.password_confirmation}
 						/>
 					</div>
-
-					{/* Button */}
-
 					<div className='group'>
-						<Button className='button'>Регистрация</Button>
+						<Button className='button heading-s' type='submit'>
+							Регистрация
+						</Button>
 						<Button
-							className='button'
+							className='button heading-s mobile-button'
+							theme='red'
+							type='button'
+							onClick={() => changeActiveForm('logTeacher')}
+						>
+							Вход
+						</Button>
+						<Button
+							className='button heading-s'
 							theme='darkBlue'
-							onClick={() => changeActiveForm(null)}
-							type='submit'
+							onClick={closeForm}
 						>
 							Затвори
 						</Button>

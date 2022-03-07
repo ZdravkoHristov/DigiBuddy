@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
-export default function SelectAnswerType({ initialAnswers, setAnswers }) {
+import uuid from 'react-uuid';
+export default function SingleAnswerType({ initialAnswers, setAnswers }) {
+	console.log('initial answers: ', initialAnswers);
 	const [answersInfo, setAnswersInfo] = useState([]);
 	const [answersCount, setAnswersCount] = useState(0);
 
@@ -40,7 +41,7 @@ export default function SelectAnswerType({ initialAnswers, setAnswers }) {
 		setAnswersInfo(newArray);
 	}, [answersCount]);
 
-	const handleMark = (e, index) => {
+	const handleMark = e => {
 		setAnswersInfo(info => {
 			return info.map((answerInfo, i) => {
 				if (i === +e.target.name) {
@@ -54,11 +55,9 @@ export default function SelectAnswerType({ initialAnswers, setAnswers }) {
 
 	return (
 		<>
-			<h1>zdravko e gei</h1> 
 			<p className='answers-count'>
 				Брой отговори:{' '}
 				<input
-					name='n_answer'
 					type='number'
 					min='0'
 					value={answersCount}
@@ -71,10 +70,9 @@ export default function SelectAnswerType({ initialAnswers, setAnswers }) {
 					return (
 						<div className='answer' key={info.id}>
 							<input
-								name='answer'
+								name={index}
 								type='checkbox'
 								id={index}
-								name={index}
 								onChange={e => handleMark(e, index)}
 								checked={info.is_answer}
 							/>

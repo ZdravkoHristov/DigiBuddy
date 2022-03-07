@@ -58,9 +58,6 @@ export default function AssignmentType({ items, title, type }) {
 		);
 	};
 
-	// const typeAssignments = assignments.filter(({ type }) => type === info.type);
-	// console.log(info);
-
 	return (
 		<div className='assignment-type'>
 			<header className='header'>
