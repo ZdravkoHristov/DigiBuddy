@@ -15,6 +15,7 @@ use App\Http\Controllers\ChooseTasksController;
 use App\Http\Controllers\Test\RegisterController;
 use App\Http\Controllers\Auth\StudentRegisterController;
 use App\Http\Controllers\Auth\TeacherRegisterController;
+use App\Models\ChooseTask;
 
 // use App\Http\Controllers\Auth\HomeController;
 
@@ -76,23 +77,19 @@ Route::get("teacher/{id}/tasks/choose", [ChooseTasksController::class, 'showAllC
 Route::get("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
 Route::post("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
 Route::get("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
-Route::get("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
+Route::post("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
+Route::delete("teacher/{id}/task/{task_id}/choose/delete", [ChooseTasksController::class, 'deleteChooseTask'])->name('teacher.open.tasks');
 Route::delete("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
 Route::post("teacher/{id}/tasks/open", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
 //--------------------LOGGEDTEACHER/CLASSES-----------------
 Route::get("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
 Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
-// Route::get("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
-// Route::post("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
-// Route::get("teacher/{id}/folders/{f_id}/child", [FoldersController::class, 'createFile'])->name('teacher.folder');
 Route::get('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
 Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);
 Route::get('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
 Route::get('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);
 Route::get('teacher/{id}/folder/{folder_id}/file/show', [FileController::class, 'showFile']);
 Route::get('teacher/{id}/file/{file_id}/show', [FileController::class, 'showTasksOnFile']);
-// Route::post("teacher/{id}/tasks", [TasksController::class, 'insert'])->name('teacher.tasks');
-// Route::get('/teacher/register', [RegisterTeacherController::class, 'show']);
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
 // Route::post('/teacher/register', [RegisterTeacherController::class, 'store']);
 

@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 
 class OpenTasksController extends Controller
 {
-    protected function insertOpenTask($id){
+    protected function insertOpenTask($id, Request $request){
         $teacher = Teacher::findOrFail($id);
         
         $task = new OpenTask([
-            'name' => 'name na neshto',
-            'question' => 'vupros na neshto',
+            'name' => $request->input(['name']),
+            'question' => $request->input(['question']),
             'answer' => 'orgovor'
         ]);
         
