@@ -26,7 +26,7 @@ export default function Assignments() {
 		const typesLength = Object.keys(assignmentTypes).length;
 		Object.entries(assignmentTypes).forEach(async ([type, title], index) => {
 			const res = await axios.get(
-				`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}`
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}`
 			);
 
 			if (res.data.status === 200) {

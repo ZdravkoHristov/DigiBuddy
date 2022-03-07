@@ -36,7 +36,7 @@ export default function CustomAssignmentModal() {
 		}
 
 		const res = await axios.post(
-			`http://127.0.0.1:8000/api/teacher/${id}/tasks/choose/insert`,
+			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/choose/insert`,
 			{ ...assignmentInfo, ...additionalData }
 		);
 

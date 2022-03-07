@@ -43,7 +43,7 @@ export default function LoggedTeacher() {
 	useEffect(() => {
 		(async () => {
 			const res = await axios.get(
-				`http://127.0.0.1:8000/api/teacher/${id}/home`
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/home`
 			);
 
 			const fullName = res.data.info.name + ' ' + res.data.info.lname;
