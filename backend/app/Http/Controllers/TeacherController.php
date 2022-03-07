@@ -18,7 +18,6 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         $info = $teacher;
-        // var_dump($teacher);
         return response()->json([
             'status' => 200,
             'info' => $info,
@@ -31,23 +30,19 @@ class TeacherController extends Controller
         $errors = Validator::make($request->all(),[
             'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'lname' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
-            // 'email' => 'required|max:255|email|unique:teachers',
             'subject' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}\x{0430}-\x{044F}]*)*$/u',
             'school' => 'required|max:255|regex:/[\x{0410}-\x{042F}\x{0430}-\x{044F}0-9\s\S]*$/u',
             'town' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'comm' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'area' => 'required|max:255|regex:/[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*(\s*[-]*[\x{0410}-\x{042F}][\x{0430}-\x{044F}]*)?$/u',
             'password' => 'required|max:255|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-        ])->errors();
-
-        
+        ])->errors();     
 
         if(count($errors) === 0){
             if(Auth::guard('teacher')->attempt(['id' => $id, 'password' => $request->input(['password'])])){
                 $teacher->update([
                     'name' => $request->input(['name']),
                     'lname' => $request->input(['lname']),
-                    // 'email' => $request->input(['email']),
                     'subject' => $request->input(['subject']),
                     'school' => $request->input(['school']),
                     'town' => $request->input(['town']),
@@ -59,6 +54,7 @@ class TeacherController extends Controller
                 ]);
             }
         }   
+
         return response()->json([
             'status' => 400,
             'errors' => $errors,
@@ -71,6 +67,8 @@ class TeacherController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('/');
+        return response()->json([
+            'message' => 'loggedout'
+        ]);
     }
 }
