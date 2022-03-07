@@ -37,23 +37,20 @@ export default function LoggedTeacher() {
 		{ text: 'Работни листове', to: '#', value: 'worksheets' },
 		{ text: 'Класове', to: '#', value: 'classes' },
 		{ text: 'Профил', to: '#', value: 'profile' },
-		{ text: 'Изход', to: '#', value: 'exit' },
+		{ text: 'Изход', to: '/', value: 'exit' },
 	];
 
-	const exit = async () => {
-		const res = await axios.post(
-			`http://127.0.0.1:8000/api/teacher/${id}/exit`
-		);
-	};
+	useEffect(() => {
+		(async () => {
+			const res = await axios.get(
+				`http://127.0.0.1:8000/api/teacher/${id}/home`
+			);
 
-	const fetchData = async () => {
-		const res = await axios.get(`http://127.0.0.1:8000/api/teacher/${id}/home`);
+			const fullName = res.data.info.name + ' ' + res.data.info.lname;
 
-		const fullName = res.data.info.name + ' ' + res.data.info.lname;
-
-		dispatch(setTeacher({ ...res.data.info, fullName }));
-	};
-	useEffect(fetchData, []);
+			dispatch(setTeacher({ ...res.data.info, fullName }));
+		})();
+	}, []);
 
 	return (
 		<>

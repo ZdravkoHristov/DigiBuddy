@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { teacherSelector } from '../../store/store';
 import uuid from 'react-uuid';
-export default function SingleAnswerType({ initialAnswers }) {
+export default function SingleAnswerType({ initialAnswers, setAnswers }) {
 	const [answersInfo, setAnswersInfo] = useState([]);
 	const [answersCount, setAnswersCount] = useState(0);
 
@@ -10,6 +13,7 @@ export default function SingleAnswerType({ initialAnswers }) {
 
 	useEffect(() => {
 		setAnswersCount(answersInfo.length);
+		setAnswers(answersInfo);
 	}, [answersInfo]);
 
 	useEffect(() => {
@@ -29,18 +33,18 @@ export default function SingleAnswerType({ initialAnswers }) {
 			newArray.push({
 				id: uuid(),
 				value: '',
-				isCorrect: false,
+				is_answer: false,
 			});
 		}
 
 		setAnswersInfo(newArray);
 	}, [answersCount]);
 
-	const handleMark = (e, index) => {
+	const handleMark = e => {
 		setAnswersInfo(info => {
 			return info.map((answerInfo, i) => {
 				if (i === +e.target.name) {
-					return { ...answerInfo, isCorrect: e.target.checked };
+					return { ...answerInfo, is_answer: e.target.checked };
 				}
 
 				return answerInfo;
@@ -65,12 +69,11 @@ export default function SingleAnswerType({ initialAnswers }) {
 					return (
 						<div className='answer' key={info.id}>
 							<input
-								name='answer'
+								name={index}
 								type='checkbox'
 								id={index}
-								name={index}
 								onChange={e => handleMark(e, index)}
-								checked={info.isCorrect}
+								checked={info.is_answer}
 							/>
 							<input
 								type='text'
@@ -78,7 +81,6 @@ export default function SingleAnswerType({ initialAnswers }) {
 								value={info.value}
 								onChange={e =>
 									setAnswersInfo(info => {
-										console.log(info);
 										const copy = [...info];
 										copy[index].value = e.target.value;
 										return copy;

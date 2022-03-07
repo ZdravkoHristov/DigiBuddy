@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
-export default function AssignmentType({ info }) {
+export default function AssignmentType({ items, title, type }) {
 	const dispatch = useDispatch();
 	const [showMain, setShowMain] = useState(true);
 	const { assignments } = useSelector(teacherSelector).info;
@@ -19,7 +19,7 @@ export default function AssignmentType({ info }) {
 		);
 	};
 
-	const MainPart = ({ assignments }) => {
+	const MainPart = ({ assignments, type }) => {
 		return (
 			<main className='main'>
 				<div className='content purple-scrollbar'>
@@ -42,6 +42,7 @@ export default function AssignmentType({ info }) {
 														customAssignment: assignment,
 														showCustomAssignment: true,
 														reviewingCustomAssignment: true,
+														customType: type,
 													})
 												);
 											}}
@@ -57,17 +58,15 @@ export default function AssignmentType({ info }) {
 		);
 	};
 
-	const typeAssignments = assignments.filter(({ type }) => type === info.type);
-
 	return (
 		<div className='assignment-type'>
 			<header className='header'>
-				<p className='main-text'>{info.name}</p>
+				<p className='main-text'>{title}</p>
 				<div className='right-side'>
 					<span className='count'>
-						<span className='number'>{typeAssignments.length}</span>
+						<span className='number'>{items.length}</span>
 
-						{typeAssignments.length === 1 ? 'задача' : 'задачи'}
+						{items.length === 1 ? 'задача' : 'задачи'}
 					</span>
 					<div className='icons'>
 						<i
@@ -76,7 +75,7 @@ export default function AssignmentType({ info }) {
 								dispatch(
 									setUiInfo({
 										showCustomAssignment: true,
-										customType: info.type,
+										customType: type,
 										reviewingCustomAssignment: false,
 									})
 								);
@@ -87,7 +86,7 @@ export default function AssignmentType({ info }) {
 				</div>
 			</header>
 
-			{showMain && <MainPart assignments={typeAssignments} />}
+			{showMain && <MainPart assignments={items} type='type' />}
 		</div>
 	);
 }
