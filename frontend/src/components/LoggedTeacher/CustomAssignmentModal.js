@@ -52,6 +52,7 @@ export default function CustomAssignmentModal() {
 	};
 
 	useEffect(() => {
+		console.log(uiInfo.customAssignment);
 		const updatedInfo = uiInfo.reviewingCustomAssignment
 			? uiInfo.customAssignment
 			: {};
@@ -100,7 +101,7 @@ export default function CustomAssignmentModal() {
 						/>
 						<span className='danger'>{errors.question || ''}</span>
 					</div>
-
+					{console.log(uiInfo.customType)}
 					{uiInfo.customType === 'choose' && (
 						<SelectAnswerType
 							initialAnswers={initialAnswers}

@@ -41,8 +41,6 @@ export default function Assignments() {
 		});
 	};
 
-	const { classes } = info;
-
 	useEffect(() => {
 		fetchAssignments();
 	}, []);

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import uuid from 'react-uuid';
 export default function SingleAnswerType({ initialAnswers, setAnswers }) {
+	console.log('initial answers: ', initialAnswers);
 	const [answersInfo, setAnswersInfo] = useState([]);
 	const [answersCount, setAnswersCount] = useState(0);
 
@@ -78,7 +79,7 @@ export default function SingleAnswerType({ initialAnswers, setAnswers }) {
 							<input
 								type='text'
 								placeholder='Въведете възможен отговор'
-								value={info.value}
+								value={info.answer}
 								onChange={e =>
 									setAnswersInfo(info => {
 										const copy = [...info];

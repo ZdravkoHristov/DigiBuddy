@@ -86,7 +86,7 @@ export default function AssignmentType({ items, title, type }) {
 				</div>
 			</header>
 
-			{showMain && <MainPart assignments={items} type='type' />}
+			{showMain && <MainPart assignments={items} type={type} />}
 		</div>
 	);
 }
