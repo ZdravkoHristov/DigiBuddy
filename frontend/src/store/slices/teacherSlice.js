@@ -170,7 +170,6 @@ const teacherSlice = createSlice({
 		info: {
 			name: 'Здравко',
 			surname: 'Христов',
-			fullName: 'Здравко Христов',
 			email: 'zdravko.hristov@sou-zlatarov.org',
 			school: 'СУ "Проф. д-р Асен Златаров"',
 			city: 'Първомай',
@@ -178,6 +177,17 @@ const teacherSlice = createSlice({
 			role: 'Учител',
 			subject: 'информационни технологии',
 			assignments: [
+				/** ASSIGNMENTS TABLE |  TYPES TABLE    | ANSWERS TABLE
+				 * ex_id 			  |		id			| id
+				 * teacher_id		  |		ex_id		| ex_id
+				 * type				  |		type_name	| answer
+				 * name				  |					| is_answer
+				 * question			  |					|
+				 * 					  |					|
+				 * 	suzdava se edna po edna zadacha one to one zadacha svurzana s uchitelq
+				 * tazi zadacha moje da bude samo edin tip one to one s types no moje da ima bezkrai otgovori
+				 * has many otgovori
+				 */
 				{
 					id: uuid(),
 					name: 'През коя година...',
@@ -206,8 +216,18 @@ const teacherSlice = createSlice({
 			],
 			students: FAKE_STUDENTS,
 			activeAssignments: [],
+			customAssignmentData: null,
+		},
+	},
+	reducers: {
+		setTeacher: (state, { payload }) => {
+			// console.log('payload');
+			// console.log(payload);
+			state.info = { ...state.info, ...payload };
 		},
 	},
 });
+
+export const { setTeacher } = teacherSlice.actions;
 
 export default teacherSlice.reducer;
