@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
@@ -7,12 +9,18 @@ export default function AssignmentType({ items, title, type }) {
 	const [showMain, setShowMain] = useState(true);
 	const { assignments } = useSelector(teacherSelector).info;
 
+	const {id} = useParams();
+	
+	const deleteTask = async (taskId) => {
+		const res = await axios.delete(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${taskId}/${type}/delete`) 
+	}
+
 	const UpArrow = () => {
 		return (
 			<i className='fas fa-chevron-up' onClick={() => setShowMain(false)}></i>
 		);
 	};
-
+	
 	const DownArrow = () => {
 		return (
 			<i className='fas fa-chevron-down' onClick={() => setShowMain(true)}></i>
@@ -47,7 +55,7 @@ export default function AssignmentType({ items, title, type }) {
 												);
 											}}
 										></i>{' '}
-										<i className='fas fa-trash'></i>
+										<i className='fas fa-trash' onClick={() => deleteTask(assignment.id)}></i>
 									</div>
 								</div>
 							</div>

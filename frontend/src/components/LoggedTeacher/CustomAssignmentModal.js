@@ -40,19 +40,18 @@ export default function CustomAssignmentModal() {
 			{ ...assignmentInfo, ...additionalData }
 		);
 
-		console.log('res: ', res);
+		setErrors({});
 
 		if (res.data.status === 200) {
 			console.log(res.data.info);
 		}
 		if (res.data.status === 400) {
 			console.log(res.data.errors);
-			setErrors({});
+			setErrors(res.data.errors);
 		}
 	};
 
 	useEffect(() => {
-		console.log(uiInfo.customAssignment);
 		const updatedInfo = uiInfo.reviewingCustomAssignment
 			? uiInfo.customAssignment
 			: {};
@@ -77,21 +76,23 @@ export default function CustomAssignmentModal() {
 			>
 				<form onSubmit={submitHandler}>
 					<div className='generic-data'>
-						<label htmlFor='name'>Въведете име на задачата: </label>
-						<input
+					<label htmlFor='name'>Име: </label>
+					<input
 							type='text'
 							id='name'
+							placeholder = 'Въведете име на задачата'
 							value={assignmentInfo.name || ''}
 							onChange={e => {
 								setAssignmentInfo({ ...assignmentInfo, name: e.target.value });
 							}}
 						/>
 						<span className='danger'>{errors.name || ''}</span>
-						<label htmlFor='question'>Въведете въпрос: </label>
+						<label htmlFor='question'>Въпрос: </label>
 						<input
 							type='text'
 							id='question'
 							value={assignmentInfo.question || ''}
+							placeholder = 'Въведете въпрос'
 							onChange={e => {
 								setAssignmentInfo({
 									...assignmentInfo,
@@ -101,7 +102,7 @@ export default function CustomAssignmentModal() {
 						/>
 						<span className='danger'>{errors.question || ''}</span>
 					</div>
-					{console.log(uiInfo.customType)}
+					
 					{uiInfo.customType === 'choose' && (
 						<SelectAnswerType
 							initialAnswers={initialAnswers}
