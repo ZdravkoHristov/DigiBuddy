@@ -92,14 +92,6 @@ const RegisterEl = styled.section`
 
 		font-size: 16px;
 	}
-	.danger {
-		letter-spacing: 1px;
-		font-size: 1.2rem;
-		width: 100%;
-		display: block;
-		margin: 1rem 0 0.5rem 1rem;
-		color: #d15568;
-	}
 `;
 
 export default RegisterEl;

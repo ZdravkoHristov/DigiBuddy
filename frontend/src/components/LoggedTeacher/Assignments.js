@@ -26,8 +26,7 @@ export default function Assignments() {
 		let currentInfo = {};
 		const typesLength = Object.keys(assignmentTypes).length;
 		Object.entries(assignmentTypes).forEach( async ([type, title], index) => {
-			const res = await axios.get(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/tasks/${type}`);
-		// console.log(res.data);
+			const res = await axios.get(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}`);
 			if(res.data.status === 200){
 				const newType  = {title, items:res.data.tasks};
 				currentInfo = {...currentInfo, [type]:newType};
@@ -49,7 +48,6 @@ export default function Assignments() {
 	const assignmentElements = () => {
 		return Object.entries(assignments).map(([type, info]) => {
 			const {title, items} = info;
-			// return <p key={type}>{title}</p>
 			return <AssignmentType key={type} items={items} title={title} type={type}/>;
 		})
 	};
@@ -58,8 +56,6 @@ export default function Assignments() {
 		<>
 			{uiInfo.showCustomAssignment && <CustomAssignmentModal />}
 			<FoldingContainer className=' container'>
-				{/* {types.map(type => {
-				})} */}
 				{loading ? 'Зарежда...' : assignmentElements()}
 			</FoldingContainer>
 		</>

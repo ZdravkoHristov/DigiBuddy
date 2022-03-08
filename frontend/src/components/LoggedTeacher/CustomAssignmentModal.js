@@ -22,19 +22,23 @@ export default function CustomAssignmentModal() {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		if(uiInfo.customType === 'choose'){
+		const type = uiInfo.customType;
+		if(type === 'choose'){
 			const filteredAnswers = answers.filter(({value}) => value !== '');
 			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
 		}
+
 		
-		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/tasks/choose/insert`, {...assignmentInfo, ...additionalData}) 
+		const res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
+		
+		setErrors({});
 		
 		if(res.data.status === 200){
 			console.log(res.data.info);
 		}
 		if(res.data.status === 400){
 			console.log(res.data.errors);
-			setErrors({});
+			setErrors(res.data.errors);
 		}
 	}
 
@@ -63,21 +67,23 @@ export default function CustomAssignmentModal() {
 			>
 				<form onSubmit={submitHandler}>
 					<div className='generic-data'>
-						<label htmlFor='name'>Въведете име на задачата: </label>
+						<label htmlFor='name'>Име: </label>
 						<input
 							type='text'
 							id='name'
 							value={assignmentInfo.name || ''}
+							placeholder = 'Въведете име на задачата'
 							onChange={e => {
 								setAssignmentInfo({ ...assignmentInfo, name: e.target.value });
 							}}
-						/>
+							/>
 						<span className='danger'>{errors.name||""}</span>
-						<label htmlFor='question'>Въведете въпрос: </label>
+						<label htmlFor='question'>Въпрос: </label>
 						<input
 							type='text'
 							id='question'
 							value={assignmentInfo.question || ''}
+							placeholder = 'Въведете въпрос'
 							onChange={e => {
 								setAssignmentInfo({
 									...assignmentInfo,
@@ -85,7 +91,7 @@ export default function CustomAssignmentModal() {
 								});
 							}}
 						/>
-						<span className='danger'>{errors.name||""}</span>
+						<span className='danger'>{errors.question||""}</span>
 					</div>
 
 					{uiInfo.customType === 'choose' && (

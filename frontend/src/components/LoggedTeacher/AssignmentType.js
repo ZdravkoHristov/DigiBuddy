@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
@@ -13,11 +15,17 @@ export default function AssignmentType({ items, title, type }) {
 		);
 	};
 
+	const {id} = useParams();
+
 	const DownArrow = () => {
 		return (
 			<i className='fas fa-chevron-down' onClick={() => setShowMain(true)}></i>
 		);
 	};
+
+	const deleteTask = async (taskId) => {
+		const res = await axios.delete(`http://127.0.0.1:8000/api/teacher/${id}/task/${taskId}/${type}/delete`) 
+	}
 
 	const MainPart = ({ assignments, type }) => {
 		return (
@@ -47,7 +55,7 @@ export default function AssignmentType({ items, title, type }) {
 												);
 											}}
 										></i>{' '}
-										<i className='fas fa-trash'></i>
+										<i className='fas fa-trash' onClick={() => deleteTask(assignment.id)}></i>
 									</div>
 								</div>
 							</div>
@@ -57,9 +65,6 @@ export default function AssignmentType({ items, title, type }) {
 			</main>
 		);
 	};
-
-	// const typeAssignments = assignments.filter(({ type }) => type === info.type);
-	// console.log(info);
 
 	return (
 		<div className='assignment-type'>

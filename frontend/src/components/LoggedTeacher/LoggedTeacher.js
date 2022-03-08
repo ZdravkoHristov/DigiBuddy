@@ -25,10 +25,6 @@ export default function LoggedTeacher() {
 	const dispatch = useDispatch();
 
 	const {id} = useParams();
-	
-	const exit = async () => {
-		const res = await axios.post(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/exit`);
-	}
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
@@ -36,13 +32,13 @@ export default function LoggedTeacher() {
 		{ text: 'Задачи', to: '#', value: 'assignments' },
 		{ text: 'Класове', to: '#', value: 'classes' },
 		{ text: 'Профил', to: '#', value: 'profile' },
-		{ text: 'Изход', to: 'exit', value: 'exit' },
+		{ text: 'Изход', to: '/', value: 'exit' },
 	];
 
 
 	/**Denitsa */
 	const fetchData = async () => {
-		const res = await axios.get(`https://digibuddy-backend.herokuapp.com/api/teacher/${id}/home`);
+		const res = await axios.get(`http://127.0.0.1:8000/api/teacher/${id}/home`);
 
 		console.log(res.data.info);
 		const fullName = res.data.info.name + " " + res.data.info.lname;
