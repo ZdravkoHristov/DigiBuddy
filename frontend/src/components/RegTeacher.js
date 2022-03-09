@@ -77,6 +77,9 @@ export default function RegTeacherEl() {
 						Вход
 					</Button>
 				</div>
+
+				{/* ----------------FORM---------------------- */}
+
 				<form className='input-holder ' onSubmit={register}>
 					<div className='group'>
 						<label htmlFor='name'>Име:</label>
@@ -187,6 +190,9 @@ export default function RegTeacherEl() {
 							value={data.password_confirmation}
 						/>
 					</div>
+
+					{/* Button */}
+
 					<div className='group'>
 						<Button className='button heading-s' type='submit'>
 							Регистрация
