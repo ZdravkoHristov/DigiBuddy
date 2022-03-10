@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { setHomeData } from "../store/slices/homeStateSlice";
 import RegisterEl from "./styles/RegisterEl.style";
@@ -6,6 +8,26 @@ import illustration from "../assets/svgs/role-student.svg";
 import Button from "./Button";
 export default function RegStudent() {
     const dispatch = useDispatch();
+
+    //DENITSA
+    
+	const dataTemp = {
+		name: '',
+		lname: '',
+		email: '',
+		subject: '',
+		school: '',
+		town: '',
+		comm: '',
+		area: '',
+		password: '',
+		password_confirmation: '',
+	};
+
+	const [data, setData] = useState({ ...dataTemp });
+	const [errors, setErrors] = useState({});
+
+
     const closeForm = () => {
         dispatch(setHomeData({ showForm: false }));
     };
