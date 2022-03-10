@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,8 @@ use App\Http\Controllers\OpenTasksController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ChooseTasksController;
 use App\Http\Controllers\Test\RegisterController;
-use App\Http\Controllers\Auth\StudentRegisterController;
+use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Student\StudentRegisterController;
 use App\Http\Controllers\Auth\TeacherRegisterController;
 
 // use App\Http\Controllers\Auth\HomeController;
@@ -29,40 +31,21 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 |
 */
 
-// Route::name('teacher.')->namespace('Teacher')->prefix('teacher')->group(function(){
-
-//     Route::namespace('Auth')->middleware('guest:teacher')->group(function(){
-//         //login route
-//         Route::get('/teacher/login', [TeacherRegisterController::class, 'login'])->name('login');
-//         Route::post('/teacher/login', [TeacherRegisterController::class, 'login']);
-//     });
-
-//     Route::namespace('Auth')->middleware('auth:teacher')->group(function(){
-
-//         Route::post('/logout',function(){
-//             Auth::guard('teacher')->logout();
-//             return redirect()->action([
-//                 TeacherRegisterController::class,
-//                 'login'
-//             ]);
-//         })->name('logout');
-
-//     });
-
-// });
-
-Route::get('/', function(){
-    return Teacher::find(1);
-});
 
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
 Route::get('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
+Route::get('/student/neshto', [StudentRegisterController::class, 'neshto'])->name('student.register');
+Route::post('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
+Route::get('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
 //--------------------LOGIN-----------------
+Route::get('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
+Route::post('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
 Route::get('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
 Route::post('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
 //--------------------LOGGEDTEACHER/HOME-----------------
-
+Route::get('/student/test', [StudentController::class, 'index'])->middleware(['student']);
+Route::get('/student/{id}/home', [StudentRegisterController::class, 'home'])->name('student.home');
 //--------------------LOGGEDTEACHER/SETTINGS-----------------
 Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('home');
 Route::get("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
