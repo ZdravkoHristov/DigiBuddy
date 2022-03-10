@@ -34,11 +34,14 @@ export default function LoggedTeacher() {
 		{ text: 'Начало', to: '#', value: 'home' },
 
 		{ text: 'Задачи', to: '#', value: 'assignments' },
-		{ text: 'Работни листове', to: '#', value: 'worksheets' },
+		{ text: 'Колекции', to: '#', value: 'worksheets' },
 		{ text: 'Класове', to: '#', value: 'classes' },
 		{ text: 'Профил', to: '#', value: 'profile' },
 		{ text: 'Изход', to: '/', value: 'exit' },
 	];
+
+	const breakpoints = new Map();
+	breakpoints.set(1430, 2);
 
 	useEffect(() => {
 		(async () => {
@@ -61,7 +64,11 @@ export default function LoggedTeacher() {
 							backgroundImage: `url("${headerBackground}")`,
 						}}
 					>
-						<Navbar links={navLinks} outCount={2}></Navbar>
+						<Navbar
+							links={navLinks}
+							outCount={1}
+							breakpoints={breakpoints}
+						></Navbar>
 						<div>
 							{navActive === 'home' && <Home text={homeText} />}
 							{navActive === 'worksheets' && <Worksheets />}

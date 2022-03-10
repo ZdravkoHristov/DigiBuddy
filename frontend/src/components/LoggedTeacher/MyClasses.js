@@ -22,9 +22,9 @@ export default function MyClasses() {
 			{showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
 
 			<FoldingContainer className='classes-holder  container'>
-				{classes.length === 0 ? (
+				{!classes.length && (
 					<h1>Здравейте, г-н/г-жо {info.fullName}, Вие нямате класове</h1>
-				) : null}
+				)}
 
 				{classes.map(singleClass => {
 					return <SingleClass key={singleClass.id} info={singleClass} />;

@@ -8,19 +8,26 @@ export default function AssignmentType({ items, title, type }) {
 	const dispatch = useDispatch();
 	const [showMain, setShowMain] = useState(true);
 	const { assignments } = useSelector(teacherSelector).info;
+	const { id } = useParams();
+	const borderRadiusBottom = showMain ? 0 : 8;
+	const style = {
+		borderBottomLeftRadius: borderRadiusBottom + 'px',
+		borderBottomRightRadius: borderRadiusBottom + 'px',
+		marginBottom: showMain ? '0' : '10px',
+	};
 
-	const {id} = useParams();
-	
-	const deleteTask = async (taskId) => {
-		const res = await axios.delete(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${taskId}/${type}/delete`) 
-	}
+	const deleteTask = async taskId => {
+		const res = await axios.delete(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${taskId}/${type}/delete`
+		);
+	};
 
 	const UpArrow = () => {
 		return (
 			<i className='fas fa-chevron-up' onClick={() => setShowMain(false)}></i>
 		);
 	};
-	
+
 	const DownArrow = () => {
 		return (
 			<i className='fas fa-chevron-down' onClick={() => setShowMain(true)}></i>
@@ -55,7 +62,10 @@ export default function AssignmentType({ items, title, type }) {
 												);
 											}}
 										></i>{' '}
-										<i className='fas fa-trash' onClick={() => deleteTask(assignment.id)}></i>
+										<i
+											className='fas fa-trash'
+											onClick={() => deleteTask(assignment.id)}
+										></i>
 									</div>
 								</div>
 							</div>
@@ -68,7 +78,7 @@ export default function AssignmentType({ items, title, type }) {
 
 	return (
 		<div className='assignment-type'>
-			<header className='header'>
+			<header className='header' style={style}>
 				<p className='main-text'>{title}</p>
 				<div className='right-side'>
 					<span className='count'>

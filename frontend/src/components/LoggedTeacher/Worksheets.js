@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import useOutsideClick from '../../hooks/useOutsideClick';
 import { useSelector } from 'react-redux';
 import { teacherSelector } from '../../store/store';
 import WorksheetsEl from './Worksheets.style';
@@ -40,14 +41,34 @@ export default function Worksheets() {
 
 	const FolderHolder = ({ collection }) => {
 		const [opened, setOpened] = useState(false);
+		const [showTooltip, setShowTooltip] = useState(false);
+		const moreRef = useRef();
+		const tooltipRef = useRef();
+		const clickedOutsideTooltip = useOutsideClick(tooltipRef);
+
+		useEffect(() => {
+			const [outsideClick, target] = clickedOutsideTooltip;
+			if (target === moreRef.current) return;
+			if (outsideClick) setShowTooltip(false);
+		}, [clickedOutsideTooltip]);
 
 		return (
 			<section className='folder-holder' key={collection.id}>
 				<div className='folder-content'>
 					<div className='branch-down'></div>
-					<div className='row content-row'>
+					<div
+						className='row content-row '
+						onClick={e => {
+							setOpened(!opened);
+						}}
+					>
 						<div className='info'>
-							<i className='far fa-folder'></i>{' '}
+							{opened ? (
+								<i className='far fa-folder-open'></i>
+							) : (
+								<i className='far fa-folder'></i>
+							)}
+
 							<span className='name'>{collection.name}</span>
 						</div>
 
@@ -59,10 +80,45 @@ export default function Worksheets() {
 								<i className='fas fa-trash-alt icon'></i>
 							</div>
 
-							<span
-								className='open-close-icon '
-								onClick={() => setOpened(!opened)}
+							<div
+								className='more'
+								ref={moreRef}
+								onClick={e => {
+									e.stopPropagation();
+
+									setShowTooltip(!showTooltip);
+								}}
 							>
+								...
+								{showTooltip && (
+									<div className='tooltip' ref={tooltipRef}>
+										<p>
+											<span>
+												<i className='fas fa-folder-plus icon'></i> Нова папка
+											</span>
+										</p>
+										<p>
+											<span>
+												{' '}
+												<i className='fas fa-file-import icon'></i> Вмъкване
+											</span>
+										</p>
+										<p>
+											<span>
+												{' '}
+												<i className='far fa-edit icon'></i> Редактиране
+											</span>
+										</p>
+										<p>
+											<span>
+												<i className='fas fa-trash-alt icon'></i>Изтриване
+											</span>
+										</p>
+									</div>
+								)}
+							</div>
+
+							<span className='open-close-icon '>
 								{opened ? (
 									<i className='fas fa-chevron-up icon'></i>
 								) : (

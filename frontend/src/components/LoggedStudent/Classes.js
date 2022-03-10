@@ -17,11 +17,11 @@ export default function Classes() {
 			{uiInfo.showJoinClass && <JoinClassModal />}
 			<FoldingContainer className='classes-holder  container'>
 				{uiInfo.showAssignmentInfo && <AssignmentsInfo></AssignmentsInfo>}
-				{classes.length === 0 ? (
+				{!classes.length && (
 					<h1>
 						Здравейте, {info.fullName}! Все още не сте част от никакви класове
 					</h1>
-				) : null}
+				)}
 
 				{classes.map(singleClass => {
 					return <SingleClass key={singleClass.id} info={singleClass} />;

@@ -136,26 +136,6 @@ const NavbarEl = styled.nav`
 			color: #724263;
 		}
 	}
-
-	@media (max-width: 900px) {
-		border-bottom: 1px solid var(--purple);
-	}
-
-	@media (min-width: 651px) {
-		.container {
-			width: 84%;
-		}
-
-		.burger-icon {
-			display: none;
-		}
-	}
-
-	@media (max-width: 650px) {
-		.main-menu {
-			display: none;
-		}
-	}
 `;
 
 export default NavbarEl;

@@ -11,6 +11,10 @@ const WorksheetsEl = styled.div`
 		max-height: 400px;
 		overflow-y: auto;
 		padding-right: 20px;
+
+		@media (max-width: 1200px) {
+			max-height: 600px;
+		}
 	}
 	.folder-holder {
 		display: flex;
@@ -20,15 +24,7 @@ const WorksheetsEl = styled.div`
 
 	.folder-content {
 		position: relative;
-		/*
-		&::before {
-			content: '';
-			position: absolute;
-			width: 2px;
-			background: var(--purple);
-			height: 100%;
-			left: -2px;
-		} */
+
 		width: 98%;
 	}
 
@@ -47,6 +43,7 @@ const WorksheetsEl = styled.div`
 		justify-content: space-between;
 		margin: 1rem 0;
 		position: relative;
+		cursor: pointer;
 		&::before {
 			content: '';
 			position: absolute;
@@ -83,6 +80,72 @@ const WorksheetsEl = styled.div`
 
 		.empty-space {
 			width: 1.75rem;
+		}
+
+		.more {
+			font-size: 1.7rem;
+
+			position: relative;
+			top: -10px;
+			cursor: pointer;
+		}
+
+		.tooltip {
+			position: absolute;
+			bottom: -117px;
+			background: #f5f5f5;
+			font-size: 15px;
+			left: -114px;
+			border-radius: 5px;
+
+			border: 1px solid var(--purple);
+			z-index: 1;
+
+			&::before {
+				content: '';
+				background: var(--purple);
+				width: 20px;
+				height: 11px;
+				display: block;
+				clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+				position: absolute;
+				top: -11px;
+				right: 2px;
+			}
+
+			p {
+				&:first-child {
+					border-top-left-radius: 5px;
+					border-top-right-radius: 5px;
+				}
+
+				&:nth-child(2) {
+					i {
+						position: relative;
+						left: -2px;
+					}
+				}
+
+				&:last-child {
+					border-bottom-left-radius: 5px;
+					border-bottom-right-radius: 5px;
+				}
+
+				&:hover {
+					background-color: var(--purple);
+					color: #fff;
+				}
+			}
+
+			span {
+				padding: 4px 8px;
+				display: flex;
+
+				i {
+					font-size: 14px;
+					margin-right: 3px;
+				}
+			}
 		}
 	}
 
@@ -127,6 +190,19 @@ const WorksheetsEl = styled.div`
 
 	.files-holder {
 		width: 98%;
+	}
+
+	@media (min-width: 701px) {
+		.more {
+			display: none;
+		}
+	}
+
+	@media (max-width: 700px) {
+		.crud-icons,
+		.open-close-icon {
+			display: none;
+		}
 	}
 `;
 

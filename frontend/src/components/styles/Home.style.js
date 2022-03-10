@@ -92,6 +92,28 @@ const HomeEl = styled.div`
 		}
 	}
 
+	@media (max-width: 900px) {
+		.main-nav {
+			border-bottom: 1px solid var(--purple);
+		}
+	}
+
+	@media (min-width: 651px) {
+		.container {
+			width: 84%;
+		}
+
+		.burger-icon {
+			display: none;
+		}
+	}
+
+	@media (max-width: 650px) {
+		.main-menu {
+			display: none;
+		}
+	}
+
 	@media (min-width: 901px) {
 		section[id='entrance'] + div .mobile-button {
 			display: none;
