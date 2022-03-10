@@ -58,17 +58,19 @@ export default function Navbar({ links, outCount, breakpoints }) {
 	};
 
 	const burgerHandler = () => {
-		const isBurgerOpened = burgerData.show;
-		burgerRef.current.className = !isBurgerOpened
-			? 'burger-icon close'
-			: 'burger-icon lines';
 		dispatch(
 			setBurgerData({
-				show: !isBurgerOpened,
-				items: isBurgerOpened ? [] : links,
+				show: !burgerData.show,
+				items: burgerData.show ? [] : links,
 			})
 		);
 	};
+
+	useEffect(() => {
+		burgerRef.current.className = burgerData.show
+			? 'burger-icon close'
+			: 'burger-icon lines';
+	}, [burgerData.show]);
 
 	useEffect(handleClasses);
 
