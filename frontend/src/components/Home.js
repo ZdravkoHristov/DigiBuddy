@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { homeStateSelector } from '../store/store';
+import { setActive } from '../store/slices/navbarSlice';
 import Header from './Header';
 import AnimatedLine from './AnimatedLine';
 import AnimatedElement from './AnimatedElement';
@@ -14,7 +16,10 @@ import HomeEl from './styles/Home.style';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
 export default function Home() {
+	const dispatch = useDispatch();
 	const { activeForm, showForm } = useSelector(homeStateSelector).data;
+	const gradientRef = useRef();
+	const scrollTimerRef = useRef();
 
 	const navLinks = [
 		{ text: 'Начало', to: '#', value: 'home' },
@@ -44,29 +49,52 @@ export default function Home() {
 		);
 	};
 
+	const handleActive = () => {
+		clearTimeout(scrollTimerRef.current);
+
+		const scrolled = window.scrollY + 300;
+
+		[...gradientRef.current.children].forEach(child => {
+			const top = child.offsetTop;
+			const bottom = top + child.offsetHeight;
+
+			if (scrolled >= top && scrolled <= bottom) {
+				if (!child.dataset.nav) return;
+
+				scrollTimerRef.current = setTimeout(() => {
+					dispatch(setActive(child.dataset.nav));
+				}, 50);
+			}
+		});
+	};
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleActive);
+		return () => window.removeEventListener('scroll', handleActive);
+	}, []);
+
 	return (
 		<HomeEl>
-			<div className='gradient-holder'>
-				<Header heroContent={<HeroContent />}>
+			<div className='gradient-holder' ref={gradientRef}>
+				<Header data-nav='home' heroContent={<HeroContent />}>
 					<Navbar links={navLinks} outCount={1} breakpoints={navBreakpoints} />
 					<HeroContent className='hero container' />
 				</Header>
 				<AnimatedLine />
-				<RolesSection />
+				<RolesSection data-nav='entrance' />
 				<AnimatedElement
 					isMounted={showForm}
 					inClass={'slide-down-animation'}
 					outClass='slide-up-animation'
 					delayTime={700}
 				>
-					{console.log(showForm, activeForm)}
 					{activeForm === 'regTeacher' && <RegTeacher />}
 					{activeForm === 'regStudent' && <RegStudent />}
 					{activeForm === 'logTeacher' && <LogTeacher />}
 					{activeForm === 'logStudent' && <LogStudent />}
 				</AnimatedElement>
 
-				<Faq />
+				<Faq data-nav='faq' />
 			</div>
 		</HomeEl>
 	);

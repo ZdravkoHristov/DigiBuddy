@@ -1,9 +1,9 @@
 import FaqEl from './styles/Faq.style';
 import FaqItem from './FaqItem';
 
-export default function Faq() {
+export default function Faq(props) {
 	return (
-		<FaqEl id='faq'>
+		<FaqEl id='faq' {...props}>
 			<div className='container'>
 				<h2 className='heading-l'>Често задавани въпроси: </h2>
 
