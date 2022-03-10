@@ -10,6 +10,7 @@ import LogTeacher from './LogTeacher';
 import LogStudent from './LogStudent';
 import Faq from './Faq';
 import Navbar from './Navbar';
+
 import HomeEl from './styles/Home.style';
 import heroIllustration from '../assets/illustrations/home-image.svg';
 
@@ -45,29 +46,35 @@ export default function Home() {
 	};
 
 	return (
-		<HomeEl>
-			<div className='gradient-holder'>
-				<Header heroContent={<HeroContent />}>
-					<Navbar links={navLinks} outCount={1} breakpoints={navBreakpoints} />
-					<HeroContent className='hero container' />
-				</Header>
-				<AnimatedLine />
-				<RolesSection />
-				<AnimatedElement
-					isMounted={showForm}
-					inClass={'slide-down-animation'}
-					outClass='slide-up-animation'
-					delayTime={700}
-				>
-					{console.log(showForm, activeForm)}
-					{activeForm === 'regTeacher' && <RegTeacher />}
-					{activeForm === 'regStudent' && <RegStudent />}
-					{activeForm === 'logTeacher' && <LogTeacher />}
-					{activeForm === 'logStudent' && <LogStudent />}
-				</AnimatedElement>
+		<div style={{ position: 'relative' }}>
+			<HomeEl>
+				<div className='gradient-holder'>
+					<Header heroContent={<HeroContent />}>
+						<Navbar
+							links={navLinks}
+							outCount={1}
+							breakpoints={navBreakpoints}
+						/>{' '}
+						<HeroContent className='hero container' />
+					</Header>
+					<AnimatedLine />
+					<RolesSection />
+					<AnimatedElement
+						isMounted={showForm}
+						inClass={'slide-down-animation'}
+						outClass='slide-up-animation'
+						delayTime={700}
+					>
+						{console.log(showForm, activeForm)}
+						{activeForm === 'regTeacher' && <RegTeacher />}
+						{activeForm === 'regStudent' && <RegStudent />}
+						{activeForm === 'logTeacher' && <LogTeacher />}
+						{activeForm === 'logStudent' && <LogStudent />}
+					</AnimatedElement>
 
-				<Faq />
-			</div>
-		</HomeEl>
+					<Faq />
+				</div>
+			</HomeEl>
+		</div>
 	);
 }
