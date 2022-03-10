@@ -45,6 +45,7 @@ export default function Navbar({ links, outCount, breakpoints }) {
 	const handleClasses = () => {
 		const children = menuRef.current.childNodes;
 		for (let i = 0; i < children.length; i++) {
+			console.log(i, outItemCount);
 			const item = children[i];
 			if (isSticky || i < outItemCount) {
 				item.classList.remove('in');

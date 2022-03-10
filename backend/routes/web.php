@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NeshtoController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Student\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,3 @@ use App\Http\Controllers\TeacherController;
 |
 */
 
-Route::get('/', function(){
-    return view('home');
-});

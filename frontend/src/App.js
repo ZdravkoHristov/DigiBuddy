@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import LoggedTeacher from './components/LoggedTeacher/LoggedTeacher';
 import LoggedStudent from './components/LoggedStudent/LoggedStudent';
+import Authors from './components/Authors';
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='api/teacher/:id/home' element={<LoggedTeacher />} />
 			<Route path='loggedStudent' element={<LoggedStudent />} />
+			<Route path='authors' element={<Authors />} />
 		</Routes>
 	);
 }
