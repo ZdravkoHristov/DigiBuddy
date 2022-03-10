@@ -12,6 +12,7 @@ const NavbarEl = styled.nav`
 		&.sticky {
 			box-shadow: 0 0 25px #242130;
 			background: #f1f1f1fa;
+			border-bottom: 0;
 		}
 	}
 
@@ -134,6 +135,10 @@ const NavbarEl = styled.nav`
 		a {
 			color: #724263;
 		}
+	}
+
+	@media (max-width: 900px) {
+		border-bottom: 1px solid var(--purple);
 	}
 
 	@media (min-width: 651px) {
