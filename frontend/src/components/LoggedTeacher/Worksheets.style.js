@@ -114,6 +114,8 @@ const WorksheetsEl = styled.div`
 			}
 
 			p {
+				border-bottom: 1px solid rgba(116, 66, 99, 0.2);
+
 				&:first-child {
 					border-top-left-radius: 5px;
 					border-top-right-radius: 5px;
@@ -129,6 +131,7 @@ const WorksheetsEl = styled.div`
 				&:last-child {
 					border-bottom-left-radius: 5px;
 					border-bottom-right-radius: 5px;
+					border-bottom: 0;
 				}
 
 				&:hover {
