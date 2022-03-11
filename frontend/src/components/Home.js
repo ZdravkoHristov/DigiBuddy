@@ -83,6 +83,7 @@ export default function Home() {
 				<AnimatedLine />
 				<RolesSection data-nav='entrance' />
 				<AnimatedElement
+					id='forms'
 					isMounted={showForm}
 					inClass={'slide-down-animation'}
 					outClass='slide-up-animation'

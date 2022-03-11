@@ -17,10 +17,16 @@ const RegisterEl = styled.section`
 	h1,
 	h3 {
 		text-align: left;
-		left: 40%; /* naglasi go posle :DD*/
+		left: 40%;
 		margin: 1rem 0;
 		display: inline-block;
 		position: relative;
+
+		@media (min-width: 901px) {
+			left: 0;
+			width: 63%;
+			text-align: right;
+		}
 	}
 	h1 {
 		letter-spacing: 2px;
@@ -97,6 +103,17 @@ const RegisterEl = styled.section`
 		}
 		.group input {
 			font-size: 1.7rem;
+		}
+	}
+
+	@media (min-width: 901px) {
+		.student-form {
+			h1,
+			h3 {
+				left: 0;
+				width: 63%;
+				text-align: right;
+			}
 		}
 	}
 `;

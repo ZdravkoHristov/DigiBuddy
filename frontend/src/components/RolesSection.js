@@ -14,19 +14,28 @@ export default function RolesSection(props) {
 		dispatch(setHomeData({ activeForm: newActive, showForm: true }));
 	};
 
+	const clickHandler = form => {
+		const ANIMATION_SLIDE_TIME = 700;
+		changeActiveForm(form);
+		setTimeout(() => {
+			const formsEl = document.getElementById('forms');
+			window.scrollTo(0, formsEl.offsetTop - 100);
+		}, ANIMATION_SLIDE_TIME);
+	};
+
 	return (
 		<RolesSec className='roles container' id='entrance' {...props}>
 			<h1 className='heading-l'>
 				Регистрирайте се и станете част от нашата платформа!
 			</h1>
-			<h3 className='heading-s'>Моля първо изберете своята роля:</h3>
+			<h3 className='heading-s'>Моля, първо изберете своята роля:</h3>
 			<div className='holder'>
 				<div className='img-holder'>
 					<img src={illustration2} alt='teacher' />
 					<div className='line'></div>
 					<Button
 						className='button heading-s'
-						onClick={() => changeActiveForm('logTeacher')}
+						onClick={() => clickHandler('logTeacher')}
 					>
 						Учител
 					</Button>
@@ -38,12 +47,14 @@ export default function RolesSection(props) {
 				<div className='img-holder'>
 					<img src={illustration1} alt='student' />
 					<div className='line'></div>
+
 					<Button
 						className='button heading-s'
-						onClick={() => changeActiveForm('logStudent')}
+						onClick={() => clickHandler('logStudent')}
 					>
 						Ученик
 					</Button>
+
 					{showForm &&
 						(activeForm === 'regStudent' || activeForm === 'logStudent') && (
 							<AnimatedLine className='animated-line' />

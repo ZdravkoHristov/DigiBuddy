@@ -7,6 +7,7 @@ export default function AnimatedElement({
 	delayTime = 0,
 	children = [],
 	className = '',
+	...rest
 }) {
 	const [showElement, setShowElement] = useState(false);
 	useEffect(() => {
@@ -22,7 +23,7 @@ export default function AnimatedElement({
 	return (
 		<>
 			{showElement && (
-				<div className={className + (isMounted ? inClass : outClass)}>
+				<div className={className + (isMounted ? inClass : outClass)} {...rest}>
 					{children}
 				</div>
 			)}

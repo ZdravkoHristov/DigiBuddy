@@ -101,13 +101,15 @@ export default function LogTeacher() {
 						>
 							Регистрация
 						</Button>
-						<Button
-							className='button heading-s'
-							theme='darkBlue'
-							onClick={closeForm}
-						>
-							Затвори
-						</Button>
+						<a href='#entrance'>
+							<Button
+								className='button heading-s'
+								theme='darkBlue'
+								onClick={closeForm}
+							>
+								Затвори
+							</Button>
+						</a>
 					</div>
 				</form>
 			</div>
