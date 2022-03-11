@@ -59,6 +59,12 @@ const ModalEl = styled.div`
 		font-size: 3rem;
 		color: var(--purple);
 	}
+
+	@media (max-width: 600px) {
+		.modal-box {
+			width: 90%;
+		}
+	}
 `;
 
 export default ModalEl;

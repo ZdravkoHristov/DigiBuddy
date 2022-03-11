@@ -39,6 +39,7 @@ const CustomAssignmentModalEl = styled.div`
 
 	.answer {
 		margin: 10px 0;
+		display: flex;
 
 		input {
 			color: var(--purple);
@@ -47,6 +48,7 @@ const CustomAssignmentModalEl = styled.div`
 
 	input[type='checkbox'] {
 		-webkit-appearance: none;
+		flex-shrink: 0;
 		appearance: none;
 		-moz-appearance: none;
 		width: 20px;
@@ -82,6 +84,24 @@ const CustomAssignmentModalEl = styled.div`
 		font-size: 1.2rem;
 		margin: 30px 0;
 		cursor: pointer;
+	}
+
+	@media (max-width: 600px) {
+		.generic-data {
+			label {
+				font-size: 1.3rem;
+			}
+			input {
+				font-size: 0.9rem;
+			}
+		}
+		h3 {
+			font-size: 1.8rem;
+		}
+
+		.add-answer {
+			font-size: 1rem;
+		}
 	}
 `;
 
