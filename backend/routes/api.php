@@ -35,33 +35,33 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
 Route::get('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
-Route::get('/student/neshto', [StudentRegisterController::class, 'neshto'])->name('student.register');
 Route::post('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
 Route::get('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
 //--------------------LOGIN-----------------
-Route::get('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
-Route::post('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
 Route::get('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
 Route::post('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
+Route::get('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
+Route::post('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
 //--------------------LOGGEDTEACHER/HOME-----------------
-Route::get('/student/test', [StudentController::class, 'index'])->middleware(['student']);
-Route::get('/student/{id}/home', [StudentRegisterController::class, 'home'])->name('student.home');
-//--------------------LOGGEDTEACHER/SETTINGS-----------------
 Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('home');
-Route::get("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/student/test', [StudentController::class, 'index']);
+    Route::get('/student/{id}/home', [StudentRegisterController::class, 'home'])->name('student.home');
+    // Route::get('/home', 'VisitorController@index')->name('home');
+    // Route::get('/list', 'VisitorController@list')->name('list'); 
+});
+//--------------------LOGGEDTEACHER/SETTINGS-----------------
 Route::put("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
 Route::post("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
-Route::get("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
 //--------------------LOGGEDTEACHER/TASKS-----------------
-
-Route::get("teacher/{id}/tasks/open", [OpenTasksController::class, 'showAllOpenTasks'])->name('teacher.all.open.tasks');
 Route::get("teacher/{id}/tasks/choose", [ChooseTasksController::class, 'showAllChooseTasks'])->name('teacher.all.choose.tasks');
-Route::get("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
 Route::post("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
+Route::delete("teacher/{id}/task/{t_id}/choose/delete", [ChooseTasksController::class, 'deleteChooseTask'])->name('teacher.choose.tasks');
+Route::get("teacher/{id}/tasks/open", [OpenTasksController::class, 'showAllOpenTasks'])->name('teacher.all.open.tasks');
 Route::get("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
+Route::post("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
 Route::get("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
 Route::delete("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
-Route::post("teacher/{id}/tasks/open", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
 //--------------------LOGGEDTEACHER/CLASSES-----------------
 Route::get("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
 Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');

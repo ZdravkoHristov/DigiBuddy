@@ -62,11 +62,10 @@ class StudentRegisterController extends Controller
         // if(count($errors) === 0){
             if ($student->attempt(['email' => $data['email'], 'password' => $data['password']])) {
                 if($student->check()){
-                    // return Auth::guard('student')->check();
                     return redirect("api/student/{$student->id()}/home/", $student);
                         return response()->json([
                             'status' => 200,
-                            'url' => "api/student/{$student->id()}/home/"
+                            'url' => "api/student/{$student->id()}/home/",
                         ]);
                 }
             }   
@@ -85,6 +84,7 @@ class StudentRegisterController extends Controller
     }
 
     protected function home($id){
+        return $id;
         $student = Student::findOrFail($id);
         return $student;
     }

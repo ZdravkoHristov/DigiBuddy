@@ -78,4 +78,13 @@ class ChooseTasksController extends Controller
             'tasks' => $tasks,
         ]);
     }
+
+    protected function deleteChooseTask($id, $t_id){
+        if(ChooseTask::whereTeacherId($id)){
+            $task = ChooseTask::whereTeacherId($id)->whereId($t_id);
+            $answers = ChooseAnswer::whereChtaskId($t_id);
+            $task->delete();
+            $answers->delete();
+        }
+    }
 }

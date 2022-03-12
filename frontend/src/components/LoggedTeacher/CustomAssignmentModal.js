@@ -44,6 +44,7 @@ export default function CustomAssignmentModal() {
 
 		if (res.data.status === 200) {
 			console.log(res.data.info);
+			//da se izchistvat dnnite v inputite 
 		}
 		if (res.data.status === 400) {
 			console.log(res.data.errors);
