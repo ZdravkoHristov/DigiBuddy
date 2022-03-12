@@ -76,14 +76,19 @@ const FAKE_STUDENTS = [
 	},
 ];
 
+const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+console.log(ids);
+
 const FAKE_COLLECTIONS = [
 	{
-		id: uuid(),
+		id: ids[0],
 		name: 'Задания 12. клас',
 		files: [],
 		children: [
 			{
-				id: uuid(),
+				parentId: ids[0],
+				id: ids[1],
 				name: '12а',
 				files: [
 					{
@@ -97,7 +102,8 @@ const FAKE_COLLECTIONS = [
 				],
 				children: [
 					{
-						id: uuid(),
+						parentId: ids[1],
+						id: ids[2],
 						name: '1 група',
 						files: [
 							{
@@ -107,7 +113,8 @@ const FAKE_COLLECTIONS = [
 						],
 						children: [
 							{
-								id: uuid(),
+								parentId: ids[2],
+								id: ids[3],
 								name: 'папка',
 								files: [
 									{
@@ -119,10 +126,18 @@ const FAKE_COLLECTIONS = [
 							},
 						],
 					},
+					{
+						parentId: ids[1],
+						id: 11,
+						name: '2 grupa',
+						files: [],
+						children: [],
+					},
 				],
 			},
 			{
-				id: uuid(),
+				parentId: ids[0],
+				id: ids[4],
 				name: '12б',
 				files: [
 					{
@@ -135,7 +150,7 @@ const FAKE_COLLECTIONS = [
 		],
 	},
 	{
-		id: uuid(),
+		id: ids[5],
 		name: 'Задания 11. клас',
 		files: [
 			{
@@ -146,7 +161,7 @@ const FAKE_COLLECTIONS = [
 		children: [],
 	},
 	{
-		id: uuid(),
+		id: ids[6],
 		name: 'Задания 10. клас',
 		files: [
 			{
@@ -157,7 +172,7 @@ const FAKE_COLLECTIONS = [
 		children: [],
 	},
 	{
-		id: uuid(),
+		id: ids[7],
 		name: 'Задания 9. клас',
 		files: [],
 		children: [],

@@ -10,7 +10,7 @@ export default function Worksheets() {
 	const { collections } = useSelector(teacherSelector).info;
 	const { showNewFolder } = useSelector(loggedUiSelector).uiInfo;
 
-	const Content = ({ collection }) => {
+	const Content = ({ collection, ids }) => {
 		return (
 			<>
 				<div className='files-wrapper'>
@@ -37,14 +37,24 @@ export default function Worksheets() {
 				</div>
 
 				{collection.children?.map(child => {
-					return <FolderHolder collection={child}></FolderHolder>;
+					return (
+						<FolderHolder
+							collection={child}
+							key={child.id}
+							id={child.id}
+							ids={[...ids, child.id]}
+						></FolderHolder>
+					);
 				})}
 			</>
 		);
 	};
 
-	const FolderHolder = ({ collection }) => {
-		const [opened, setOpened] = useState(false);
+	const FolderHolder = ({ collection, ids }) => {
+		const openedInfo =
+			JSON.parse(localStorage.getItem('openedFoldersIds')) || {};
+
+		const [opened, setOpened] = useState(openedInfo[collection.id] || false);
 		const [showTooltip, setShowTooltip] = useState(false);
 		const moreRef = useRef();
 		const tooltipRef = useRef();
@@ -57,13 +67,18 @@ export default function Worksheets() {
 		}, [clickedOutsideTooltip]);
 
 		return (
-			<section className='folder-holder' key={collection.id}>
+			<section className='folder-holder'>
 				<div className='folder-content'>
 					<div className='branch-down'></div>
 					<div
 						className='row content-row '
 						onClick={e => {
 							setOpened(!opened);
+							openedInfo[collection.id] = !opened;
+							localStorage.setItem(
+								'openedFoldersIds',
+								JSON.stringify(openedInfo)
+							);
 						}}
 					>
 						<div className='info'>
@@ -78,7 +93,19 @@ export default function Worksheets() {
 
 						<div className='icons-holder'>
 							<div className='crud-icons'>
-								<i className='fas fa-folder-plus icon'></i>
+								<i
+									className='fas fa-folder-plus icon'
+									onClick={e => {
+										e.stopPropagation();
+										dispatch(
+											setUiInfo({
+												showNewFolder: true,
+												folderIds: ids,
+												addFolderTo: collection.id,
+											})
+										);
+									}}
+								></i>
 								<i className='fas fa-file-import icon'></i>
 								<i className='far fa-edit icon'></i>
 								<i className='fas fa-trash-alt icon'></i>
@@ -131,7 +158,7 @@ export default function Worksheets() {
 							</span>
 						</div>
 					</div>
-					{opened ? <Content collection={collection} /> : null}
+					{opened ? <Content collection={collection} ids={ids} /> : null}
 				</div>
 			</section>
 		);
@@ -143,7 +170,13 @@ export default function Worksheets() {
 			<WorksheetsEl className='container'>
 				<div className='scroll-container  purple-scrollbar'>
 					{collections.map(collection => {
-						return <FolderHolder collection={collection}></FolderHolder>;
+						return (
+							<FolderHolder
+								collection={collection}
+								key={collection.id}
+								ids={[collection.id]}
+							></FolderHolder>
+						);
 					})}
 				</div>
 
@@ -152,7 +185,7 @@ export default function Worksheets() {
 					onClick={() => dispatch(setUiInfo({ showNewFolder: true }))}
 				>
 					<span className='icon'>
-						<i class='fa fa-folder-plus'></i>
+						<i className='fa fa-folder-plus'></i>
 					</span>{' '}
 					Добавете папка
 				</div>

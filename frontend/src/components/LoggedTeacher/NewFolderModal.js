@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { teacherSelector } from '../../store/store';
+import { teacherSelector, loggedUiSelector } from '../../store/store';
 import { setTeacher } from '../../store/slices/teacherSlice';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import Button from '../Button';
@@ -10,20 +10,54 @@ import uuid from 'react-uuid';
 
 export default function NewFolderModal() {
 	const dispatch = useDispatch();
-	const teacherInfo = useSelector(teacherSelector).info;
+	const { collections } = useSelector(teacherSelector).info;
+	const { folderIds, addFolderTo } = useSelector(loggedUiSelector).uiInfo;
 	const [folderName, setFolderName] = useState('');
+
+	const getCollectionInfo = () => {
+		const collectionsCopy = JSON.parse(JSON.stringify(collections));
+		let currentLevel = collectionsCopy;
+		let collection;
+		folderIds.forEach((id, index) => {
+			collection = currentLevel.find(collection => collection.id === id);
+
+			currentLevel = collection.children;
+			console.log(collection);
+		});
+
+		return [collectionsCopy, collection];
+	};
 
 	const addNewFolder = () => {
 		/*TODO: a backend request*/
 		const newFolder = {
+			parentId: addFolderTo,
 			id: uuid(),
 			name: folderName,
 			files: [],
+			children: [],
 		};
+
+		if (!folderIds.length) {
+			dispatch(
+				setUiInfo({
+					showNewFolder: false,
+				})
+			);
+			dispatch(setTeacher({ collections: [...collections, newFolder] }));
+			return;
+		}
+
+		const [collectionsCopy, currentItem] = getCollectionInfo();
+
+		currentItem.children = [...currentItem.children, newFolder];
+
+		dispatch(setTeacher({ collections: collectionsCopy }));
 		dispatch(
-			setTeacher({ collections: [...teacherInfo.collections, newFolder] })
+			setUiInfo({
+				showNewFolder: false,
+			})
 		);
-		dispatch(setUiInfo({ showNewFolder: false }));
 	};
 
 	return (
