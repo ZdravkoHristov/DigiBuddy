@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setHomeData } from '../store/slices/homeStateSlice';
 import RegisterEl from './styles/RegisterEl.style';
-import AnimatedLine from './AnimatedLine';
+
 import illustration from '../assets/svgs/role-student.svg';
 import Button from './Button';
 export default function RegStudent() {
@@ -35,7 +35,7 @@ export default function RegStudent() {
 	};
 
 	return (
-		<RegisterEl className='container'>
+		<RegisterEl className='container student-form'>
 			<h1 className='heading-l'>Регистрация като ученик</h1>
 
 			<h3 className='heading-s'>Моля попълнете всички полета:</h3>

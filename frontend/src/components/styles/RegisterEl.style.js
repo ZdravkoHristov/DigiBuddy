@@ -21,12 +21,6 @@ const RegisterEl = styled.section`
 		margin: 1rem 0;
 		display: inline-block;
 		position: relative;
-
-		@media (min-width: 901px) {
-			left: 0;
-			width: 63%;
-			text-align: right;
-		}
 	}
 	h1 {
 		letter-spacing: 2px;
@@ -107,7 +101,7 @@ const RegisterEl = styled.section`
 	}
 
 	@media (min-width: 901px) {
-		.student-form {
+		&.student-form {
 			h1,
 			h3 {
 				left: 0;
