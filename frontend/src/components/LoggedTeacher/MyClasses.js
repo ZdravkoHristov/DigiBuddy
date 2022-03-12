@@ -29,7 +29,7 @@ export default function MyClasses() {
 				{classes.map(singleClass => {
 					return <SingleClass key={singleClass.id} info={singleClass} />;
 				})}
-				<div className='new-class'>
+				<div className='add-row'>
 					<i className='fas fa-user-plus icon'></i> Добавете клас
 				</div>
 			</FoldingContainer>

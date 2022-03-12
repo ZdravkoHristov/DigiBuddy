@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { useSelector } from 'react-redux';
-import { teacherSelector } from '../../store/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUiInfo } from '../../store/slices/loggedUiSlice';
+import { loggedUiSelector, teacherSelector } from '../../store/store';
 import WorksheetsEl from './Worksheets.style';
+import NewFolderModal from './NewFolderModal';
 export default function Worksheets() {
+	const dispatch = useDispatch();
 	const { collections } = useSelector(teacherSelector).info;
+	const { showNewFolder } = useSelector(loggedUiSelector).uiInfo;
 
 	const Content = ({ collection }) => {
 		return (
@@ -134,10 +138,25 @@ export default function Worksheets() {
 	};
 
 	return (
-		<WorksheetsEl className='container purple-scrollbar'>
-			{collections.map(collection => {
-				return <FolderHolder collection={collection}></FolderHolder>;
-			})}
-		</WorksheetsEl>
+		<>
+			{showNewFolder && <NewFolderModal />}
+			<WorksheetsEl className='container'>
+				<div className='scroll-container  purple-scrollbar'>
+					{collections.map(collection => {
+						return <FolderHolder collection={collection}></FolderHolder>;
+					})}
+				</div>
+
+				<div
+					className='add-row'
+					onClick={() => dispatch(setUiInfo({ showNewFolder: true }))}
+				>
+					<span className='icon'>
+						<i class='fa fa-folder-plus'></i>
+					</span>{' '}
+					Добавете папка
+				</div>
+			</WorksheetsEl>
+		</>
 	);
 }

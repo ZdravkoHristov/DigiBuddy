@@ -10,6 +10,7 @@ const loggedUiSlice = createSlice({
 			reviewingCustomAssignment: false,
 			customType: 'selectAnswer',
 			showJoinClass: false,
+			showNewFolder: false,
 			activeClass: null,
 			activeStudent: null,
 			activeAssignment: null,

@@ -32,7 +32,7 @@ export default function Assignments() {
 			if (res.data.status === 200) {
 				const newType = { title, items: res.data.tasks };
 				currentInfo = { ...currentInfo, [type]: newType };
-				console.log(res.data.tasks);
+
 				if (index === typesLength - 1) {
 					setLoading(false);
 					setAssignments({ ...assignments, ...currentInfo });
@@ -64,4 +64,3 @@ export default function Assignments() {
 		</>
 	);
 }
-

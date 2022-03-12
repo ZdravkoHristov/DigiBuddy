@@ -197,16 +197,6 @@ const FoldingContainer = styled.div`
 		margin-right: 10px;
 	}
 
-	.new-class {
-		cursor: pointer;
-		font-size: 1.2rem;
-		padding: 10px 8px;
-		color: var(--purple);
-		i {
-			margin-right: 5px;
-		}
-	}
-
 	@media (max-width: 320px) {
 		header .count,
 		.assignments-info {

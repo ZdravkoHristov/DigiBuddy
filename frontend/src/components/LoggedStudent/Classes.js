@@ -27,7 +27,7 @@ export default function Classes() {
 					return <SingleClass key={singleClass.id} info={singleClass} />;
 				})}
 				<div
-					className='new-class'
+					className='add-row'
 					onClick={() => {
 						dispatch(setUiInfo({ showJoinClass: true }));
 					}}

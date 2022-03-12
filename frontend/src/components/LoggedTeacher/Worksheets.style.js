@@ -4,17 +4,23 @@ const WorksheetsEl = styled.div`
 	& {
 		margin-block: 2rem;
 
+		padding-right: 20px;
+	}
+
+	.scroll-container {
+		max-height: 400px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		border-bottom: 1px solid var(--purple);
+		padding-right: 5px;
+
 		& > .folder-holder:first-child > .folder-content > .row::after {
 			display: none;
 		}
 
-		max-height: 400px;
-		overflow-y: auto;
-		padding-right: 20px;
-
-		@media (max-width: 1200px) {
+		/* @media (max-width: 1200px) {
 			max-height: 600px;
-		}
+		} */
 	}
 	.folder-holder {
 		display: flex;
