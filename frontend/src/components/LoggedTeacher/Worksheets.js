@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import { loggedUiSelector, teacherSelector } from '../../store/store';
 import WorksheetsEl from './Worksheets.style';
-import NewFolderModal from './NewFolderModal';
+import NewFolderModal from './FolderModal';
 export default function Worksheets() {
 	const dispatch = useDispatch();
 	const { collections } = useSelector(teacherSelector).info;
-	const { showNewFolder } = useSelector(loggedUiSelector).uiInfo;
+	const { showFolderModal } = useSelector(loggedUiSelector).uiInfo;
 
 	const Content = ({ collection, ids }) => {
 		return (
@@ -60,6 +60,19 @@ export default function Worksheets() {
 		const tooltipRef = useRef();
 		const clickedOutsideTooltip = useOutsideClick(tooltipRef);
 
+		const modalAction = (e, action) => {
+			e.stopPropagation();
+			dispatch(
+				setUiInfo({
+					showFolderModal: true,
+					folderIds: ids,
+					targetFolderId: collection.id,
+					folderAction: action,
+					targetFolderName: collection.name,
+				})
+			);
+		};
+
 		useEffect(() => {
 			const [outsideClick, target] = clickedOutsideTooltip;
 			if (target === moreRef.current) return;
@@ -95,19 +108,13 @@ export default function Worksheets() {
 							<div className='crud-icons'>
 								<i
 									className='fas fa-folder-plus icon'
-									onClick={e => {
-										e.stopPropagation();
-										dispatch(
-											setUiInfo({
-												showNewFolder: true,
-												folderIds: ids,
-												addFolderTo: collection.id,
-											})
-										);
-									}}
+									onClick={e => modalAction(e, 'create')}
 								></i>
 								<i className='fas fa-file-import icon'></i>
-								<i className='far fa-edit icon'></i>
+								<i
+									className='far fa-edit icon'
+									onClick={e => modalAction(e, 'edit')}
+								></i>
 								<i className='fas fa-trash-alt icon'></i>
 							</div>
 
@@ -123,7 +130,7 @@ export default function Worksheets() {
 								...
 								{showTooltip && (
 									<div className='tooltip' ref={tooltipRef}>
-										<p>
+										<p onClick={e => modalAction(e, 'create')}>
 											<span>
 												<i className='fas fa-folder-plus icon'></i> Нова папка
 											</span>
@@ -135,7 +142,7 @@ export default function Worksheets() {
 											</span>
 										</p>
 										<p>
-											<span>
+											<span onClick={e => modalAction(e, 'edit')}>
 												{' '}
 												<i className='far fa-edit icon'></i> Редактиране
 											</span>
@@ -166,7 +173,7 @@ export default function Worksheets() {
 
 	return (
 		<>
-			{showNewFolder && <NewFolderModal />}
+			{showFolderModal && <NewFolderModal />}
 			<WorksheetsEl className='container'>
 				<div className='scroll-container  purple-scrollbar'>
 					{collections.map(collection => {
@@ -182,7 +189,11 @@ export default function Worksheets() {
 
 				<div
 					className='add-row'
-					onClick={() => dispatch(setUiInfo({ showNewFolder: true }))}
+					onClick={() =>
+						dispatch(
+							setUiInfo({ showFolderModal: true, folderAction: 'create' })
+						)
+					}
 				>
 					<span className='icon'>
 						<i className='fa fa-folder-plus'></i>

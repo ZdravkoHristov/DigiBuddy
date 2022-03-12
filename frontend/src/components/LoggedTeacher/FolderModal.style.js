@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NewFolderModalEl = styled.div`
+const FolderModalEl = styled.div`
 	& {
 		width: 90%;
 		margin: auto;
@@ -37,4 +37,4 @@ const NewFolderModalEl = styled.div`
 	}
 `;
 
-export default NewFolderModalEl;
+export default FolderModalEl;

@@ -5,33 +5,44 @@ import { setTeacher } from '../../store/slices/teacherSlice';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import Button from '../Button';
 import Modal from '../Modal';
-import NewFolderModalEl from './NewFolderModal.style';
+import FolderModalEl from './FolderModal.style';
 import uuid from 'react-uuid';
 
 export default function NewFolderModal() {
 	const dispatch = useDispatch();
 	const { collections } = useSelector(teacherSelector).info;
-	const { folderIds, addFolderTo } = useSelector(loggedUiSelector).uiInfo;
-	const [folderName, setFolderName] = useState('');
+	const { folderIds, targetFolderId, folderAction, targetFolderName } =
+		useSelector(loggedUiSelector).uiInfo;
+	const initialName = folderAction === 'edit' ? targetFolderName : '';
+	const [folderName, setFolderName] = useState(initialName);
+
+	console.log('FOLDER ACTION: ', folderAction);
 
 	const getCollectionInfo = () => {
 		const collectionsCopy = JSON.parse(JSON.stringify(collections));
 		let currentLevel = collectionsCopy;
 		let collection;
-		folderIds.forEach((id, index) => {
+		folderIds.forEach(id => {
 			collection = currentLevel.find(collection => collection.id === id);
 
 			currentLevel = collection.children;
-			console.log(collection);
 		});
 
 		return [collectionsCopy, collection];
 	};
 
+	const editFolder = () => {
+		const [collections, currentItem] = getCollectionInfo();
+		currentItem.name = folderName;
+		console.log(collections);
+		dispatch(setTeacher({ collections }));
+		dispatch(setUiInfo({ showFolderModal: false }));
+	};
+
 	const addNewFolder = () => {
 		/*TODO: a backend request*/
 		const newFolder = {
-			parentId: addFolderTo,
+			parentId: targetFolderId,
 			id: uuid(),
 			name: folderName,
 			files: [],
@@ -41,7 +52,7 @@ export default function NewFolderModal() {
 		if (!folderIds.length) {
 			dispatch(
 				setUiInfo({
-					showNewFolder: false,
+					showFolderModal: false,
 				})
 			);
 			dispatch(setTeacher({ collections: [...collections, newFolder] }));
@@ -55,7 +66,7 @@ export default function NewFolderModal() {
 		dispatch(setTeacher({ collections: collectionsCopy }));
 		dispatch(
 			setUiInfo({
-				showNewFolder: false,
+				showFolderModal: false,
 			})
 		);
 	};
@@ -65,13 +76,13 @@ export default function NewFolderModal() {
 			onClose={() => {
 				dispatch(
 					setUiInfo({
-						showNewFolder: false,
+						showFolderModal: false,
 					})
 				);
 			}}
 		>
-			<NewFolderModalEl>
-				<h2>Въведете име на новата папка</h2>
+			<FolderModalEl>
+				<h2>Въведете име на папка</h2>
 
 				<input
 					type='text'
@@ -81,9 +92,13 @@ export default function NewFolderModal() {
 				/>
 
 				<div className='button-holder'>
-					<Button onClick={addNewFolder}>Готово</Button>
+					<Button
+						onClick={folderAction === 'create' ? addNewFolder : editFolder}
+					>
+						Готово
+					</Button>
 				</div>
-			</NewFolderModalEl>
+			</FolderModalEl>
 		</Modal>
 	);
 }
