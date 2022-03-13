@@ -16,4 +16,6 @@ class TeacherClass extends Model
         'name',
         'code',
     ];
+
+    //every class has one teacher but many students
 }

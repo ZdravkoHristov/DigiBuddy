@@ -122,20 +122,15 @@ class TeacherRegisterController extends Controller
 
     protected function login(Request $request)
     {
-        // $errors = Validator::make($request->all(),[
-        //     'email' => 'required|max:255|email',
-        //     'password' => 'required|max:255|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
-        // ])->errors();
+        $errors = Validator::make($request->all(),[
+            'email' => 'required|max:255|email',
+            'password' => 'required|max:255|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/',
+        ])->errors();
 
         $teacher = Auth::guard('teacher');    
 
-            $data = [
-                'email' => 'deni.tinista@gmail.com',
-                'password' => '14*72Oo3',
-            ];
-
-        // if(count($errors) === 0){
-            if ($teacher->attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        if(count($errors) === 0){
+            if ($teacher->attempt(['email' => $request->input(['email']), 'password' => $request->input(['password'])])) {
                 if($teacher->check()){
                         return response()->json([
                             'status' => 200,
@@ -143,16 +138,16 @@ class TeacherRegisterController extends Controller
                         ]);
                 }
             }   
-            // $error = ['login' => 'Грешен имейл или парола.'];
-            // return response()->json([
-            //     'status' => 400,
-            //     'errors' => $error,
-            // ]);
-        // }
-        // return response()->json([
-        //     'status' => 400,
-        //     'errors' => $errors,
-        // ]);
+            $error = ['login' => 'Грешен имейл или парола.'];
+            return response()->json([
+                'status' => 400,
+                'errors' => $error,
+            ]);
+        }
+        return response()->json([
+            'status' => 400,
+            'errors' => $errors,
+        ]);
         
 
     }

@@ -13,19 +13,20 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    protected function insertFolder($id){
+    protected function insertFolder($id, Request $request){
         $teacher = Teacher::findOrFail($id);
-
+        
         $folder = new Folder([
-            'name' => 'ime na papka',
+            'name' => $request->input(['name']),
+            'parent_id' => $request->input(['parent_id'])
         ]);
-
+        
         $teacher->folders()->save($folder);
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Вие успешно създадохте колекция',
-        ]);
+        
+                return response()->json([
+                    'status' => 200,
+                    'message' => $request->all(),
+                ]);
     }
 
     protected function showFolders($id){

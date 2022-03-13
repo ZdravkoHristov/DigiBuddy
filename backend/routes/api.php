@@ -35,33 +35,34 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
 Route::get('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
-Route::get('/student/neshto', [StudentRegisterController::class, 'neshto'])->name('student.register');
 Route::post('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
 Route::get('/student/register', [StudentRegisterController::class, 'register'])->name('student.register');
 //--------------------LOGIN-----------------
-Route::get('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
-Route::post('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
 Route::get('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
 Route::post('/teacher/login', [TeacherRegisterController::class, 'login'])->name('teacher.login');
+Route::get('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
+Route::post('/student/login', [StudentRegisterController::class, 'login'])->name('student.login');
 //--------------------LOGGEDTEACHER/HOME-----------------
-Route::get('/student/test', [StudentController::class, 'index'])->middleware(['student']);
-Route::get('/student/{id}/home', [StudentRegisterController::class, 'home'])->name('student.home');
+Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('teacher.home');
+Route::get('/student/{id}/home', [StudentController::class, 'home'])->name('student.home');
 //--------------------LOGGEDTEACHER/SETTINGS-----------------
-Route::get("/teacher/{id}/home", [TeacherController::class, 'home'])->name('home');
-Route::get("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
 Route::put("/teacher/{id}/profile/settings", [TeacherController::class, 'update'])->name('teacher.update');
 Route::post("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
-Route::get("/teacher/{id}/exit", [TeacherController::class, 'logout'])->name('teacher.exit');
+Route::put("/student/{id}/profile/settings", [StudentController::class, 'update'])->name('student.update');
+Route::post("/student/{id}/exit", [StudentController::class, 'logout'])->name('student.exit');
 //--------------------LOGGEDTEACHER/TASKS-----------------
-
-Route::get("teacher/{id}/tasks/open", [OpenTasksController::class, 'showAllOpenTasks'])->name('teacher.all.open.tasks');
 Route::get("teacher/{id}/tasks/choose", [ChooseTasksController::class, 'showAllChooseTasks'])->name('teacher.all.choose.tasks');
-Route::get("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
 Route::post("teacher/{id}/tasks/choose/insert", [ChooseTasksController::class, 'insertChooseTask'])->name('teacher.choose.tasks');
+Route::get("teacher/{id}/task/{t_id}/choose/update", [ChooseTasksController::class, 'updateChooseTask'])->name('teacher.choose.tasks');
+Route::put("teacher/{id}/task/{t_id}/choose/update", [ChooseTasksController::class, 'updateChooseTask'])->name('teacher.choose.tasks');
+Route::delete("teacher/{id}/task/{t_id}/choose/delete", [ChooseTasksController::class, 'deleteChooseTask'])->name('teacher.choose.tasks');
+Route::get("teacher/{id}/tasks/open", [OpenTasksController::class, 'showAllOpenTasks'])->name('teacher.all.open.tasks');
 Route::get("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
+Route::post("teacher/{id}/tasks/open/insert", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
+Route::get("teacher/{id}/task/{t_id}/open/update", [OpenTasksController::class, 'updateOpenTask'])->name('teacher.open.tasks');
+Route::put("teacher/{id}/task/{t_id}/open/update", [OpenTasksController::class, 'updateOpenTask'])->name('teacher.open.tasks');
 Route::get("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
 Route::delete("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
-Route::post("teacher/{id}/tasks/open", [OpenTasksController::class, 'insertOpenTask'])->name('teacher.open.tasks');
 //--------------------LOGGEDTEACHER/CLASSES-----------------
 Route::get("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
 Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
@@ -69,6 +70,7 @@ Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->n
 // Route::post("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
 // Route::get("teacher/{id}/folders/{f_id}/child", [FoldersController::class, 'createFile'])->name('teacher.folder');
 Route::get('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
+Route::post('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
 Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);
 Route::get('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
 Route::get('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);
@@ -76,7 +78,6 @@ Route::get('teacher/{id}/folder/{folder_id}/file/show', [FileController::class, 
 Route::get('teacher/{id}/file/{file_id}/show', [FileController::class, 'showTasksOnFile']);
 // Route::post("teacher/{id}/tasks", [TasksController::class, 'insert'])->name('teacher.tasks');
 // Route::get('/teacher/register', [RegisterTeacherController::class, 'show']);
-Route::post('/student/register', [StudentRegisterController::class, 'create']);
 // Route::post('/teacher/register', [RegisterTeacherController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

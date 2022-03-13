@@ -17,10 +17,9 @@ class TeacherController extends Controller
     protected function home($id)
     {
         $teacher = Teacher::findOrFail($id);
-        $info = $teacher;
         return response()->json([
             'status' => 200,
-            'info' => $info,
+            'info' => $teacher,
         ]);
     }
 

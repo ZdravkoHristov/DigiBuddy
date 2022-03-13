@@ -78,4 +78,40 @@ class ChooseTasksController extends Controller
             'tasks' => $tasks,
         ]);
     }
+
+    protected function deleteChooseTask($id, $t_id){
+        if(ChooseTask::whereTeacherId($id)){
+            $task = ChooseTask::whereTeacherId($id)->whereId($t_id);
+            $answers = ChooseAnswer::whereChtaskId($t_id);
+            $task->delete();
+            $answers->delete();
+        }
+    }
+
+    protected function updateChooseTask($id, $t_id){
+        //check for teacher
+        if(ChooseTask::whereTeacherId($id)){
+            //find and update the task
+            ChooseTask::whereTeacherId($id)->whereId($t_id)->update([
+                'name' => 'name',
+                'question' => 'question3',
+                'n_answers' => 3,
+            ]);
+            //get the uodated task
+            $task = ChooseTask::findOrFail($t_id);
+            //delete previous answers
+            $delete = ChooseAnswer::whereChtaskId($t_id);
+            $delete->delete();
+            //set new answers
+            $data = [0,1,0];
+            for($i = 0; $i < $task->n_answers; $i++){
+                $answer = new ChooseAnswer([
+                    'answer' => 'neshto',
+                    'is_answer' => $data[$i], 
+                ]);
+                $task->answers()->save($answer);
+            }
+            
+        }
+    }
 }

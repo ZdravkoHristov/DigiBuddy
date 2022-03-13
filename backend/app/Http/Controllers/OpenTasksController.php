@@ -41,4 +41,17 @@ class OpenTasksController extends Controller
             'message' => 'Задачата беше изтрита успешно'
         ]);
     }
+
+    protected function updateOpenTask($id, $t_id){
+        //check for teacher 
+        if(OpenTask::whereTeacherId($id)){
+            //update task
+            $task = OpenTask::whereTeacherId($id)->whereId($t_id);
+            $task->update([
+                'name' => 'new name',
+                'question' => 'new question',
+                'answer' => 'new answer'
+            ]);
+        }
+    }
 }

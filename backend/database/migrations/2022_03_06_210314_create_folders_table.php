@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
             $table->integer('teacher_id');
+            $table->integer('parent_id')->unsigned();
             $table->string('name');
             $table->timestamps();
         });
