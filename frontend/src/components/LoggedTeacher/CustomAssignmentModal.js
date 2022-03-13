@@ -8,6 +8,7 @@ import axios from 'axios';
 import Modal from '../Modal';
 import Button from '../Button';
 import SelectAnswerType from './SelectAnswerType';
+import OpenAnswerType from './OpenAnswerType';
 import { setTeacher } from '../../store/slices/teacherSlice';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function CustomAssignmentModal() {
 
 	const submitHandler = async e => {
 		e.preventDefault();
-		console.log(uiInfo.customType);
+
 		if (uiInfo.customType === 'choose') {
 			const filteredAnswers = answers.filter(({ value }) => value !== '');
 			additionalData = {
@@ -107,6 +108,13 @@ export default function CustomAssignmentModal() {
 					{uiInfo.customType === 'choose' && (
 						<SelectAnswerType
 							initialAnswers={initialAnswers}
+							setAnswers={setAnswers}
+						/>
+					)}
+
+					{uiInfo.customType === 'open' && (
+						<OpenAnswerType
+							initialAnswer={initialAnswers[0]}
 							setAnswers={setAnswers}
 						/>
 					)}
