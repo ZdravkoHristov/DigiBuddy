@@ -10,7 +10,7 @@ import { setTeacher } from '../../store/slices/teacherSlice';
 
 export default function Assignments() {
 	const dispatch = useDispatch();
-	const { info, assignments } = useSelector(teacherSelector);
+	const { assignments } = useSelector(teacherSelector).info;
 	const { uiInfo } = useSelector(loggedUiSelector);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ export default function Assignments() {
 	// 			if (index === typesLength - 1) {
 	// 				const newAssignments = { ...assignments, ...currentInfo }
 	// 				setLoading(false);
-					
+
 	// 				setAssignments(newAssignments);
 	// 				dispatch(setTeacher({assignments: newAssignments}))
 	// 			}
@@ -48,16 +48,22 @@ export default function Assignments() {
 	// }, []);
 
 	useEffect(() => {
-		console.log('assigmnets: ', assignments)
-		setLoading(Boolean(assignments));
-	}, assignments)
+		setLoading(!Boolean(assignments));
+	}, assignments);
 
 	const assignmentElements = () => {
-		return Object.entries(assignments).map(([type, info]) => {
-			const { title, items } = info;
+		return Object.entries(uiInfo.assignmentTypes).map(([type, info]) => {
+			const typeAssignments = assignments.filter(
+				assignment => assignment.type === type
+			);
 
 			return (
-				<AssignmentType key={type} items={items} title={title} type={type} />
+				<AssignmentType
+					key={type}
+					items={typeAssignments}
+					title={info}
+					type={type}
+				/>
 			);
 		});
 	};
