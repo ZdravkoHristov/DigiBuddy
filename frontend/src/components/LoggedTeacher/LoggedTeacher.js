@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { navbarSelector, teacherSelector } from '../../store/store';
+import { navbarSelector, teacherSelector, loggedUiSelector } from '../../store/store';
 import { setTeacher } from '../../store/slices/teacherSlice';
 import Header from '../Header';
 import Navbar from '../Navbar';
@@ -19,7 +19,9 @@ import TeacherEl from '../styles/LoggedTeacher.style';
 
 export default function LoggedTeacher() {
 	const { active: navActive } = useSelector(navbarSelector);
-	const { info: teacherInfo } = useSelector(teacherSelector);
+	const { info: teacherInfo,  } = useSelector(teacherSelector);
+	const {assignmentTypes} = useSelector(loggedUiSelector).uiInfo;
+	console.log(assignmentTypes)
 
 	const dispatch = useDispatch();
 
@@ -42,6 +44,34 @@ export default function LoggedTeacher() {
 
 	const breakpoints = new Map();
 	breakpoints.set(1430, 2);
+
+	
+	const fetchAssignments = () => {
+		let assignments = {};
+		const typesLength = Object.keys(assignmentTypes).length;
+		Object.entries(assignmentTypes).forEach(async ([type, title], index) => {
+			const res = await axios.get(
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}`
+			);
+
+			if (res.data.status === 200) {
+				const newType = { title, items: res.data.tasks };
+				assignments = { ...assignments, [type]: newType };
+
+				if (index === typesLength - 1) {
+					
+					// setLoading(false);
+				
+				
+					dispatch(setTeacher({assignments}))
+				}
+			}
+		});
+	};
+
+	useEffect(() => {
+		fetchAssignments();
+	}, []);
 
 	useEffect(() => {
 		(async () => {

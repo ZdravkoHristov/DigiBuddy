@@ -78,7 +78,7 @@ const FAKE_STUDENTS = [
 
 const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-(ids);
+console.log(ids);
 
 
 const teacherSlice = createSlice({
@@ -93,9 +93,7 @@ const teacherSlice = createSlice({
 			region: 'Пловдив',
 			role: 'Учител',
 			subject: 'информационни технологии',
-			assignments: [
-	
-			],
+			assignments: null,
 			collections: [],
 			classes: [
 				{
@@ -116,8 +114,8 @@ const teacherSlice = createSlice({
 	},
 	reducers: {
 		setTeacher: (state, { payload }) => {
-			// ('payload');
-			// (payload);
+			// console.log('payload');
+			// console.log(payload);
 			state.info = { ...state.info, ...payload };
 		},
 	},
