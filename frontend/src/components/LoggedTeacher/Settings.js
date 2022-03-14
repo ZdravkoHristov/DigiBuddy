@@ -29,7 +29,7 @@ export default function Settings() {
 			setPassword('');
 		}
 		if(res.data.status === 400){
-			console.log(res.data.errors);
+		
 			setErrors(res.data.errors);
 		}
 	}

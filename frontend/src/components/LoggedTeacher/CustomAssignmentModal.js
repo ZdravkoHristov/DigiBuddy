@@ -18,34 +18,38 @@ export default function CustomAssignmentModal() {
 	const initialAnswers = useMemo(() => assignmentInfo.answers || [],[assignmentInfo]);
 	const {id} = useParams();
 	const [errors, setErrors] = useState({});
+	const [openAnswer, setOpenAnswer] = useState('');
 
 	let additionalData = {};
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		const type = uiInfo.customType;
+		let res;
+
 		if(type === 'choose'){
 			const filteredAnswers = answers.filter(({value}) => value !== '');
 			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
+
+			if (uiInfo.reviewingCustomAssignment) {
+				res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
+			} else {
+				res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
+			}
+		} else if (type === 'open') {
+			if (uiInfo.reviewingCustomAssignment) {
+				res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, answer: openAnswer}) 
+			} else {
+				res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, answer: openAnswer});
+			}
 		}
 
-		let res;
-
-		if (uiInfo.reviewingCustomAssignment) {
-			res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
-			console.log(res);
-		} else {
-			res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
-		}
-		
-		
 		setErrors({});
 		
 		if(res.data.status === 200){
-			console.log(res.data.info);
+			(res.data.info);
 		}
 		if(res.data.status === 400){
-			console.log(res.data.errors);
 			setErrors(res.data.errors);
 		}
 	}
@@ -56,6 +60,7 @@ export default function CustomAssignmentModal() {
 			: {};
 
 		setAssignmentInfo({...updatedInfo});
+		setOpenAnswer(updatedInfo.answer || '')
 	}, [uiInfo.reviewingCustomAssignment]);
 
 	useEffect(() => {
@@ -77,6 +82,7 @@ export default function CustomAssignmentModal() {
 					<div className='generic-data'>
 						<label htmlFor='name'>Име: </label>
 						<input
+						className='rounded-input'
 							type='text'
 							id='name'
 							value={assignmentInfo.name || ''}
@@ -88,6 +94,7 @@ export default function CustomAssignmentModal() {
 						<span className='danger'>{errors.name||""}</span>
 						<label htmlFor='question'>Въпрос: </label>
 						<input
+						className='rounded-input'
 							type='text'
 							id='question'
 							value={assignmentInfo.question || ''}
@@ -108,8 +115,9 @@ export default function CustomAssignmentModal() {
 
 					{uiInfo.customType === 'open' && (
 						<OpenAnswerType
-							initialAnswer={initialAnswers[0]}
-							setAnswers={setAnswers}
+							answer={openAnswer}
+							setAnswer={setOpenAnswer}
+							errors={errors}
 						/>
 					)}
 

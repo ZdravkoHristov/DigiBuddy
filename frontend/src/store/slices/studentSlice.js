@@ -79,8 +79,8 @@ const studentSlice = createSlice({
 	},
 	reducers: {
 		setStudent: (state, { payload }) => {
-			// console.log('payload');
-			// console.log(payload);
+			// ('payload');
+			// (payload);
 			state.info = { ...state.info, ...payload };
 		},
 	},

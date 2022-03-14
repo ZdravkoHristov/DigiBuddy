@@ -39,7 +39,7 @@ export default function LogStudent() {
 			`${process.env.REACT_APP_BACKEND}/api/student/login`,
 			data
 		);
-		console.log(res.data.status);
+		
 		if (res.data.status === 200) {
 			window.location.href = res.data.url;
 		}

@@ -195,9 +195,7 @@ export default function RegStudent() {
 					<div className='group'>
 						<Button 
 							className='button heading-s'
-							type='submit'>
-								Регистрация
-						</Button>
+							type='submit'>Регистрация</Button>
 						<Button
 							className='button heading-s mobile-button'
 							theme='red'

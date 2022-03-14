@@ -1,21 +1,43 @@
 import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import useOutsideClick from '../../hooks/useOutsideClick';
+import listToTree from 'list-to-tree-lite'
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 import { setUiInfo } from '../../store/slices/loggedUiSlice';
 import { loggedUiSelector, teacherSelector } from '../../store/store';
+import { setTeacher } from '../../store/slices/teacherSlice';
 import WorksheetsEl from './Worksheets.style';
 import NewFolderModal from './FolderModal';
 export default function Worksheets() {
 	const dispatch = useDispatch();
+	const {id} = useParams();
 	const { collections } = useSelector(teacherSelector).info;
 	const { showFolderModal } = useSelector(loggedUiSelector).uiInfo;
+
+	const fetchFolders = async () => {
+		console.log('fetching')
+			const res = await axios.get(
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folders`
+			);
+		
+
+			if (res.data.status === 200) {
+				const foldersTree = listToTree(res.data.folders, {parentKey: 'parent_id'});
+				// console.log(foldersTree)
+				dispatch(setTeacher({collections: foldersTree}))
+			}
+		
+	};
+
+	useEffect(fetchFolders, [])
 
 	const Content = ({ collection, ids }) => {
 		return (
 			<>
 				<div className='files-wrapper'>
 					<div className='files-holder'>
-						{collection.files.map(file => {
+						{collection.files?.map(file => {
 							return (
 								<div className='row content-row' key={file.id}>
 									<div className='info'>
@@ -61,6 +83,7 @@ export default function Worksheets() {
 		const clickedOutsideTooltip = useOutsideClick(tooltipRef);
 
 		const modalAction = (e, action) => {
+		//	console.log('COLLECTION: ', collection)
 			e.stopPropagation();
 			dispatch(
 				setUiInfo({
@@ -177,6 +200,7 @@ export default function Worksheets() {
 			<WorksheetsEl className='container'>
 				<div className='scroll-container  purple-scrollbar'>
 					{collections.map(collection => {
+						console.log('collection: ', collection)
 						return (
 							<FolderHolder
 								collection={collection}

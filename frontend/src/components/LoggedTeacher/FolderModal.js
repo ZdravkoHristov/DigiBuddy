@@ -15,20 +15,24 @@ export default function NewFolderModal() {
 	const { collections } = useSelector(teacherSelector).info;
 	const { folderIds, targetFolderId, folderAction, targetFolderName } =
 		useSelector(loggedUiSelector).uiInfo;
+
+		
 	const initialName = folderAction === 'edit' ? targetFolderName : '';
 	const [folderName, setFolderName] = useState(initialName);
 
 	const {id} = useParams();
 
-	console.log('FOLDER ACTION: ', folderAction);
 
 	const getCollectionInfo = () => {
 		const collectionsCopy = JSON.parse(JSON.stringify(collections));
 		let currentLevel = collectionsCopy;
 		let collection;
-		folderIds.forEach(id => {
-			collection = currentLevel.find(collection => collection.id === id);
 
+		
+		folderIds.forEach(id => {
+			console.log(id)
+			collection = currentLevel.find(collection => collection.id === id);
+			console.log(collection)
 			currentLevel = collection.children;
 		});
 
@@ -45,9 +49,9 @@ export default function NewFolderModal() {
 
 	const addNewFolder = async () => {
 		/*TODO: a backend request*/
-		const newFolder = {
+		
+		let newFolder = {
 			parent_id: targetFolderId,
-			folderId: uuid(),
 			name: folderName,
 		};
 
@@ -56,7 +60,7 @@ export default function NewFolderModal() {
 			newFolder
 		);
 
-		console.log(res.data.message);
+		newFolder = {...newFolder, id: res.data.id};
 
 		if (!folderIds.length) {
 			dispatch(

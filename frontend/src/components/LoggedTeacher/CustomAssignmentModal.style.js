@@ -20,9 +20,9 @@ const CustomAssignmentModalEl = styled.div`
 		font-size: 2rem;
 	}
 
-	.generic-data input {
+	 .rounded-input {
 		background-color: #f1f1f1;
-		border: 0;
+		border: solid 1px #74426322;
 		font-size: 1.2rem;
 		color: var(--purple);
 		border-radius: 25px;
@@ -39,7 +39,6 @@ const CustomAssignmentModalEl = styled.div`
 
 	.answer {
 		margin: 10px 0;
-		display: flex;
 
 		input {
 			color: var(--purple);

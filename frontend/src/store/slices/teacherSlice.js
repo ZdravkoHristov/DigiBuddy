@@ -78,106 +78,8 @@ const FAKE_STUDENTS = [
 
 const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-console.log(ids);
+(ids);
 
-const FAKE_COLLECTIONS = [
-	{
-		id: ids[0],
-		name: 'Задания 12. клас',
-		files: [],
-		children: [
-			{
-				parentId: ids[0],
-				id: ids[1],
-				name: '12а',
-				files: [
-					{
-						id: uuid(),
-						name: 'Контролна работа №1',
-					},
-					{
-						id: uuid(),
-						name: 'Контролна работа №2',
-					},
-				],
-				children: [
-					{
-						parentId: ids[1],
-						id: ids[2],
-						name: '1 група',
-						files: [
-							{
-								id: uuid(),
-								name: 'Тест',
-							},
-						],
-						children: [
-							{
-								parentId: ids[2],
-								id: ids[3],
-								name: 'папка',
-								files: [
-									{
-										id: uuid(),
-										name: 'fail',
-									},
-								],
-								children: [],
-							},
-						],
-					},
-					{
-						parentId: ids[1],
-						id: 11,
-						name: '2 grupa',
-						files: [],
-						children: [],
-					},
-				],
-			},
-			{
-				parentId: ids[0],
-				id: ids[4],
-				name: '12б',
-				files: [
-					{
-						id: uuid(),
-						name: 'Контролна работа №1',
-					},
-				],
-				children: [],
-			},
-		],
-	},
-	{
-		id: ids[5],
-		name: 'Задания 11. клас',
-		files: [
-			{
-				id: uuid(),
-				name: 'Контролна работа №1',
-			},
-		],
-		children: [],
-	},
-	{
-		id: ids[6],
-		name: 'Задания 10. клас',
-		files: [
-			{
-				id: uuid(),
-				name: 'Контролна работа №1',
-			},
-		],
-		children: [],
-	},
-	{
-		id: ids[7],
-		name: 'Задания 9. клас',
-		files: [],
-		children: [],
-	},
-];
 
 const teacherSlice = createSlice({
 	name: 'teacher',
@@ -192,31 +94,9 @@ const teacherSlice = createSlice({
 			role: 'Учител',
 			subject: 'информационни технологии',
 			assignments: [
-				/** ASSIGNMENTS TABLE |  TYPES TABLE    | ANSWERS TABLE
-				 * ex_id 			  |		id			| id
-				 * teacher_id		  |		ex_id		| ex_id
-				 * type				  |		type_name	| answer
-				 * name				  |					| is_answer
-				 * question			  |					|
-				 * 					  |					|
-				 * 	suzdava se edna po edna zadacha one to one zadacha svurzana s uchitelq
-				 * tazi zadacha moje da bude samo edin tip one to one s types no moje da ima bezkrai otgovori
-				 * has many otgovori
-				 */
-				{
-					id: uuid(),
-					name: 'През коя година...',
-					question: 'Питам през коя година...',
-					type: 'selectAnswer',
-					answers: [
-						{ id: uuid(), value: '681', isCorrect: false },
-						{ id: uuid(), value: '865', isCorrect: true },
-						{ id: uuid(), value: '311', isCorrect: false },
-						{ id: uuid(), value: '2017', isCorrect: false },
-					],
-				},
+	
 			],
-			collections: [...FAKE_COLLECTIONS],
+			collections: [],
 			classes: [
 				{
 					id: uuid(),
@@ -236,8 +116,8 @@ const teacherSlice = createSlice({
 	},
 	reducers: {
 		setTeacher: (state, { payload }) => {
-			// console.log('payload');
-			// console.log(payload);
+			// ('payload');
+			// (payload);
 			state.info = { ...state.info, ...payload };
 		},
 	},
