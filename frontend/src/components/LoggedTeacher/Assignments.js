@@ -48,8 +48,9 @@ export default function Assignments() {
 	// }, []);
 
 	useEffect(() => {
+		console.log(assignments);
 		setLoading(!Boolean(assignments));
-	}, assignments);
+	}, [assignments]);
 
 	const assignmentElements = () => {
 		return Object.entries(uiInfo.assignmentTypes).map(([type, info]) => {

@@ -7,7 +7,7 @@ import { setUiInfo } from '../../store/slices/loggedUiSlice';
 export default function AssignmentType({ items, title, type }) {
 	const dispatch = useDispatch();
 	const [showMain, setShowMain] = useState(true);
-	console.log(items);
+
 	const { assignments } = useSelector(teacherSelector).info;
 	const { id } = useParams();
 	const borderRadiusBottom = showMain ? 0 : 8;
