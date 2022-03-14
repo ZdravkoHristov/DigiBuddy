@@ -69,6 +69,7 @@ Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->n
 // Route::get("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
 // Route::post("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
 // Route::get("teacher/{id}/folders/{f_id}/child", [FoldersController::class, 'createFile'])->name('teacher.folder');
+Route::get('teacher/{id}/folders', [FileController::class, 'showAllFolders']);
 Route::get('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
 Route::post('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
 Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);

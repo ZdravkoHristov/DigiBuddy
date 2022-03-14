@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
+    protected function showAllFolders($id){
+        $folders = Folder::whereTeacherId($id)->get();
+        return response()->json([
+            'status' => 200,
+            'folders' => $folders,
+        ]);
+    }
+
     protected function insertFolder($id, Request $request){
         $teacher = Teacher::findOrFail($id);
         
@@ -25,7 +33,7 @@ class FileController extends Controller
         
                 return response()->json([
                     'status' => 200,
-                    'message' => $request->all(),
+                    'id' => $folder->id,
                 ]);
     }
 

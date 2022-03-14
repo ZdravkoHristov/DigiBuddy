@@ -32,11 +32,16 @@ class OpenTasksController extends Controller
 
         $task = new OpenTask([
             'name' => $request->input(['name']),
-            'question' => $request->input(['name']),
-            'answer' => $request->input(['name'])
+            'question' => $request->input(['question']),
+            'answer' => $request->input(['answer'])
         ]);
         
         $teacher->optask()->save($task);
+
+        return response()->json([
+            'status' => 200,
+            'request' => $request->all(),
+        ]);
     }
     
     protected function showAllOpenTasks($id){
