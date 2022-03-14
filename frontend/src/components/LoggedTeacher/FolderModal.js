@@ -76,7 +76,7 @@ export default function NewFolderModal() {
 		}
 
 		const [collectionsCopy, currentItem] = getCollectionInfo();
-		const addcurrentChildren = currentItem.children || [];
+		const currentChildren = currentItem.children || [];
 		currentItem.children = [...currentChildren, newFolder];
 
 		dispatch(setTeacher({ collections: collectionsCopy }));
