@@ -8,6 +8,7 @@ import axios from 'axios';
 import Modal from '../Modal';
 import Button from '../Button';
 import SelectAnswerType from './SelectAnswerType';
+import OpenAnswerType from './OpenAnswerType';
 import { setTeacher } from '../../store/slices/teacherSlice';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
@@ -104,6 +105,14 @@ export default function CustomAssignmentModal() {
 					{uiInfo.customType === 'choose' && (
 						<SelectAnswerType initialAnswers={initialAnswers} setAnswers={setAnswers} />
 					)}
+
+					{uiInfo.customType === 'open' && (
+						<OpenAnswerType
+							initialAnswer={initialAnswers[0]}
+							setAnswers={setAnswers}
+						/>
+					)}
+
 					<div className='button-holder'>
 						<Button type='submit'>Готово</Button>
 					</div>
