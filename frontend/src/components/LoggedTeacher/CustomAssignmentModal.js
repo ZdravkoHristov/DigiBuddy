@@ -32,22 +32,22 @@ export default function CustomAssignmentModal() {
 			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
 
 			if (uiInfo.reviewingCustomAssignment) {
-				res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
+				res = await axios.put(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
 			} else {
-				res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
+				res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
 			}
 		} else if (type === 'open') {
 			if (uiInfo.reviewingCustomAssignment) {
-				res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, answer: openAnswer}) 
+				res = await axios.put(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, answer: openAnswer}) 
 			} else {
-				res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, answer: openAnswer});
+				res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, answer: openAnswer});
 			}
 		}
 
 		setErrors({});
 		
 		if(res.data.status === 200){
-			(res.data.info);
+			console.log(res.data.info);
 		}
 		if(res.data.status === 400){
 			setErrors(res.data.errors);
