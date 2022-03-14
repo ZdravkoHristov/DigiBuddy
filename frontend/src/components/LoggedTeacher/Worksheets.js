@@ -16,7 +16,7 @@ export default function Worksheets() {
 	const { showFolderModal } = useSelector(loggedUiSelector).uiInfo;
 
 	const fetchFolders = async () => {
-		console.log('fetching')
+		
 			const res = await axios.get(
 				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folders`
 			);
@@ -200,7 +200,7 @@ export default function Worksheets() {
 			<WorksheetsEl className='container'>
 				<div className='scroll-container  purple-scrollbar'>
 					{collections.map(collection => {
-						console.log('collection: ', collection)
+						
 						return (
 							<FolderHolder
 								collection={collection}

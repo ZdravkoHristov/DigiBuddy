@@ -9,10 +9,12 @@ import FolderModalEl from './FolderModal.style';
 import uuid from 'react-uuid';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { current } from '@reduxjs/toolkit';
 
 export default function NewFolderModal() {
 	const dispatch = useDispatch();
 	const { collections } = useSelector(teacherSelector).info;
+
 	const { folderIds, targetFolderId, folderAction, targetFolderName } =
 		useSelector(loggedUiSelector).uiInfo;
 
@@ -27,13 +29,14 @@ export default function NewFolderModal() {
 		const collectionsCopy = JSON.parse(JSON.stringify(collections));
 		let currentLevel = collectionsCopy;
 		let collection;
-
+		console.log(folderIds)
 		
 		folderIds.forEach(id => {
-			console.log(id)
+	
 			collection = currentLevel.find(collection => collection.id === id);
-			console.log(collection)
+			console.log(collection, collection.children)
 			currentLevel = collection.children;
+
 		});
 
 		return [collectionsCopy, collection];
@@ -73,8 +76,8 @@ export default function NewFolderModal() {
 		}
 
 		const [collectionsCopy, currentItem] = getCollectionInfo();
-
-		currentItem.children = [...currentItem.children, newFolder];
+		const currentChildren = currentItem.children || [];
+		currentItem.children = [...currentChildren, newFolder];
 
 		dispatch(setTeacher({ collections: collectionsCopy }));
 		dispatch(
