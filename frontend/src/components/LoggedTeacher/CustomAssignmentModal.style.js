@@ -1,41 +1,14 @@
 import styled from 'styled-components';
 
 const CustomAssignmentModalEl = styled.div`
-	.button-holder {
-		display: flex;
-		justify-content: flex-end;
-
-		margin: 2rem 0 0 0;
-
-		button {
-			padding: 0.5rem 2rem;
-			font-size: 1.4rem;
-			letter-spacing: 0.1rem;
-			margin: 0;
-		}
-	}
+	
 
 	.generic-data label {
 		display: block;
 		font-size: 2rem;
 	}
 
-	 .rounded-input {
-		background-color: #f1f1f1;
-		border: solid 1px #74426322;
-		font-size: 1.2rem;
-		color: var(--purple);
-		border-radius: 25px;
-		display: block;
-		width: 100%;
-		padding: 12px 1.2rem;
-		margin: 1rem 0;
-	}
-
-	h3 {
-		font-size: 2rem;
-		margin: 1rem 0;
-	}
+	 
 
 	.answer {
 		margin: 10px 0;
@@ -94,9 +67,7 @@ const CustomAssignmentModalEl = styled.div`
 				font-size: 0.9rem;
 			}
 		}
-		h3 {
-			font-size: 1.8rem;
-		}
+		
 
 		.add-answer {
 			font-size: 1rem;

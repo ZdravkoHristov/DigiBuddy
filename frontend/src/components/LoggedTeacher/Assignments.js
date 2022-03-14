@@ -6,20 +6,19 @@ import axios from 'axios';
 import FoldingContainer from '../styles/FoldingContainer.style';
 import AssignmentType from './AssignmentType';
 import CustomAssignmentModal from './CustomAssignmentModal';
+import { setTeacher } from '../../store/slices/teacherSlice';
 
 export default function Assignments() {
+	const dispatch = useDispatch();
 	const { info } = useSelector(teacherSelector);
 	const { uiInfo } = useSelector(loggedUiSelector);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [assignments, setAssignments] = useState({});
-	const { showStudentInfo, showAssignmentInfo } =
+	const { showStudentInfo, showAssignmentInfo, assignmentTypes } =
 		useSelector(loggedUiSelector).uiInfo;
 
-	const assignmentTypes = {
-		choose: 'Задачи с избираем отговор',
-		open: 'Задачи с отворен отговор',
-	};
+	
 
 	const fetchAssignments = () => {
 		let currentInfo = {};
@@ -34,8 +33,11 @@ export default function Assignments() {
 				currentInfo = { ...currentInfo, [type]: newType };
 
 				if (index === typesLength - 1) {
+					const newAssignments = { ...assignments, ...currentInfo }
 					setLoading(false);
-					setAssignments({ ...assignments, ...currentInfo });
+					
+					setAssignments(newAssignments);
+					dispatch(setTeacher({assignments: newAssignments}))
 				}
 			}
 		});

@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const assignmentTypes = {
+	choose: 'Задачи с избираем отговор',
+	open: 'Задачи с отворен отговор',
+};
+
 const loggedUiSlice = createSlice({
 	name: 'loggedUi',
 	initialState: {
@@ -7,14 +12,18 @@ const loggedUiSlice = createSlice({
 			showStudentInfo: false,
 			showAssignmentInfo: false,
 			showCustomAssignment: false,
-			reviewingCustomAssignment: false,
+			showFileModal: true,
+			reviewingModal: false,
 			customType: 'selectAnswer',
 			showJoinClass: false,
 			showFolderModal: false,
 			folderIds: [],
+			activeFoder: null,
 			activeClass: null,
 			activeStudent: null,
 			activeAssignment: null,
+			assignmentTypes,
+
 		},
 	},
 

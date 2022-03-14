@@ -9,11 +9,12 @@ import { loggedUiSelector, teacherSelector } from '../../store/store';
 import { setTeacher } from '../../store/slices/teacherSlice';
 import WorksheetsEl from './Worksheets.style';
 import NewFolderModal from './FolderModal';
+import FileModal from './FileModal';
 export default function Worksheets() {
 	const dispatch = useDispatch();
 	const {id} = useParams();
 	const { collections } = useSelector(teacherSelector).info;
-	const { showFolderModal } = useSelector(loggedUiSelector).uiInfo;
+	const { showFolderModal, showFileModal } = useSelector(loggedUiSelector).uiInfo;
 
 	const fetchFolders = async () => {
 		
@@ -85,9 +86,11 @@ export default function Worksheets() {
 		const modalAction = (e, action) => {
 		//	console.log('COLLECTION: ', collection)
 			e.stopPropagation();
+
+			const modal = action === 'insert'? 'showFileModal' : 'showFolderModal';
 			dispatch(
 				setUiInfo({
-					showFolderModal: true,
+					[modal]: true,
 					folderIds: ids,
 					targetFolderId: collection.id,
 					folderAction: action,
@@ -133,7 +136,7 @@ export default function Worksheets() {
 									className='fas fa-folder-plus icon'
 									onClick={e => modalAction(e, 'create')}
 								></i>
-								<i className='fas fa-file-import icon'></i>
+								<i onClick={e => modalAction(e, 'insert')} className='fas fa-file-import icon'></i>
 								<i
 									className='far fa-edit icon'
 									onClick={e => modalAction(e, 'edit')}
@@ -158,7 +161,7 @@ export default function Worksheets() {
 												<i className='fas fa-folder-plus icon'></i> Нова папка
 											</span>
 										</p>
-										<p>
+										<p onClick={e => modalAction(e, 'insert')}>
 											<span>
 												{' '}
 												<i className='fas fa-file-import icon'></i> Вмъкване
@@ -197,6 +200,7 @@ export default function Worksheets() {
 	return (
 		<>
 			{showFolderModal && <NewFolderModal />}
+			{showFileModal && <FileModal />}
 			<WorksheetsEl className='container'>
 				<div className='scroll-container  purple-scrollbar'>
 					{collections.map(collection => {

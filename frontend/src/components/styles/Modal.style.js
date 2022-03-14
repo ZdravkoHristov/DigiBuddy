@@ -27,6 +27,53 @@ const ModalEl = styled.div`
 		text-align: center;
 		font-weight: normal;
 		font-size: 2.5rem;
+		letter-spacing: 2px;
+	}
+
+	.rounded-input {
+		background-color: #f1f1f1;
+		border: solid 1px #74426322;
+		font-size: 1.2rem;
+		color: var(--purple);
+		border-radius: 25px;
+		display: block;
+		width: 100%;
+		padding: 12px 1.2rem;
+		margin: 1rem 0;
+	}
+
+	input[type=number]{
+		background-color: #f1f1f1;
+		border-radius: 5px;
+		border: solid 1px #74426374;
+		padding: 0.1rem 0.2rem;
+	}
+
+	h3 {
+		font-size: 2rem;
+		margin: 1rem 0;
+		text-align: center;
+		letter-spacing: 2px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 1.2rem;
+		letter-spacing: 2px;
+	}
+
+	.button-holder {
+		display: flex;
+		justify-content: flex-end;
+
+		margin: 2rem 0 0 0;
+
+		button {
+			padding: 0.5rem 2rem;
+			font-size: 1.4rem;
+			letter-spacing: 0.1rem;
+			margin: 0;
+		}
 	}
 
 	.modal-box {
@@ -63,6 +110,10 @@ const ModalEl = styled.div`
 	@media (max-width: 600px) {
 		.modal-box {
 			width: 90%;
+		}
+
+		h3 {
+			font-size: 1.8rem;
 		}
 	}
 `;
