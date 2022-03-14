@@ -7,6 +7,8 @@ import Button from '../Button';
 import Modal from '../Modal';
 import FolderModalEl from './FolderModal.style';
 import uuid from 'react-uuid';
+import axios from 'axios';
+import { useParams } from 'react-router';
 
 export default function NewFolderModal() {
 	const dispatch = useDispatch();
@@ -15,6 +17,8 @@ export default function NewFolderModal() {
 		useSelector(loggedUiSelector).uiInfo;
 	const initialName = folderAction === 'edit' ? targetFolderName : '';
 	const [folderName, setFolderName] = useState(initialName);
+
+	const {id} = useParams();
 
 	console.log('FOLDER ACTION: ', folderAction);
 
@@ -39,15 +43,20 @@ export default function NewFolderModal() {
 		dispatch(setUiInfo({ showFolderModal: false }));
 	};
 
-	const addNewFolder = () => {
+	const addNewFolder = async () => {
 		/*TODO: a backend request*/
 		const newFolder = {
-			parentId: targetFolderId,
-			id: uuid(),
+			parent_id: targetFolderId,
+			folderId: uuid(),
 			name: folderName,
-			files: [],
-			children: [],
 		};
+
+		const res = await axios.post(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/insert`,
+			newFolder
+		);
+
+		console.log(res.data.message);
 
 		if (!folderIds.length) {
 			dispatch(
@@ -94,6 +103,7 @@ export default function NewFolderModal() {
 				<div className='button-holder'>
 					<Button
 						onClick={folderAction === 'create' ? addNewFolder : editFolder}
+						type='submit'
 					>
 						Готово
 					</Button>

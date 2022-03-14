@@ -12,56 +12,53 @@ import { setTeacher } from '../../store/slices/teacherSlice';
 export default function CustomAssignmentModal() {
 	const dispatch = useDispatch();
 	const { uiInfo } = useSelector(loggedUiSelector);
-	const [assignmentInfo, setAssignmentInfo] = useState([]);
-
+	const [assignmentInfo, setAssignmentInfo] = useState({});
 	const [answers, setAnswers] = useState([]);
-	const initialAnswers = useMemo(
-		() => assignmentInfo.answers || [],
-		[assignmentInfo]
-	);
-	const { id } = useParams();
+	const initialAnswers = useMemo(() => assignmentInfo.answers || [],[assignmentInfo]);
+	const {id} = useParams();
 	const [errors, setErrors] = useState({});
 
 	let additionalData = {};
 
-	const submitHandler = async e => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
-		console.log(uiInfo.customType);
-		if (uiInfo.customType === 'choose') {
-			const filteredAnswers = answers.filter(({ value }) => value !== '');
-			additionalData = {
-				...filteredAnswers,
-				n_answers: filteredAnswers.length,
-			};
+		const type = uiInfo.customType;
+		if(type === 'choose'){
+			const filteredAnswers = answers.filter(({value}) => value !== '');
+			additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
 		}
 
-		const res = await axios.post(
-			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/choose/insert`,
-			{ ...assignmentInfo, ...additionalData }
-		);
+		let res;
 
+		if (uiInfo.reviewingCustomAssignment) {
+			res = await axios.put(`http://127.0.0.1:8000/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
+			console.log(res);
+		} else {
+			res = await axios.post(`http://127.0.0.1:8000/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
+		}
+		
+		
 		setErrors({});
-
-		if (res.data.status === 200) {
+		
+		if(res.data.status === 200){
 			console.log(res.data.info);
 		}
-		if (res.data.status === 400) {
+		if(res.data.status === 400){
 			console.log(res.data.errors);
 			setErrors(res.data.errors);
 		}
-	};
+	}
 
 	useEffect(() => {
-		console.log(uiInfo.customAssignment);
 		const updatedInfo = uiInfo.reviewingCustomAssignment
 			? uiInfo.customAssignment
 			: {};
 
-		setAssignmentInfo(updatedInfo);
+		setAssignmentInfo({...updatedInfo});
 	}, [uiInfo.reviewingCustomAssignment]);
 
 	useEffect(() => {
-		dispatch(setTeacher({ activeCustomAssignment: assignmentInfo }));
+		dispatch(setTeacher({activeCustomAssignment:assignmentInfo}))
 	}, [assignmentInfo]);
 
 	return (
@@ -81,19 +78,19 @@ export default function CustomAssignmentModal() {
 						<input
 							type='text'
 							id='name'
-							placeholder='Въведете име на задачата'
 							value={assignmentInfo.name || ''}
+							placeholder = 'Въведете име на задачата'
 							onChange={e => {
 								setAssignmentInfo({ ...assignmentInfo, name: e.target.value });
 							}}
-						/>
-						<span className='danger'>{errors.name || ''}</span>
+							/>
+						<span className='danger'>{errors.name||""}</span>
 						<label htmlFor='question'>Въпрос: </label>
 						<input
 							type='text'
 							id='question'
 							value={assignmentInfo.question || ''}
-							placeholder='Въведете въпрос'
+							placeholder = 'Въведете въпрос'
 							onChange={e => {
 								setAssignmentInfo({
 									...assignmentInfo,
@@ -101,20 +98,17 @@ export default function CustomAssignmentModal() {
 								});
 							}}
 						/>
-						<span className='danger'>{errors.question || ''}</span>
+						<span className='danger'>{errors.question||""}</span>
 					</div>
 
 					{uiInfo.customType === 'choose' && (
-						<SelectAnswerType
-							initialAnswers={initialAnswers}
-							setAnswers={setAnswers}
-						/>
+						<SelectAnswerType initialAnswers={initialAnswers} setAnswers={setAnswers} />
 					)}
-
 					<div className='button-holder'>
 						<Button type='submit'>Готово</Button>
 					</div>
 				</form>
+
 			</Modal>
 		</CustomAssignmentModalEl>
 	);

@@ -88,30 +88,51 @@ class ChooseTasksController extends Controller
         }
     }
 
-    protected function updateChooseTask($id, $t_id){
+    protected function updateChooseTask($id, $t_id, Request $request){
+        $errors = Validator::make($request->only('name', 'question', 'n_answers'), [
+            'name' => 'required|max:255|regex:/[\x{0410}-\x{042F}A-Z][\x{0430}-\x{044F}a-z]*(\s*\D*[0-9]*[\x{0410}-\x{042F}A-Z]*[\x{0430}-\x{044F}a-z]*)*$/u',
+            'question' => 'required|max:255|regex:/[\x{0410}-\x{042F}A-Z][\x{0430}-\x{044F}a-z]*(\s*\D*[0-9]*[\x{0410}-\x{042F}A-Z]*[\x{0430}-\x{044F}a-z]*)*$/u',
+            'n_answers' => 'required|max:255|regex:/[0-9]*$/',
+        ])->errors();
         //check for teacher
+        if(count($errors)!==0){
+            return response()->json([
+                'status' => 400,
+                'errors' => $errors,
+            ]);
+        }
         if(ChooseTask::whereTeacherId($id)){
             //find and update the task
             ChooseTask::whereTeacherId($id)->whereId($t_id)->update([
-                'name' => 'name',
-                'question' => 'question3',
-                'n_answers' => 3,
+                'name' => $request->input(['name']),
+                'question' => $request->input(['question']),
+                'n_answers' => $request->input(['n_answers']),
             ]);
             //get the uodated task
-            $task = ChooseTask::findOrFail($t_id);
-            //delete previous answers
-            $delete = ChooseAnswer::whereChtaskId($t_id);
-            $delete->delete();
-            //set new answers
-            $data = [0,1,0];
-            for($i = 0; $i < $task->n_answers; $i++){
-                $answer = new ChooseAnswer([
-                    'answer' => 'neshto',
-                    'is_answer' => $data[$i], 
-                ]);
-                $task->answers()->save($answer);
+                $task = ChooseTask::findOrFail($t_id);
+                //delete previous answers
+                $delete = ChooseAnswer::whereChtaskId($t_id);
+                $delete->delete();
+                //set new answers
+                // $data = [0,1,0];
+                for($i = 0; $i < $task->n_answers; $i++){
+                    $errors = Validator::make($request[$i], [
+                        'value' => 'required|max:255|regex:/(\s*\D*[0-9]*[A-Za-z]*[\x{0410}-\x{042F}]*[\x{0430}-\x{044F}]*)*$/u',
+                    ])->errors();
+                    if(count($errors)!==0){
+                        return response()->json([
+                            'status' => 400,
+                            'errors' => $errors,
+                        ]);
+                    }
+                    $answer = new ChooseAnswer([
+                        'answer' => $request[$i]['value'],
+                        'is_answer' => $request[$i]['is_answer'], 
+                    ]);
+                    $task->answers()->save($answer);
+                }
             }
-            
         }
+        
     }
-}
+

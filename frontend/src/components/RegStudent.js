@@ -15,7 +15,7 @@ export default function RegStudent() {
 		name: '',
 		lname: '',
 		email: '',
-		subject: '',
+		class: '',
 		school: '',
 		town: '',
 		comm: '',
@@ -34,6 +34,31 @@ export default function RegStudent() {
 		dispatch(setHomeData({ activeForm: newActive }));
 	};
 
+	const handleInput = e => {
+		setData({
+			...data,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const register = async e => {
+		e.preventDefault();
+
+		const res = await axios.post(
+			`${process.env.REACT_APP_BACKEND}/api/student/register`,
+			data
+		);
+			console.log(res);
+		if (res.data.status === 200) {
+			setErrors({});
+			setData({ ...dataTemp });
+			window.location.href = res.data.url;
+		}
+		if (res.data.status === 400) {
+			setErrors(res.data.errors);
+		}
+	};
+
 	return (
 		<RegisterEl className='container student-form'>
 			<h1 className='heading-l'>Регистрация като ученик</h1>
@@ -46,23 +71,38 @@ export default function RegStudent() {
 					<Button
 						className='button heading-s'
 						theme='red'
+						type='button'
 						onClick={() => changeActiveForm('logStudent')}
 					>
 						Вход
 					</Button>
 				</div>
-				<form className='input-holder'>
+
+				{/* ----------------FORM---------------------- */}
+
+				<form className='input-holder' onSubmit={register}>
 					<div className='group'>
 						<label htmlFor='name'>Име:</label>
-						<input name='name' type='text' placeholder='Въведете своето име' />
+						<input 
+							name='name' 
+							type='text' 
+							placeholder='Въведете своето име' 
+							onChange={handleInput}
+							value={data.name}
+						/>
+						<span className='danger'>{errors.name || ''}</span>
+
 					</div>
 					<div className='group'>
 						<label htmlFor='l-name'>Фамилия:</label>
 						<input
-							name='l-name'
+							name='lname'
 							type='text'
 							placeholder='Въведете своята фамилия'
+							onChange={handleInput}
+							value={data.lname}
 						/>
+						<span className='danger'>{errors.lname || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='email'>Email:</label>
@@ -70,15 +110,21 @@ export default function RegStudent() {
 							name='email'
 							type='email'
 							placeholder='Въведете своя email'
+							onChange={handleInput}
+							value={data.email}
 						/>
+						<span className='danger'>{errors.email || ''}</span>
 					</div>
 					<div className='group'>
-						<label htmlFor='subject'>Клас и паралелка:</label>
+						<label htmlFor='class'>Клас и паралелка:</label>
 						<input
-							name='subject'
+							name='class'
 							type='text'
 							placeholder='Въведете клас и паралелка: Напр. "12б"'
+							onChange={handleInput}
+							value={data.class}
 						/>
+						<span className='danger'>{errors.class || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='school'>Учебно заведение:</label>
@@ -86,7 +132,10 @@ export default function RegStudent() {
 							name='school'
 							type='text'
 							placeholder='Въведете име на учебно заведение'
+							onChange={handleInput}
+							value={data.school}
 						/>
+						<span className='danger'>{errors.school || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='town'>Град/село:</label>
@@ -94,7 +143,10 @@ export default function RegStudent() {
 							name='town'
 							type='text'
 							placeholder='Въведете градът на учебното заведение'
+							onChange={handleInput}
+							value={data.town}
 						/>
+						<span className='danger'>{errors.town || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='comm'>Община:</label>
@@ -102,7 +154,10 @@ export default function RegStudent() {
 							name='comm'
 							type='text'
 							placeholder='Въведете общината на учебното заведение'
+							onChange={handleInput}
+							value={data.comm}
 						/>
+						<span className='danger'>{errors.comm || ''}</span>
 					</div>
 					<div className='group'>
 						<label htmlFor='area'>Област:</label>
@@ -110,25 +165,43 @@ export default function RegStudent() {
 							name='area'
 							type='text'
 							placeholder='Въведете областта на учебното заведение'
+							onChange={handleInput}
+							value={data.area}
 						/>
+						<span className='danger'>{errors.area || ''}</span>
 					</div>
 					<div className='group'>
-						<label htmlFor='pass'>Парола:</label>
-						<input name='pass' type='text' placeholder='Въведете парола' />
-					</div>
-					<div className='group'>
-						<label htmlFor='name'>Потвърдете паролата:</label>
+						<label htmlFor='password'>Парола:</label>
 						<input
-							name='c-pass'
-							type='text'
+							name='password'
+							type='password'
+							placeholder='Въведете парола'
+							onChange={handleInput}
+							value={data.password}
+						/>
+						<span className='danger'>{errors.password || ''}</span>
+
+					</div>
+					<div className='group'>
+						<label htmlFor='password_confirmation'>Потвърдете паролата:</label>
+						<input
+							name='password_confirmation'
+							type='password'
 							placeholder='Потвърдете паролата'
+							onChange={handleInput}
+							value={data.password_confirmation}
 						/>
 					</div>
 					<div className='group'>
-						<Button className='button heading-s'>Регистрация</Button>
+						<Button 
+							className='button heading-s'
+							type='submit'>
+								Регистрация
+						</Button>
 						<Button
 							className='button heading-s mobile-button'
 							theme='red'
+							type='button'
 							onClick={() => changeActiveForm('logStudent')}
 						>
 							Вход

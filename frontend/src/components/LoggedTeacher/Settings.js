@@ -63,7 +63,7 @@ export default function Settings() {
 				<span className='danger'>{errors.password||""}</span>
 
 			</div>
-			<Button className='btn'>Запази</Button>
+			<Button className='btn' type='submit'>Запази</Button>
 		</form>
 	);
 }

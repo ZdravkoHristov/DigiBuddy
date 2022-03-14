@@ -10,7 +10,7 @@ function App() {
 		<Routes>
 			<Route path='/' element={<Home />} />
 			<Route path='api/teacher/:id/home' element={<LoggedTeacher />} />
-			<Route path='loggedStudent' element={<LoggedStudent />} />
+			<Route path='api/student/:id/home' element={<LoggedStudent />} />
 			<Route path='authors' element={<Authors />} />
 		</Routes>
 	);

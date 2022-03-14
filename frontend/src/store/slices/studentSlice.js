@@ -77,6 +77,14 @@ const studentSlice = createSlice({
 			],
 		},
 	},
+	reducers: {
+		setStudent: (state, { payload }) => {
+			// console.log('payload');
+			// console.log(payload);
+			state.info = { ...state.info, ...payload };
+		},
+	},
 });
+export const { setStudent } = studentSlice.actions;
 
 export default studentSlice.reducer;
