@@ -80,6 +80,7 @@ Route::post('teacher/{id}/folder/insert', [FileController::class, 'insertFolder'
 Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);
 Route::get('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
 Route::get('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);
+Route::post('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);
 Route::get('teacher/{id}/folder/{folder_id}/file/show', [FileController::class, 'showFile']);
 Route::get('teacher/{id}/file/{file_id}/show', [FileController::class, 'showTasksOnFile']);
 // Route::post("teacher/{id}/tasks", [TasksController::class, 'insert'])->name('teacher.tasks');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Post;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -46,19 +47,58 @@ class Classes extends Controller
         
     }
 
-    protected function getStudentsInfo(){
+    protected function test(){
         //fetch students
         $students = TeachStudClass::whereCode('QWO6KQXVOX523cE')->whereClassableType('App\Models\Student')->get();
-        foreach($students as $student){
-            return Student::findOrFail($student->classable_id)->get();
+        for($i = 0; $i < count($students); $i++){
+            $info = Student::findOrFail($students[$i]->classable_id);
+            return $this->getFilesInfo($students[$i]->code);
+            return response()->json([
+                'status' => 200,
+                'fullName' => 'Г-н/Г-жа ' . $info->name . ' ' . $info->lname,
+            ]);
         }
     }
     
-    protected function test(){
+    protected function getTeacherInfo(){
         //fetch teacher
         $teacher = TeachStudClass::whereCode('QWO6KQXVOX523cE')->whereClassableType('App\Models\Teacher')->get();
-        foreach($teacher as $teach){
-            return Teacher::findOrFail($teach->classable_id)->get();
+        for($i = 0; $i < count($teacher); $i++){
+            $info = Teacher::findOrFail($teacher[$i]->classable_id);
+            return response()->json([
+                'status' => 200,
+                'fullName' => 'Г-н/Г-жа ' . $info->name . ' ' . $info->lname,
+            ]);
+        }
+    }
+    
+    protected function addFilesToClass(){
+        //check if there is a teacher 
+        Teacher::findOrFail(1);
+
+        //check if file exist
+        $file = File::findOrFail(1);
+
+        $class = new TeachStudClass([
+            'name' => '12b',
+            'code' => 'QOlK1xq7g7xmpyUWsAJtphUs32kCZ1'
+        ]);
+
+        $file->classes()->save($class);
+
+        return $file->classes;
+    }
+    
+    protected function getFilesInfo($code){
+        //fetch teacher
+        $files = TeachStudClass::whereCode($code)->whereClassableType('App\Models\File')->get();
+        foreach($files as $file){
+            $find = File::FindOrFail($file->classable_id);
+            return response()->json([
+                'status' => 200,
+                'file' => $find,
+                'contents' => $find->contents,
+            ]);
         }
     }
 

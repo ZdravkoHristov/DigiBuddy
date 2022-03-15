@@ -19,4 +19,9 @@ class File extends Model
     public function contents(){
         return $this->hasMany('App\Models\FileContents');
     }
+
+    public function classes()
+    {
+        return $this->morphMany(TeachStudClass::class, 'classable');
+    }
 }

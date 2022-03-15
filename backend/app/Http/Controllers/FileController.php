@@ -57,13 +57,13 @@ class FileController extends Controller
         ]);
     }
 
-    protected function insertFile($teacher_id, $folder_id){
+    protected function insertFile($teacher_id, $folder_id, Request $request){
         $folder = Folder::findOrFail($folder_id);
         
         $file = new File([
             'teacher_id' => $teacher_id,
-            'name' => 'file name',
-            'n_contents' => 2
+            'name' => $request->input(['name']),
+            'n_contents' => $request->input((['n_contents']))
         ]);
 
         $folder->files()->save($file);
