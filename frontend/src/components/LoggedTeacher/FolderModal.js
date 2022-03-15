@@ -18,25 +18,21 @@ export default function NewFolderModal() {
 	const { folderIds, targetFolderId, folderAction, targetFolderName } =
 		useSelector(loggedUiSelector).uiInfo;
 
-		
 	const initialName = folderAction === 'edit' ? targetFolderName : '';
 	const [folderName, setFolderName] = useState(initialName);
 
-	const {id} = useParams();
-
+	const { id } = useParams();
 
 	const getCollectionInfo = () => {
 		const collectionsCopy = JSON.parse(JSON.stringify(collections));
 		let currentLevel = collectionsCopy;
 		let collection;
-		console.log(folderIds)
-		
-		folderIds.forEach(id => {
-	
-			collection = currentLevel.find(collection => collection.id === id);
-			console.log(collection, collection.children)
-			currentLevel = collection.children;
+		console.log(folderIds);
 
+		folderIds.forEach(id => {
+			collection = currentLevel.find(collection => collection.id === id);
+			console.log(collection, collection.children);
+			currentLevel = collection.children;
 		});
 
 		return [collectionsCopy, collection];
@@ -52,18 +48,18 @@ export default function NewFolderModal() {
 
 	const addNewFolder = async () => {
 		/*TODO: a backend request*/
-		
+
 		let newFolder = {
 			parent_id: targetFolderId,
 			name: folderName,
 		};
-
+		console.log(newFolder);
 		const res = await axios.post(
 			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/insert`,
 			newFolder
 		);
 
-		newFolder = {...newFolder, id: res.data.id};
+		newFolder = { ...newFolder, id: res.data.id };
 
 		if (!folderIds.length) {
 			dispatch(

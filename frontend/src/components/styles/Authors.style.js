@@ -23,6 +23,10 @@ const AuthorsEl = styled.section`
 			background-color: var(--purple);
 			color: #fff;
 		}
+
+		.burger-icon {
+			display: none;
+		}
 	}
 
 	.authors-wrapper {
