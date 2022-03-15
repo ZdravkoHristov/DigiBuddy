@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import AuthorsEl from './styles/Authors.style';
 import Navbar from './Navbar';
 import denitsaImg from '../assets/images/denitsa-rashkova.png';
@@ -25,6 +26,11 @@ export default function Authors() {
 		);
 	};
 
+	useEffect(() => {
+		document.body.classList.add('side-page');
+
+		return () => document.body.classList.remove('side-page');
+	}, []);
 	return (
 		<AuthorsEl>
 			<Navbar links={navLinks} outCount={1} />

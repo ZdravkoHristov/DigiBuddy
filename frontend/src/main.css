@@ -28,6 +28,10 @@ body {
 	letter-spacing: 1px;
 }
 
+body.side-page {
+	padding-top: 131px;
+}
+
 input {
 	outline: none;
 }

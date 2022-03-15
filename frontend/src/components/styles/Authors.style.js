@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const AuthorsEl = styled.section`
 	& {
-		min-height: 100vh;
+		min-height: calc(100vh - 131px);
 		background: linear-gradient(
 			-135deg,
 			#f05454 0%,
@@ -30,12 +30,11 @@ const AuthorsEl = styled.section`
 	}
 
 	.authors-wrapper {
-		position: relative;
-		top: 200px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-column-gap: 7rem;
 		padding: 1rem;
+		padding-top: 80px;
 	}
 
 	.author-card {
