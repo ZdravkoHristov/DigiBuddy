@@ -17,6 +17,7 @@ use App\Http\Controllers\Test\RegisterController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\Student\StudentRegisterController;
 use App\Http\Controllers\Auth\TeacherRegisterController;
+use App\Http\Controllers\Classes;
 
 // use App\Http\Controllers\Auth\HomeController;
 
@@ -31,6 +32,8 @@ use App\Http\Controllers\Auth\TeacherRegisterController;
 |
 */
 
+Route::get('/test', [Classes::class, 'test']);
+Route::get('/sttest', [Classes::class, 'sttest']);
 
 //--------------------REGISTER-----------------
 Route::post('/teacher/register', [TeacherRegisterController::class, 'validator'])->name('teacher.register');
@@ -64,8 +67,10 @@ Route::put("teacher/{id}/task/{t_id}/open/update", [OpenTasksController::class, 
 Route::get("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
 Route::delete("teacher/{id}/task/{task_id}/open/delete", [OpenTasksController::class, 'deleteOpenTask'])->name('teacher.open.tasks');
 //--------------------LOGGEDTEACHER/CLASSES-----------------
-Route::get("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
-Route::post("teacher/{id}/classes", [TeacherClasses::class, 'codeGenerator'])->name('teacher.class');
+Route::get("teacher/{id}/classes", [Classes::class, 'codeGenerator'])->name('teacher.class');
+Route::post("teacher/{id}/classes", [Classes::class, 'codeGenerator'])->name('teacher.class');
+Route::get("student/{id}/classes", [Classes::class, 'codeGenerator'])->name('teacher.class');
+Route::post("student/{id}/classes", [Classes::class, 'codeGenerator'])->name('teacher.class');
 // Route::get("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
 // Route::post("teacher/{id}/folders", [FoldersController::class, 'createFolder'])->name('teacher.folder');
 // Route::get("teacher/{id}/folders/{f_id}/child", [FoldersController::class, 'createFile'])->name('teacher.folder');

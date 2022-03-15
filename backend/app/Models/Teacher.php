@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Cl;
+use App\Models\TeachStudClass;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Authenticatable
 {
@@ -45,10 +47,10 @@ class Teacher extends Authenticatable
         return $this->hasOne('App\Models\OpenTask');//looks teacher_id in the specific table
     }
     
-    public function classes()
-    {
-        return $this->hasMany('App\Models\TeacherClass');
-    }
+    // public function classes()
+    // {
+    //     return $this->hasMany('App\Models\TeacherClass');
+    // }
     
     public function folders()//ONE TO MANY
     {
@@ -58,5 +60,10 @@ class Teacher extends Authenticatable
     public function files()
     {
         return $this->hasOne('App\Models\File');
+    }
+
+    public function classes()
+    {
+        return $this->morphMany('App\Models\TeachStudClass', 'classable');
     }
 }

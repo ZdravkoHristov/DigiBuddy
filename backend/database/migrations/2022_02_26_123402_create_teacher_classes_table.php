@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('t_classes', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->integer('teacher_id');
             $table->string('name');
-            $table->string('code')->unique();
+            $table->string('code');
+            $table->string('classable_id');
+            $table->string('classable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_classes');
+        Schema::dropIfExists('classes');
     }
 };

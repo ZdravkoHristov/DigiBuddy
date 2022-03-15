@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Cl;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class Student extends Authenticatable
 {
@@ -29,4 +30,9 @@ class Student extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public function classes()
+    {
+        return $this->morphMany(TeachStudClass::class, 'classable');
+    }
 }
