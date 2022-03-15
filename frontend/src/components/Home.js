@@ -38,9 +38,9 @@ export default function Home() {
 			<section {...props}>
 				{' '}
 				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
-					quibusdam qui adipisci, culpa odio veniam nobis! Corporis vel
-					reprehenderit eos.
+      
+	                           DigiBuddy - най-добрият приятел на учители и ученици. Платформата помага за предоставяне на учебни материали, персонализирани от регистрираните учители.			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
+					
 				</p>
 				<div className='img-holder'>
 					<img src={heroIllustration} alt='illustration' />
