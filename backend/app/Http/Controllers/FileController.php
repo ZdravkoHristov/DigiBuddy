@@ -24,22 +24,25 @@ class FileController extends Controller
 
     protected function insertFolder($id, Request $request){
         $teacher = Teacher::findOrFail($id);
-
-        $error = Validator::make($request->all(), [
-            'name' => 'requeired|max:255|regex:/[\x{0410}-\x{042F}A-Z][\x{0430}-\x{044F}a-z]*(\s*\D*[0-9]*[\x{0410}-\x{042F}A-Z]*[\x{0430}-\x{044F}a-z]*)*$/u'
-        ])->errors();
         
+        // $error = Validator::make($request->all(), [
+        //     'name' => 'requeired|max:255|regex:/[\x{0410}-\x{042F}A-Z][\x{0430}-\x{044F}a-z]*(\s*\D*[0-9]*[\x{0410}-\x{042F}A-Z]*[\x{0430}-\x{044F}a-z]*)*$/u'
+        // ])->errors();
+            
         $folder = new Folder([
             'name' => $request->input(['name']),
-            'parent_id' => $request->input(['parent_id'])
+            'parent_id' => $request['parent_id']
+        ]);
+        $teacher->folders()->save($folder);
+        return response()->json([
+            'status' => 200,
+            'teacher' => $folder
         ]);
         
-        $teacher->folders()->save($folder);
         
                 return response()->json([
                     'status' => 200,
                     'id' => $folder->id,
-                    'errors' => $error
                 ]);
     }
 
@@ -52,19 +55,17 @@ class FileController extends Controller
     }
 
     protected function updateFolder($id, $folder_id, Request $request){
-        $error = Validator::make($request->all(), [
-            'name' => 'requeired|max:255|regex:/[\x{0410}-\x{042F}A-Z][\x{0430}-\x{044F}a-z]*(\s*\D*[0-9]*[\x{0410}-\x{042F}A-Z]*[\x{0430}-\x{044F}a-z]*)*$/u'
-        ])->errors();
-
-        $folder = Folder::whereId($folder_id)->whereTeacherId($id)->update([
+        Folder::whereTeacherId($id)->whereId($folder_id)->update([
             'name' => $request->input(['name']),
         ]);
+        //get the uodated task
+            $folder = Folder::findOrFail($folder_id);
+
         
         return response()->json([
             'status' => 200,
             'message' => 'Вие успешно променихте заглавието на колекцията',
             'folder' => $folder,
-            'errrors' => $error
         ]);
     }
 
@@ -77,7 +78,7 @@ class FileController extends Controller
 
     protected function insertFile($teacher_id, $folder_id, Request $request){
         $folder = Folder::findOrFail($folder_id);
-        
+
         $file = new File([
             'teacher_id' => $teacher_id,
             'name' => $request->input(['name']),
@@ -86,22 +87,10 @@ class FileController extends Controller
 
         $folder->files()->save($file);
 
-        //---EXAMPLE DATA
-
-        $tasks = [
-            41, 3
-        ];
-        //------
-
         for($i = 0; $i < $file->n_contents; $i++){
-            // return response()->json([
-            //     'status' => 200,
-            //     'message' => 'Вие успешно създадохте работен лист',
-            //     'info' => $request[$i]['type'],
-            // ]);
             $file_contents = new FileContents([
                 'type' => $request[$i]['type'],
-                'task_id' => $tasks[$i],
+                'task_id' => $request[$i]['task_id'],
             ]);
 
             $file->contents()->save($file_contents);

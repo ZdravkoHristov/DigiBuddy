@@ -59,6 +59,8 @@ export default function FileModal() {
 		// console.log(uiInfo.targetFolderId);
 
 		const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/${uiInfo.targetFolderId}/file/insert`, {name: shitName, ...assignmentsInfo, n_contents: assignmentsInfo.length});
+
+		// console.log(res.data.info);
 		
 		console.log('FGHJKL',res.data.info);
 

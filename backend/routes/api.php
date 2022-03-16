@@ -77,6 +77,7 @@ Route::post("student/{id}/classes", [Classes::class, 'codeGenerator'])->name('te
 Route::get('teacher/{id}/folders', [FileController::class, 'showAllFolders']);
 Route::post('teacher/{id}/folder/insert', [FileController::class, 'insertFolder']);
 Route::get('teacher/{id}/folder/show', [FileController::class, 'showFolders']);
+Route::get('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
 Route::put('teacher/{id}/folder/{folder_id}/update', [FileController::class, 'updateFolder']);
 Route::delete('teacher/{id}/folder/{folder_id}/delete', [FileController::class, 'deleteFolder']);
 Route::get('teacher/{id}/folder/{folder_id}/file/insert', [FileController::class, 'insertFile']);

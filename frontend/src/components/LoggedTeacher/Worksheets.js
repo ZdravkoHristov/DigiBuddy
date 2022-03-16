@@ -14,7 +14,7 @@ export default function Worksheets() {
 	const dispatch = useDispatch();
 	const {id} = useParams();
 	const { collections } = useSelector(teacherSelector).info;
-	const { showFolderModal, showFileModal } = useSelector(loggedUiSelector).uiInfo;
+	const { showFolderModal, showFileModal, targetFolderId, targetFolderName } = useSelector(loggedUiSelector).uiInfo;
 
 	const fetchFolders = async () => {
 		
@@ -30,6 +30,16 @@ export default function Worksheets() {
 			}
 		
 	};
+
+	const deleteFolder = async (e, folderId) => {
+	
+		e.stopPropagation();
+		
+
+		const res = await axios.delete(
+			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/${folderId}/delete`
+		);
+	}
 
 	useEffect(fetchFolders, [])
 
@@ -83,6 +93,7 @@ export default function Worksheets() {
 		const tooltipRef = useRef();
 		const clickedOutsideTooltip = useOutsideClick(tooltipRef);
 
+
 		const modalAction = (e, action) => {
 		//	console.log('COLLECTION: ', collection)
 			e.stopPropagation();
@@ -97,6 +108,8 @@ export default function Worksheets() {
 					targetFolderName: collection.name,
 				})
 			);
+				
+				
 		};
 
 		useEffect(() => {
@@ -141,7 +154,7 @@ export default function Worksheets() {
 									className='far fa-edit icon'
 									onClick={e => modalAction(e, 'edit')}
 								></i>
-								<i className='fas fa-trash-alt icon'></i>
+								<i className='fas fa-trash-alt icon' onClick={e => {deleteFolder(e, collection.id)}}></i>
 							</div>
 
 							<div
@@ -219,7 +232,7 @@ export default function Worksheets() {
 					className='add-row'
 					onClick={() =>
 						dispatch(
-							setUiInfo({ showFolderModal: true, folderAction: 'create' })
+							setUiInfo({ showFolderModal: true, folderAction: 'create', folderIds: [] })
 						)
 					}
 				>

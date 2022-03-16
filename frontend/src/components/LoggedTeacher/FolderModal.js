@@ -29,12 +29,12 @@ export default function NewFolderModal() {
 		const collectionsCopy = JSON.parse(JSON.stringify(collections));
 		let currentLevel = collectionsCopy;
 		let collection;
-		console.log(folderIds)
+	
 		
 		folderIds.forEach(id => {
 	
 			collection = currentLevel.find(collection => collection.id === id);
-			console.log(collection, collection.children)
+			
 			currentLevel = collection.children;
 
 		});
@@ -42,10 +42,15 @@ export default function NewFolderModal() {
 		return [collectionsCopy, collection];
 	};
 
-	const editFolder = () => {
+	const editFolder = async () => {
 		const [collections, currentItem] = getCollectionInfo();
 		currentItem.name = folderName;
-		console.log(collections);
+
+			const res = await axios.put(
+				`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/${targetFolderId}/update`, {name: folderName}
+			);
+		
+	
 		dispatch(setTeacher({ collections }));
 		dispatch(setUiInfo({ showFolderModal: false }));
 	};
@@ -58,12 +63,14 @@ export default function NewFolderModal() {
 			name: folderName,
 		};
 
-		console.log(newFolder);
-		
+		console.log(folderIds, newFolder);
+
 		const res = await axios.post(
 			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/insert`,
 			newFolder
 		);
+
+		console.log(res);
 
 		newFolder = {...newFolder, id: res.data.id};
 
