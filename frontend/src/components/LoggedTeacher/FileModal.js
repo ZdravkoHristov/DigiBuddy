@@ -10,13 +10,15 @@ import Button from '../Button';
 import SelectAnswerType from './SelectAnswerType';
 import OpenAnswerType from './OpenAnswerType';
 import { setTeacher } from '../../store/slices/teacherSlice';
+import Assignments from './Assignments';
 export default function FileModal() {
 	const dispatch = useDispatch();
 	const { uiInfo } = useSelector(loggedUiSelector);
-    const {assignments} = useSelector(teacherSelector);
+    const {assignments} = useSelector(teacherSelector).info;
 	const [answers, setAnswers] = useState([]);
     const [assignmentCount, setAssignmentCount] = useState(0);
     const [assignmentsInfo, setAssignmentsInfo] = useState([]);
+	const [shitName, setShitName] = useState('');
 
     console.log(assignments)
 	
@@ -43,55 +45,46 @@ export default function FileModal() {
 			newArray.push({
 				id: uuid(),
 				type: 'default',
-                assignmentId: 'none',
+                task_id: 'none',
 			});
 		}
 
 		setAssignmentsInfo(newArray);
     }, [assignmentCount])
 
-	// const submitHandler = async (e) => {
-	// 	e.preventDefault();
-	// 	const type = uiInfo.customType;
-	// 	let res;
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		const type = uiInfo.customType;
 
-	// 	if(type === 'choose') {
-	// 		const filteredAnswers = answers.filter(({value}) => value !== '');
-	// 		additionalData = {...filteredAnswers, n_answers:filteredAnswers.length}
+		// console.log(uiInfo.targetFolderId);
 
-	// 		if (uiInfo.reviewingCustomAssignment) {
-	// 			res = await axios.put(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, ...additionalData}) 
-	// 		} else {
-	// 			res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, ...additionalData}) 
-	// 		}
-	// 	} else if (type === 'open') {
-	// 		if (uiInfo.reviewingCustomAssignment) {
-	// 			res = await axios.put(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/task/${assignmentInfo.id}/${type}/update`, {...assignmentInfo, answer: openAnswer}) 
-	// 		} else {
-	// 			res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/tasks/${type}/insert`, {...assignmentInfo, answer: openAnswer});
-	// 		}
-	// 	}
-
-	// 	setErrors({});
+		const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/${uiInfo.targetFolderId}/file/insert`, {name: shitName, ...assignmentsInfo, n_contents: assignmentsInfo.length});
 		
-	// 	if(res.data.status === 200){
-	// 		console.log(res.data.info);
-	// 	}
-	// 	if(res.data.status === 400){
-	// 		setErrors(res.data.errors);
-	// 	}
-	// }
+		console.log('FGHJKL',res.data.info);
+
+		setErrors({});
+		
+		if(res.data.status === 200){
+			console.log(res.data.info);
+		}
+		if(res.data.status === 400){
+			setErrors(res.data.errors);
+		}
+	}
+
+	const updateAssignmentsInfo = (index, newInfo) => {
+		setAssignmentsInfo(oldInfo => {
+			return [...oldInfo.slice(0, index), {...oldInfo[index], ...newInfo}, ...oldInfo.slice(index + 1)]
+		});
+	}
 
     const AssignmentEntry = ({index}) => {
-        const typeValue = assignmentsInfo[index].type;
+		const typeValue = assignmentsInfo[index].type;
         return<> <div className='input-group'>
-                <label htmlFor="type">Тип: </label>
+	            <label htmlFor="type">Тип: </label>
 
                 <select id="type" defaultValue='default' value={typeValue} onChange={e => {
-                    setAssignmentsInfo(oldInfo => {
-                        console.log([...oldInfo.slice(0, index), {...oldInfo[index], type: e.target.value}, ...oldInfo.slice(index + 1)])
-                        return [...oldInfo.slice(0, index), {...oldInfo[index], type: e.target.value}, ...oldInfo.slice(index + 1)]
-                    })
+					updateAssignmentsInfo(index, {type: e.target.value});
                 }}>
                 <option value='default' disabled hidden >
 						Изберете тип
@@ -105,18 +98,17 @@ export default function FileModal() {
                     typeValue !== 'default' &&  <div className='input-group'>
                     <label htmlFor="assignment">Задача: </label>
     
-                    <select id="assignment" defaultValue='default' value={assignmentsInfo[index].type} onChange={e => {
-                        setAssignmentsInfo(oldInfo => {
-                            console.log([...oldInfo.slice(0, index), {...oldInfo[index], type: e.target.value}, ...oldInfo.slice(index + 1)])
-                            return [...oldInfo.slice(0, index), {...oldInfo[index], type: e.target.value}, ...oldInfo.slice(index + 1)]
-                        })
+                    <select id="assignment" defaultValue='default' value={assignmentsInfo[index].task_id} onChange={e => {
+                        updateAssignmentsInfo(index, {task_id: e.target.value});
                     }}>
                     <option value='default' disabled hidden >
                             Изберете задача
                         </option>
-                        {Object.entries(uiInfo.assignmentTypes).map(([type, typeLabel]) => {
-                            return <option value={type} key={type}>{typeLabel}</option>
-                        })}    
+						{
+							assignments.filter(({type}) => type === typeValue).map(item => {
+								return <option value={item.id} key={item.id}>{item.name}</option>
+							})
+						}
                     </select>
                 </div>
 
@@ -140,7 +132,9 @@ export default function FileModal() {
 			>
                 <h2>Работен лист</h2>
                 <h4 >Папка: {uiInfo.targetFolderName}</h4>
-				<form>
+				<form onSubmit={submitHandler}>
+				<label htmlFor="type">Име: </label>
+				<input type='text' placeholder='Въведете име на работният лист' value={shitName} onChange={e => setShitName(e.target.value)} />
                 <p className='answers-count'>
 				Брой задачи:{' '}
 				<input

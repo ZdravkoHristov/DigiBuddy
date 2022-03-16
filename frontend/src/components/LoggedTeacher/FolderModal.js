@@ -54,10 +54,12 @@ export default function NewFolderModal() {
 		/*TODO: a backend request*/
 		
 		let newFolder = {
-			parent_id: targetFolderId,
+			parent_id: folderIds.length ? targetFolderId:null,
 			name: folderName,
 		};
 
+		console.log(newFolder);
+		
 		const res = await axios.post(
 			`${process.env.REACT_APP_BACKEND}/api/teacher/${id}/folder/insert`,
 			newFolder
